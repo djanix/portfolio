@@ -38,15 +38,15 @@ jQuery(document).ready(function() {
 	 });
 
 	//contact_icons animation
-//	$('.contact_icons li').hover(function(){
-//		$(this).animate({
-//			'background-position-y': '0px'
-//		}, 100, 'easeInOutExpo')
-//	}, function() {
-//		$(this).animate({
-//			'background-position-y': '8px'
-//		}, 100, 'easeInOutExpo')
-//	})
+	$('.contact_icons li').hover(function(){
+		$(this).find('img').stop(true, true).animate({
+			paddingTop: '-=10'
+		}, 200, 'easeInOutExpo')
+	}, function() {
+		$(this).find('img').stop(true, true).animate({
+			paddingTop: '+=10'
+		}, 200, 'easeInOutExpo')
+	})
 });
 
 
