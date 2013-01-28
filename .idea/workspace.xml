@@ -1,19 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" name="Default" comment="" />
+    <list default="true" id="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/img/design/bx_controls.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/img/design/bx_loader.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/less/plugins/jquery.bxslider.less" />
+      <change type="DELETED" beforePath="F:\web\portfolio\assets\img\design\lightbox\lightbox-blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="F:\web\portfolio\assets\img\design\lightbox\lightbox-btn-close.gif" afterPath="" />
+      <change type="DELETED" beforePath="F:\web\portfolio\assets\img\design\lightbox\lightbox-btn-next.gif" afterPath="" />
+      <change type="DELETED" beforePath="F:\web\portfolio\assets\img\design\lightbox\lightbox-btn-prev.gif" afterPath="" />
+      <change type="DELETED" beforePath="F:\web\portfolio\assets\img\design\lightbox\lightbox-ico-loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="F:\web\portfolio\assets\js\jquery.easing.1.3.js" afterPath="" />
+      <change type="DELETED" beforePath="F:\web\portfolio\assets\less\plugins\bx_styles.less" afterPath="" />
+      <change type="DELETED" beforePath="F:\web\portfolio\assets\less\plugins\jquery.lightbox-0.5.less" afterPath="" />
+      <change type="DELETED" beforePath="F:\web\portfolio\assets\less\plugins\tipTip.less" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/main.js" afterPath="$PROJECT_DIR$/assets/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/less/main.less" afterPath="$PROJECT_DIR$/assets/less/main.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/plugins.js" afterPath="$PROJECT_DIR$/assets/js/plugins.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/style.css" afterPath="$PROJECT_DIR$/assets/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/less/style.less" afterPath="$PROJECT_DIR$/assets/less/style.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/less/vars.less" afterPath="$PROJECT_DIR$/assets/less/vars.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="portfolio.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1356034575414" ignored="false" />
-    <file path="/index.html" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1356041168749" ignored="false" />
+    <file path="/Dummy.txt" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1359399715386" ignored="false" />
+    <file path="/index.html" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1359413807436" ignored="false" />
     <file path="/config.json" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1355426052103" ignored="false" />
     <file path="/fr.json" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1355426007831" ignored="false" />
-    <file path="/a.dummy" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1356039080882" ignored="false" />
-    <file path="/main.less" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1356041521778" ignored="false" />
-    <file path="/style.less" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1356038448454" ignored="false" />
-    <file path="/main.js" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1356035790127" ignored="false" />
+    <file path="/a.dummy" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1359399951805" ignored="false" />
+    <file path="/main.less" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1359413076683" ignored="false" />
+    <file path="/style.less" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1359403146483" ignored="false" />
+    <file path="/main.js" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1359402698449" ignored="false" />
     <file path="/bx_styles.less" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1356037650211" ignored="false" />
-    <file path="/vars.less" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1356038408690" ignored="false" />
+    <file path="/vars.less" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1359403180071" ignored="false" />
+    <file path="/plugins.js" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1359400128406" ignored="false" />
+    <file path="/jquery.bxslider.less" changelist="6d8941f5-3927-44b2-b4f6-3eb801b6b7da" time="1359402714841" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,19 +54,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="35" selection-start="1122" selection-end="1129" vertical-scroll-proportion="-7.230769">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bx_styles.less" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/less/plugins/bx_styles.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="14" selection-start="224" selection-end="224" vertical-scroll-proportion="0.0">
+            <state line="334" column="48" selection-start="11190" selection-end="11190" vertical-scroll-proportion="0.47044024">
               <folding />
             </state>
           </provider>
@@ -51,18 +66,28 @@
       <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="19" selection-start="1276" selection-end="1276" vertical-scroll-proportion="0.0">
+            <state line="28" column="19" selection-start="984" selection-end="984" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <marker date="1359402710348" expanded="true" signature="30:1416" placeholder="{...}" />
+                <marker date="1359402710348" expanded="true" signature="942:1122" placeholder="{&quot;easing&quot;: 'easeInOutExpo'...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.less" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="jquery.bxslider.less" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/less/plugins/jquery.bxslider.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="1" selection-start="561" selection-end="561" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.less" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/less/main.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="123" column="0" selection-start="1841" selection-end="1841" vertical-scroll-proportion="0.42099056">
+            <state line="222" column="0" selection-start="3531" selection-end="3531" vertical-scroll-proportion="13.56">
               <folding />
             </state>
           </provider>
@@ -71,7 +96,7 @@
       <file leaf-file-name="style.less" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/less/style.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0">
+            <state line="0" column="9" selection-start="9" selection-end="61" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -80,44 +105,19 @@
       <file leaf-file-name="vars.less" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/less/vars.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="9" selection-start="87" selection-end="87" vertical-scroll-proportion="0.0">
+            <state line="8" column="0" selection-start="96" selection-end="106" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="normalize.less" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/less/normalize.less">
+      <file leaf-file-name="plugins.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/plugins.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="75" selection-start="611" selection-end="611" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/config.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="6" selection-start="36" selection-end="36" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="en.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/localization/en.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="1" selection-start="85" selection-end="85" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fr.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/localization/fr.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="5" selection-start="83" selection-end="83" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -144,20 +144,46 @@
         <option value="$PROJECT_DIR$/config/localization/en.json" />
         <option value="$PROJECT_DIR$/config/config.json" />
         <option value="$PROJECT_DIR$/assets/css/filters.svg" />
-        <option value="$PROJECT_DIR$/assets/js/main.js" />
+        <option value="$PROJECT_DIR$/assets/js/plugins.js" />
         <option value="$PROJECT_DIR$/assets/less/plugins/bx_styles.less" />
+        <option value="$PROJECT_DIR$/assets/js/main.js" />
+        <option value="$PROJECT_DIR$/assets/less/plugins/jquery.bxslider.less" />
         <option value="$PROJECT_DIR$/assets/less/vars.less" />
         <option value="$PROJECT_DIR$/assets/less/style.less" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/assets/less/main.less" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1920" />
+    <option name="height" value="1040" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>Potentially confusing code constructsJavaScript</id>
+          </State>
+          <State>
+            <id>XPath</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>CSS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -185,7 +211,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -275,6 +300,46 @@
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="portfolio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="portfolio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="design" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="portfolio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="portfolio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -296,27 +361,21 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="vcs.Git" />
+    <property name="options.lastSelected" value="preferences.keymap" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
   </component>
-  <component name="PublishConfig">
-    <servers>
-      <server id="ef657f17-f44a-4496-9dcc-6d5e46a19d52">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" />
-          </mappings>
-        </serverdata>
-      </server>
-    </servers>
-  </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\web\portfolio\assets\img\design" />
+      <recent name="F:\web\portfolio\assets\less\plugins" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\GitHub\portfolio\assets\css" />
       <recent name="C:\GitHub\portfolio\assets" />
@@ -360,15 +419,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1920" height="1040" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2524013" sideWeight="0.67074525" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25995696" sideWeight="0.67074525" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -438,20 +497,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/localization/en.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="1" selection-start="85" selection-end="85" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/localization/fr.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="5" selection-start="83" selection-end="83" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/localization/fr.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="5" selection-start="83" selection-end="83" vertical-scroll-proportion="0.0">
@@ -475,39 +520,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/404.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/filters.svg">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="6" selection-start="210" selection-end="210" vertical-scroll-proportion="0.077892326">
-          <folding />
-        </state>
+        <state line="4" column="6" selection-start="210" selection-end="210" vertical-scroll-proportion="0.077892326" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/less/helpers.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="34" selection-start="752" selection-end="752" vertical-scroll-proportion="0.39633447">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="19" selection-start="1276" selection-end="1276" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
+        <state line="48" column="34" selection-start="752" selection-end="752" vertical-scroll-proportion="0.39633447" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/less/normalize.less">
@@ -517,37 +545,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/less/vars.less">
+    <entry file="file://$PROJECT_DIR$/assets/js/plugins.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="9" selection-start="87" selection-end="87" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="19" selection-start="984" selection-end="984" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1359402710348" expanded="true" signature="30:1416" placeholder="{...}" />
+            <marker date="1359402710348" expanded="true" signature="942:1122" placeholder="{&quot;easing&quot;: 'easeInOutExpo'...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/less/plugins/jquery.bxslider.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="1" selection-start="561" selection-end="561" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/less/plugins/bx_styles.less">
+    <entry file="file://$PROJECT_DIR$/assets/less/vars.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="14" selection-start="224" selection-end="224" vertical-scroll-proportion="0.0">
+        <state line="8" column="0" selection-start="96" selection-end="106" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/applications.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="219" column="21" selection-start="4717" selection-end="4717" vertical-scroll-proportion="0.33257142">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/less/style.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="35" selection-start="1122" selection-end="1129" vertical-scroll-proportion="-7.230769">
+        <state line="0" column="9" selection-start="9" selection-end="61" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/less/main.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="0" selection-start="1841" selection-end="1841" vertical-scroll-proportion="0.42099056">
+        <state line="222" column="0" selection-start="3531" selection-end="3531" vertical-scroll-proportion="13.56">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="334" column="48" selection-start="11190" selection-end="11190" vertical-scroll-proportion="0.47044024">
           <folding />
         </state>
       </provider>
