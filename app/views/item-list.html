@@ -1,0 +1,36 @@
+<p><label>{{copy.work_search}}: <input data-ng-model="query" /></label></p>
+<p>
+	<label>{{copy.work_sort}}:
+		<select data-ng-model="orderProp">
+			<option value="title" selected>{{copy.work_title}}</option>
+			<option value="desc">{{copy.work_description}}</option>
+			<option value="date">{{copy.work_date}}</option>
+		</select>
+	</label>
+</p>
+
+<h2>{{copy.work_web_title}}</h2>
+<ul class="web">
+	<li data-ng-repeat="webItem in web | filter:query | orderBy:orderProp">
+		<p>
+			<strong>{{copy.work_title}}:</strong> {{webItem.title}}<br />
+			<strong>{{copy.work_description}}:</strong> {{webItem.desc}}<br />
+			<strong>{{copy.work_image}}:</strong> {{webItem.img}}<br />
+			<strong>{{copy.work_date}}:</strong> {{webItem.date}}<br />
+			<a href="#/web/{{webItem.title}}">{{copy.work_more}}</a>
+		</p>
+	</li>
+</ul>
+
+<h2>{{copy.work_other_title}}</h2>
+<ul class="other">
+	<li data-ng-repeat="otherItem in other | filter:query | orderBy:orderProp">
+		<p>
+			<strong>{{copy.work_title}}:</strong> {{otherItem.title}}<br />
+			<strong>{{copy.work_description}}:</strong> {{otherItem.desc}}<br />
+			<strong>{{copy.work_image}}:</strong> {{otherItem.img}}<br />
+			<strong>{{copy.work_date}}:</strong> {{otherItem.date}}<br />
+			<a href="#/other/{{itemTitle}}">{{copy.work_more}}</a>
+		</p>
+	</li>
+</ul>
