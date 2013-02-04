@@ -53,9 +53,9 @@
 	<h2>{{copy.work_web_title}}</h2>
 
 	<ul class="web">
-		<li data-ng-repeat="webItem in web | filter:query | orderBy:orderProp">
+		<li data-ng-repeat="webItem in web | filter:query | orderBy:orderProp" data-check-last>
 			<a class="tip" href="#">
-				<img src="{{webItem.img}}" alt="{{webItem.title}}">
+				<img src="" data-ng-src="{{webItem.img}}" alt="{{webItem.title}}" />
 			</a>
 
 			<p class="subtitle"><a href="#/web/{{webItem.title}}">{{webItem.desc}} ({{webItem.date}})</a></p>
@@ -69,9 +69,9 @@
 	<h2>{{copy.work_other_title}}</h2>
 
 	<ul class="other">
-		<li data-ng-repeat="otherItem in other | filter:query | orderBy:orderProp">
+		<li data-ng-repeat="otherItem in other | filter:query | orderBy:orderProp" data-check-last>
 			<a class="tip" href="#">
-				<img src="{{otherItem.img}}" alt="{{otherItem.title}}">
+				<img src="" data-ng-src="{{otherItem.img}}" alt="{{otherItem.title}}" />
 			</a>
 
 			<p class="subtitle"><a href="#/other/{{otherItem.title}}">{{otherItem.desc}} ({{otherItem.date}})</a></p>
