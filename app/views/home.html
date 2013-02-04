@@ -1,36 +1,82 @@
-<p><label>{{copy.work_search}}: <input data-ng-model="query" /></label></p>
-<p>
-	<label>{{copy.work_sort}}:
-		<select data-ng-model="orderProp">
-			<option value="title" selected>{{copy.work_title}}</option>
-			<option value="desc">{{copy.work_description}}</option>
-			<option value="date">{{copy.work_date}}</option>
-		</select>
-	</label>
-</p>
+<div class="presentationBloc">
+	<div class="presentation">
+		<h3>Brief Presentation:</h3>
 
-<h2>{{copy.work_web_title}}</h2>
-<ul class="web">
-	<li data-ng-repeat="webItem in web | filter:query | orderBy:orderProp">
 		<p>
-			<strong>{{copy.work_title}}:</strong> {{webItem.title}}<br />
-			<strong>{{copy.work_description}}:</strong> {{webItem.desc}}<br />
-			<strong>{{copy.work_image}}:</strong> {{webItem.img}}<br />
-			<strong>{{copy.work_date}}:</strong> {{webItem.date}}<br />
-			<a href="#/web/{{webItem.title}}">{{copy.work_more}}</a>
+			Welcome to my Portfolio. I am a 25 years old Web Developer based in Montreal, Canada.
+			I'm currently working at Sid Lee and I use creativity blended with technology to deliver
+			cutting edge work.
 		</p>
-	</li>
-</ul>
 
-<h2>{{copy.work_other_title}}</h2>
-<ul class="other">
-	<li data-ng-repeat="otherItem in other | filter:query | orderBy:orderProp">
-		<p>
-			<strong>{{copy.work_title}}:</strong> {{otherItem.title}}<br />
-			<strong>{{copy.work_description}}:</strong> {{otherItem.desc}}<br />
-			<strong>{{copy.work_image}}:</strong> {{otherItem.img}}<br />
-			<strong>{{copy.work_date}}:</strong> {{otherItem.date}}<br />
-			<a href="#/other/{{itemTitle}}">{{copy.work_more}}</a>
-		</p>
-	</li>
-</ul>
+		<!--<p class="center">-->
+		<!--<a href="/assets/documents/CV_JanicBeauchemin_FR.pdf">Download my C.V.</a>-->
+		<!--</p>-->
+
+		<!--<p class="center">-->
+		<!--<a href="http://vimeo.com/18434230">View my Demo Reel</a>-->
+		<!--<p>-->
+	</div>
+
+	<div class="programming">
+		<h3>Skills</h3>
+
+		<ul>
+			<li>Web development</li>
+			<li>HTML</li>
+			<li>CSS</li>
+			<li>JavaScript / jQuery</li>
+			<li>Photoshop</li>
+			<li>PHP</li>
+		</ul>
+	</div>
+
+	<div class="design">
+		<h3>Interests</h3>
+
+		<ul>
+			<li>AngularJS</li>
+			<li>NodeJS</li>
+			<li>Backbone</li>
+			<li>Twig</li>
+			<li>Arduino</li>
+		</ul>
+	</div>
+
+	<div class="graph">
+		<img src="img/design/graph.gif" alt="60% programming / 40% design" height="133" width="134">
+	</div>
+</div>
+
+<div class="separator"></div>
+
+<div class="slider webSection">
+	<h2>{{copy.work_web_title}}</h2>
+
+	<ul class="web">
+		<li data-ng-repeat="webItem in web | filter:query | orderBy:orderProp">
+			<a class="tip" href="#">
+				<img src="{{webItem.img}}" alt="{{webItem.title}}">
+			</a>
+
+			<p class="subtitle"><a href="#/web/{{webItem.title}}">{{webItem.desc}} ({{webItem.date}})</a></p>
+		</li>
+	</ul>
+</div>
+
+<p class="more"><a href="#">See more</a></p>
+
+<div class="slider otherSection">
+	<h2>{{copy.work_other_title}}</h2>
+
+	<ul class="other">
+		<li data-ng-repeat="otherItem in other | filter:query | orderBy:orderProp">
+			<a class="tip" href="#">
+				<img src="{{otherItem.img}}" alt="{{otherItem.title}}">
+			</a>
+
+			<p class="subtitle"><a href="#/other/{{otherItem.title}}">{{otherItem.desc}} ({{otherItem.date}})</a></p>
+		</li>
+	</ul>
+</div>
+
+<p class="more"><a href="#">See more</a></p>

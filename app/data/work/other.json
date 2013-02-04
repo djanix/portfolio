@@ -3,18 +3,18 @@
 		"title": "other 2",
 		"desc": "small desc",
 		"date": "2012-12-31",
-		"img": "/path/to/img.jpg"
+		"img": "img/portfolio/other/small/3dBench.jpg"
 	},
 	{
 		"title": "other 1",
 		"desc": "other desc",
 		"date": "2012-11-31",
-		"img": "/path/to/img.jpg"
+		"img": "img/portfolio/other/small/3dBench.jpg"
 	},
 	{
 		"title": "other 3",
 		"desc": "aaa",
 		"date": "2012-10-31",
-		"img": "/path/to/img.jpg"
+		"img": "img/portfolio/other/small/3dBench.jpg"
 	}
 ]
