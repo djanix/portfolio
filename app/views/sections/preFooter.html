@@ -1,0 +1,101 @@
+<ul class="contact_icons">
+	<!-- TODO: ADD GITHUB -->
+	<!--<li class="deviantArt">-->
+	<!--<a href="#">-->
+	<!--<img src="assets/img/design/sprite_social.png" alt="deviantArt" title="deviantArt" />-->
+	<!--</a>-->
+	<!--</li>-->
+
+	<li class="linkedIn">
+		<a href="#">
+			<img src="img/design/sprite_social.png" alt="linkedIn" title="linkedIn" />
+		</a>
+	</li>
+
+	<li class="twitter">
+		<a href="#">
+			<img src="img/design/sprite_social.png" alt="twitter" title="twitter" />
+		</a>
+	</li>
+
+	<li class="email">
+		<a href="#">
+			<img src="img/design/sprite_social.png" alt="email" title="email" />
+		</a>
+	</li>
+</ul>
+
+<div class="separator"></div>
+
+<div class="home_widgets">
+	<div class="twitter_feed"></div>
+	<div class="links"></div>
+	<div class="contact_form"></div>
+</div>
+
+<div class="bottomSection">
+	<div>
+		<script type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
+		<script type="text/javascript">
+			new TWTR.Widget({
+				version: 2,
+				type: 'profile',
+				rpp: 3,
+				interval: 6000,
+				width: 300,
+				height: 220,
+				theme: {
+					shell: {
+						background: '#222222',
+						color: '#d4d4d4'
+					},
+					tweets: {
+						background: '#181818',
+						color: '#858484',
+						links: '#e2e829'
+					}
+				},
+				features: {
+					scrollbar: false,
+					loop: false,
+					live: true,
+					hashtags: true,
+					timestamp: true,
+					avatars: true,
+					behavior: 'all'
+				}
+			}).render().setUser('janiclb').start();
+		</script>
+
+		<!-- TODO: use latest twitter widget-->
+		<!--<a class="twitter-timeline" href="https://twitter.com/janiclb" data-widget-id="295993358608900096">Tweets de @janiclb</a>-->
+		<!--<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>-->
+	</div>
+
+	<div>
+		<h2>Latest Work</h2>
+	</div>
+
+	<div class="last">
+		<h2>Contact me</h2>
+		<form action="index.html" method="post" id="formMessage">
+			<div>
+				<p>
+					<label for="name">Name:</label><br />
+					<input name="name" type="text" id="name" value="" />
+				</p>
+
+				<p>
+					<label for="email">Email:</label><br />
+					<input name="email" type="text" id="email" value="" />
+				</p>
+				<p>
+					<label for="message">Message:</label><br />
+					<textarea name="message" id="message" rows="5"></textarea>
+				</p>
+				<input type="hidden" id="action" name="action" value="1" />
+				<input name="btnSend" id="btnSend" type="submit" value="Send" class="button" />
+			</div>
+		</form>
+	</div>
+</div>
