@@ -55,10 +55,10 @@
 	<ul class="web">
 		<li data-ng-repeat="webItem in web | filter:query | orderBy:orderProp" data-check-last>
 			<a class="tip" href="#">
-				<img src="" data-ng-src="{{webItem.img}}" alt="{{webItem.title}}" />
+				<img src="" data-ng-src="{{webItem.thumb}}" alt="" />
 			</a>
 
-			<p class="subtitle"><a href="#/web/{{webItem.title}}">{{webItem.desc}} ({{webItem.date}})</a></p>
+			<p class="subtitle"><a href="#/web/{{webItem.link}}">{{webItem.title}} ({{webItem.date}})</a></p>
 		</li>
 	</ul>
 </div>
@@ -71,10 +71,10 @@
 	<ul class="other">
 		<li data-ng-repeat="otherItem in other | filter:query | orderBy:orderProp" data-check-last>
 			<a class="tip" href="#">
-				<img src="" data-ng-src="{{otherItem.img}}" alt="{{otherItem.title}}" />
+				<img src="" data-ng-src="{{otherItem.thumb}}" alt="" />
 			</a>
 
-			<p class="subtitle"><a href="#/other/{{otherItem.title}}">{{otherItem.desc}} ({{otherItem.date}})</a></p>
+			<p class="subtitle"><a href="#/other/{{otherItem.link}}">{{otherItem.title}} ({{otherItem.date}})</a></p>
 		</li>
 	</ul>
 </div>

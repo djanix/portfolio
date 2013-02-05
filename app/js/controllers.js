@@ -35,7 +35,7 @@ function PortfolioHomeCtrl($scope, $http) {
 function PortfolioWebDetailCtrl($scope, $http, $routeParams) {
 	$http.get('data/work/web.json').success(function(data) {
 		$.each(data, function(index, value){
-			if (value.title == $routeParams.title) {
+			if (value.link == $routeParams.title) {
 				$scope.item = data[index];
 			}
 		});
@@ -45,7 +45,7 @@ function PortfolioWebDetailCtrl($scope, $http, $routeParams) {
 function PortfolioOtherDetailCtrl($scope, $http, $routeParams) {
 	$http.get('data/work/other.json').success(function(data) {
 		$.each(data, function(index, value){
-			if (value.title == $routeParams.title) {
+			if (value.link == $routeParams.title) {
 				$scope.item = data[index];
 			}
 		});

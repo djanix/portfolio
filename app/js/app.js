@@ -9,8 +9,12 @@ angular.module('portfolio', [])
 
 	.directive("checkLast", function() {
 		return function (scope, element) {
-			if (scope.$last === true) {
-				element.ready(function () {
+			if (!scope.$last === true) {
+				return;
+			}
+
+			element.ready(function () {
+				setTimeout(function() {
 					$('.slider ul').bxSlider({
 						easing: 'easeInOutExpo',
 						speed: 666,
@@ -22,7 +26,7 @@ angular.module('portfolio', [])
 						infiniteLoop: false,
 						hideControlOnEnd: false
 					});
-				})
-			}
+				}, 50);
+			})
 		}
 	});

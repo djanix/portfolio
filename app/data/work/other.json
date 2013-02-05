@@ -1,20 +1,38 @@
 [
 	{
-		"title": "other 2",
-		"desc": "small desc",
+		"title": "Other 1",
+		"link": "other_1",
+		"desc": "",
 		"date": "2012-12-31",
-		"img": "img/portfolio/other/small/3dBench.jpg"
+		"thumb": "img/portfolio/other/small/3dBench.jpg",
+		"images": [
+			"img/portfolio/other/big/3dBench.jpg",
+			"img/portfolio/other/big/3dBench.jpg",
+			"img/portfolio/other/big/3dBench.jpg"
+		]
 	},
 	{
-		"title": "other 1",
-		"desc": "other desc",
-		"date": "2012-11-31",
-		"img": "img/portfolio/other/small/3dBench.jpg"
+		"title": "Other 2",
+		"link": "other_2",
+		"desc": "",
+		"date": "2012-12-31",
+		"thumb": "img/portfolio/other/small/3dBench.jpg",
+		"images": [
+			"img/portfolio/other/big/3dBench.jpg",
+			"img/portfolio/other/big/3dBench.jpg",
+			"img/portfolio/other/big/3dBench.jpg"
+		]
 	},
 	{
-		"title": "other 3",
-		"desc": "aaa",
-		"date": "2012-10-31",
-		"img": "img/portfolio/other/small/3dBench.jpg"
+		"title": "Other 3",
+		"link": "other_3",
+		"desc": "",
+		"date": "2012-12-31",
+		"thumb": "img/portfolio/other/small/3dBench.jpg",
+		"images": [
+			"img/portfolio/other/big/3dBench.jpg",
+			"img/portfolio/other/big/3dBench.jpg",
+			"img/portfolio/other/big/3dBench.jpg"
+		]
 	}
 ]
