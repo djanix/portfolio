@@ -22,17 +22,6 @@ $(document).ready(function () {
 	// $(".tip").tipTip({
 	// 	maxWidth: "auto"
 	// });
-
-	//contact_icons animation
-	$('.contact_icons li').hover(function () {
-		$(this).find('img').stop(true, true).animate({
-			paddingTop: '-=10'
-		}, 200, 'easeInOutExpo')
-	}, function () {
-		$(this).find('img').stop(true, true).animate({
-			paddingTop: '+=10'
-		}, 200, 'easeInOutExpo')
-	})
 });
 
 

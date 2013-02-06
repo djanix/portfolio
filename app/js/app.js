@@ -26,4 +26,20 @@ var portfolio = angular.module('portfolio', [])
 				}, 50);
 			})
 		}
+	})
+
+	.directive("toggleIcons", function() {
+		return function (scope, element) {
+			element.bind("mouseenter", function() {
+				$(this).find('img').stop(true, true).animate({
+					paddingTop: '-=10'
+				}, 200, 'easeInOutExpo')
+			});
+
+			element.bind("mouseleave", function() {
+				$(this).find('img').stop(true, true).animate({
+					paddingTop: '+=10'
+				}, 200, 'easeInOutExpo')
+			});
+		}
 	});
