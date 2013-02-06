@@ -2,6 +2,7 @@
 
 /* Controllers */
 
+
 function PortfolioGlobalCtrl($scope, $http) {
 	$http.get('data/i18n/en.json').success(function(data) {
 		$scope.copy = data;
@@ -30,20 +31,8 @@ function PortfolioHomeCtrl($scope, $http) {
 	$scope.orderProp = $scope.copy['work_title'];
 }
 
-function PortfolioWebDetailCtrl($scope, $http, $routeParams) {
-	getWork($http, 'web', function(err, data) {
-		if (err) return console.log(err);
-
-		$.each(data, function(index, value){
-			if (value.link == $routeParams.title) {
-				$scope.item = data[index];
-			}
-		});
-	});
-}
-
-function PortfolioOtherDetailCtrl($scope, $http, $routeParams) {
-	getWork($http, 'other', function(err, data) {
+function PortfolioWorkDetailCtrl($scope, $http, $routeParams) {
+	getWork($http, $routeParams.section, function(err, data) {
 		if (err) return console.log(err);
 
 		$.each(data, function(index, value){
