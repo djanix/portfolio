@@ -1,4 +1,4 @@
-angular.module('portfolio', [])
+var portfolio = angular.module('portfolio', [])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.
 			when('/', {templateUrl: 'views/home.html',   controller: PortfolioHomeCtrl}).
@@ -9,9 +9,7 @@ angular.module('portfolio', [])
 
 	.directive("checkLast", function() {
 		return function (scope, element) {
-			if (!scope.$last === true) {
-				return;
-			}
+			if (scope.$last !== true) return;
 
 			element.ready(function () {
 				setTimeout(function() {

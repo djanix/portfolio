@@ -2,30 +2,28 @@
 
 /* Controllers */
 
-function header($scope) {
-	$scope.template = { name: 'header.html', url: 'views/sections/header.html'};
-}
-
-function footer($scope) {
-	$scope.template = { name: 'footer.html', url: 'views/sections/footer.html'};
-}
-
-function preFooter($scope) {
-	$scope.template = { name: 'bottomSection.html', url: 'views/sections/preFooter.html'};
-}
-
 function PortfolioGlobalCtrl($scope, $http) {
 	$http.get('data/i18n/en.json').success(function(data) {
 		$scope.copy = data;
+	}).error(function(data) {
+		console.log(data);
 	});
 }
 
+//portfolio.factory('Copy', function($http) {
+//	$http.get('data/i18n/en.json').success(function(data) {
+//		return data;
+//	});
+//});
+
 function PortfolioHomeCtrl($scope, $http) {
-	$http.get('data/work/web.json').success(function(data) {
+	getWork($http, 'web', function(err, data) {
+		if (err) return console.log(err);
 		$scope.web = data;
 	});
 
-	$http.get('data/work/other.json').success(function(data) {
+	getWork($http, 'other', function(err, data) {
+		if (err) return console.log(err);
 		$scope.other = data;
 	});
 
@@ -33,7 +31,9 @@ function PortfolioHomeCtrl($scope, $http) {
 }
 
 function PortfolioWebDetailCtrl($scope, $http, $routeParams) {
-	$http.get('data/work/web.json').success(function(data) {
+	getWork($http, 'web', function(err, data) {
+		if (err) return console.log(err);
+
 		$.each(data, function(index, value){
 			if (value.link == $routeParams.title) {
 				$scope.item = data[index];
@@ -43,11 +43,22 @@ function PortfolioWebDetailCtrl($scope, $http, $routeParams) {
 }
 
 function PortfolioOtherDetailCtrl($scope, $http, $routeParams) {
-	$http.get('data/work/other.json').success(function(data) {
+	getWork($http, 'other', function(err, data) {
+		if (err) return console.log(err);
+
 		$.each(data, function(index, value){
 			if (value.link == $routeParams.title) {
 				$scope.item = data[index];
 			}
 		});
+	});
+}
+
+function getWork($http, section, callback) {
+	$http.get('data/work/' + section + '.json')
+	.success(function(data) {
+		return callback(null, data);
+	}).error(function(data) {
+		return callback(data, null);
 	});
 }
