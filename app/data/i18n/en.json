@@ -1,12 +1,40 @@
 {
-	"work_web_title": "Web List",
-	"work_other_title": "Other List",
-	"work_title": "title",
-	"work_description": "description",
-	"work_image": "image",
-	"work_date": "date",
-	"work_more": "more",
-	"work_back": "back",
-	"work_search": "search",
-	"work_sort": "sort by"
+	"website_title": "Janic Beauchemin Portfolio - Web Developer",
+	"website_description": "Bienvenue sur mon portfolio web personnel. Je suis un programmeur ainsi qu'un designer web du Québec (Canada) qui respecte les plus hautes normes en terme de design et de programmation web.",
+	"website_author": "Janic Beauchemin",
+
+
+	"global_menu_1": "about me",
+	"global_menu_sub_1": "who I am",
+	"global_menu_2": "portfolio",
+	"global_menu_sub_2": "what I do",
+	"global_menu_3": "contact",
+	"global_menu_sub_3": "hot to reach me",
+
+	"global_footer_name": "© Janic Beauchemin",
+	"global_footer_rights": "All rights reserved",
+
+	"global_social_linkedin": "Linked In",
+	"global_social_twitter": "Twitter",
+	"global_social_email": "Email",
+
+	"globaltitle": "Janic Beauchemin, Web Developer",
+	"global_language": "Hey! Je parle français aussi!",
+	"global_more": "see more",
+	"global_back": "back",
+
+	"home_presentation_brief_title": "brief presentation",
+	"home_presentation_brief_text": "Welcome to my Portfolio. I am a 25 years old Web Developer based in Montreal, Canada. I'm currently working at Sid Lee and I use creativity blended with technology to deliver cutting edge work.",
+	"home_presentation_skills_title": "skills",
+	"home_presentation_interests_title": "interests",
+
+	"home_work_web_title": "Web List",
+	"home_work_other_title": "Other List",
+	"home_work_latest": "latest work",
+
+	"form_contact_title": "contact me",
+	"form_contact_name": "name:",
+	"form_contact_email": "email:",
+	"form_contact_message": "message:",
+	"form_contact_send": "send"
 }

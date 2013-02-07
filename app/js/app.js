@@ -1,45 +1,46 @@
-var portfolio = angular.module('portfolio', [])
-	.config(['$routeProvider', function($routeProvider) {
-		$routeProvider.
-			when('/', {templateUrl: 'views/home.html', controller: PortfolioHomeCtrl}).
-			when('/work/:section/:title', {templateUrl: 'views/item-detail.html', controller: PortfolioWorkDetailCtrl}).
-			otherwise({redirectTo: '/'});
-	}])
+var portfolio = angular.module('portfolio', []);
 
-	.directive("checkLast", function() {
-		return function (scope, element) {
-			if (scope.$last !== true) return;
+portfolio.config(['$routeProvider', function($routeProvider) {
+	$routeProvider.
+		when('/', {templateUrl: 'views/home.html', controller: PortfolioHomeCtrl}).
+		when('/work/:section/:title', {templateUrl: 'views/item-detail.html', controller: PortfolioWorkDetailCtrl}).
+		otherwise({redirectTo: '/'});
+}]);
 
-			element.ready(function () {
-				setTimeout(function() {
-					$('.slider ul').bxSlider({
-						easing: 'easeInOutExpo',
-						speed: 666,
-						minSlides: 4,
-						maxSlides: 4,
-						slideWidth: 220,
-						slideMargin: 20,
-						pager: false,
-						infiniteLoop: false,
-						hideControlOnEnd: false
-					});
-				}, 50);
-			})
-		}
-	})
+portfolio.directive("checkLast", function() {
+	return function (scope, element) {
+		if (scope.$last !== true) return;
 
-	.directive("toggleIcons", function() {
-		return function (scope, element) {
-			element.bind("mouseenter", function() {
-				$(this).find('img').stop(true, true).animate({
-					paddingTop: '-=10'
-				}, 200, 'easeInOutExpo')
-			});
+		element.ready(function () {
+			setTimeout(function() {
+				$('.slider ul').bxSlider({
+					easing: 'easeInOutExpo',
+					speed: 666,
+					minSlides: 4,
+					maxSlides: 4,
+					slideWidth: 220,
+					slideMargin: 20,
+					pager: false,
+					infiniteLoop: false,
+					hideControlOnEnd: false
+				});
+			}, 50);
+		})
+	}
+});
 
-			element.bind("mouseleave", function() {
-				$(this).find('img').stop(true, true).animate({
-					paddingTop: '+=10'
-				}, 200, 'easeInOutExpo')
-			});
-		}
-	});
+portfolio.directive("toggleIcons", function() {
+	return function (scope, element) {
+		element.on("mouseenter", function() {
+			$(this).find('img').stop(true, true).animate({
+				paddingTop: '-=10'
+			}, 200, 'easeInOutExpo')
+		});
+
+		element.on("mouseleave", function() {
+			$(this).find('img').stop(true, true).animate({
+				paddingTop: '+=10'
+			}, 200, 'easeInOutExpo')
+		});
+	}
+});

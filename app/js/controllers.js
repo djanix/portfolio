@@ -2,20 +2,14 @@
 
 /* Controllers */
 
-
 function PortfolioGlobalCtrl($scope, $http) {
-	$http.get('data/i18n/en.json').success(function(data) {
+	$http.get('data/i18n/en.json')
+	.success(function(data) {
 		$scope.copy = data;
 	}).error(function(data) {
 		console.log(data);
 	});
 }
-
-//portfolio.factory('Copy', function($http) {
-//	$http.get('data/i18n/en.json').success(function(data) {
-//		return data;
-//	});
-//});
 
 function PortfolioHomeCtrl($scope, $http) {
 	getWork($http, 'web', function(err, data) {

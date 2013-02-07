@@ -1,12 +1,3 @@
 {
-	"work_web_title": "Liste web",
-	"work_other_title": "Liste autre",
-	"work_title": "titre",
-	"work_description": "description",
-	"work_image": "image",
-	"work_date": "date",
-	"work_more": "plus",
-	"work_back": "retour",
-	"work_search": "recherche",
-	"work_sort": "trier par"
+	"test": "test"
 }

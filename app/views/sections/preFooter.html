@@ -1,5 +1,4 @@
 <ul class="contact_icons">
-	<!-- TODO: ADD GITHUB -->
 	<!--<li class="deviantArt">-->
 	<!--<a href="#">-->
 	<!--<img src="assets/img/design/sprite_social.png" alt="deviantArt" title="deviantArt" />-->
@@ -8,19 +7,19 @@
 
 	<li class="linkedIn" data-toggle-icons>
 		<a href="#">
-			<img src="img/design/sprite_social.png" alt="linkedIn" title="linkedIn" />
+			<img src="img/design/sprite_social.png" alt="{{copy.global_social_linkedin}}" title="{{copy.global_social_linkedin}}" />
 		</a>
 	</li>
 
 	<li class="twitter" data-toggle-icons>
 		<a href="#">
-			<img src="img/design/sprite_social.png" alt="twitter" title="twitter" />
+			<img src="img/design/sprite_social.png" alt="{{copy.global_social_twitter}}" title="{{copy.global_social_twitter}}" />
 		</a>
 	</li>
 
 	<li class="email" data-toggle-icons>
 		<a href="#">
-			<img src="img/design/sprite_social.png" alt="email" title="email" />
+			<img src="img/design/sprite_social.png" alt="{{copy.global_social_email}}" title="{{copy.global_social_email}}" />
 		</a>
 	</li>
 </ul>
@@ -73,28 +72,28 @@
 	</div>
 
 	<div>
-		<h2>Latest Work</h2>
+		<h2>{{copy.home_work_latest}}</h2>
 	</div>
 
 	<div class="last">
-		<h2>Contact me</h2>
+		<h2>{{copy.form_contact_title}}</h2>
 		<form action="index.html" method="post" id="formMessage">
 			<div>
 				<p>
-					<label for="name">Name:</label><br />
+					<label for="name">{{copy.form_contact_name}}</label><br />
 					<input name="name" type="text" id="name" value="" />
 				</p>
 
 				<p>
-					<label for="email">Email:</label><br />
+					<label for="email">{{copy.form_contact_email}}</label><br />
 					<input name="email" type="text" id="email" value="" />
 				</p>
 				<p>
-					<label for="message">Message:</label><br />
+					<label for="message">{{copy.form_contact_message}}</label><br />
 					<textarea name="message" id="message" rows="5"></textarea>
 				</p>
 				<input type="hidden" id="action" name="action" value="1" />
-				<input name="btnSend" id="btnSend" type="submit" value="Send" class="button" />
+				<input name="btnSend" id="btnSend" type="submit" value="{{copy.form_contact_send}}" class="button" />
 			</div>
 		</form>
 	</div>
