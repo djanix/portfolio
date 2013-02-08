@@ -49,12 +49,12 @@
 	<h2>{{copy.work_web_title}}</h2>
 
 	<ul class="web">
-		<li data-ng-repeat="webItem in web | filter:query | orderBy:orderProp" data-check-last>
-			<a class="tip" href="#">
-				<img src="" data-ng-src="{{webItem.thumb}}" alt="" />
+		<li data-ng-repeat="workItem in web" data-check-last>
+			<a href="#">
+				<img src="" data-ng-src="{{workItem.thumb}}" alt="" />
 			</a>
 
-			<p class="subtitle"><a href="#/work/web/{{webItem.link}}">{{webItem.title}} ({{webItem.date}})</a></p>
+			<p class="subtitle"><a href="#/work/web/{{workItem.link}}">{{workItem.title}} ({{workItem.date}})</a></p>
 		</li>
 	</ul>
 </div>
@@ -65,12 +65,12 @@
 	<h2>{{copy.work_other_title}}</h2>
 
 	<ul class="other">
-		<li data-ng-repeat="otherItem in other | filter:query | orderBy:orderProp" data-check-last>
-			<a class="tip" href="#">
-				<img src="" data-ng-src="{{otherItem.thumb}}" alt="" />
+		<li data-ng-repeat="workItem in other" data-check-last>
+			<a href="#">
+				<img src="" data-ng-src="{{workItem.thumb}}" alt="" />
 			</a>
 
-			<p class="subtitle"><a href="#/work/other/{{otherItem.link}}">{{otherItem.title}} ({{otherItem.date}})</a></p>
+			<p class="subtitle"><a href="#/work/other/{{workItem.link}}">{{workItem.title}} ({{workItem.date}})</a></p>
 		</li>
 	</ul>
 </div>
