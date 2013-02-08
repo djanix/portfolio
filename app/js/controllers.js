@@ -1,17 +1,13 @@
-'use strict';
-
-/* Controllers */
-
-function PortfolioGlobalCtrl($scope, $http) {
+app.controller("PortfolioGlobalCtrl", function($scope, $http) {
 	$http.get('data/i18n/en.json')
 	.success(function(data) {
 		$scope.copy = data;
 	}).error(function(data) {
 		console.log(data);
 	});
-}
+});
 
-function PortfolioHomeCtrl($scope, $http) {
+app.controller("PortfolioHomeCtrl", function($scope, $http) {
 	getWork($http, 'web', function(err, data) {
 		if (err) return console.log(err);
 		$scope.web = data;
@@ -21,11 +17,9 @@ function PortfolioHomeCtrl($scope, $http) {
 		if (err) return console.log(err);
 		$scope.other = data;
 	});
+});
 
-	$scope.orderProp = $scope.copy['work_title'];
-}
-
-function PortfolioWorkDetailCtrl($scope, $http, $routeParams) {
+app.controller("PortfolioWorkDetailCtrl", function($scope, $http, $routeParams) {
 	getWork($http, $routeParams.section, function(err, data) {
 		if (err) return console.log(err);
 
@@ -35,10 +29,10 @@ function PortfolioWorkDetailCtrl($scope, $http, $routeParams) {
 			}
 		});
 	});
-}
+});
 
-function getWork($http, section, callback) {
-	$http.get('data/work/' + section + '.json')
+function getWork(http, section, callback) {
+	http.get('data/work/' + section + '.json')
 	.success(function(data) {
 		return callback(null, data);
 	}).error(function(data) {
