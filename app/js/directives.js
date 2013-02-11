@@ -15,7 +15,7 @@ app.directive("checkLast", function() {
 					infiniteLoop: false,
 					hideControlOnEnd: false
 				});
-			}, 50);
+			}, 300);
 		})
 	}
 });
