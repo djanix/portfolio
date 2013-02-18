@@ -1,3 +1,40 @@
 {
-	"test": "test"
+	"website_title": "Janic Beauchemin Portfolio - Développeur web",
+	"website_description": "Bienvenue sur mon portfolio web personnel. Je suis un développeur web de Montréal (Canada) travaillant chez Sid Lee et qui mélange créativité et technologies pour livrer un produit de qualité supérieure.",
+	"website_author": "Janic Beauchemin",
+
+
+	"global_menu_1": "A propos de moi",
+	"global_menu_sub_1": "qui je suis",
+	"global_menu_2": "portfolio",
+	"global_menu_sub_2": "ce que je fais",
+	"global_menu_3": "me contacter",
+	"global_menu_sub_3": "comment me rejoindre",
+
+	"global_footer_name": "© Janic Beauchemin",
+	"global_footer_rights": "Tous droits réservés",
+
+	"global_social_linkedin": "Linked In",
+	"global_social_twitter": "Twitter",
+	"global_social_email": "Email",
+
+	"globaltitle": "Janic Beauchemin, Développeur web",
+	"global_language": "Hey! I speak english too!",
+	"global_more": "en voir plus",
+	"global_back": "retour",
+
+	"home_presentation_brief_title": "briève presentation",
+	"home_presentation_brief_text": "Bienvenue sur mon portfolio web personnel. Je suis un développeur web de Montréal (Canada) travaillant chez Sid Lee et qui mélange créativité et technologies pour livrer un produit de qualité supérieure.",
+	"home_presentation_skills_title": "talents",
+	"home_presentation_interests_title": "intérêts",
+
+	"home_work_web_title": "Liste Web",
+	"home_work_other_title": "Autre",
+	"home_work_latest": "travail récent",
+
+	"form_contact_title": "Me contacter",
+	"form_contact_name": "nom:",
+	"form_contact_email": "email:",
+	"form_contact_message": "message:",
+	"form_contact_send": "envoyer"
 }

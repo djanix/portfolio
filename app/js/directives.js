@@ -35,3 +35,27 @@ app.directive("toggleIcons", function() {
 		});
 	}
 });
+
+app.directive("changeLanguage", function($http) {
+	return function(scope, element) {
+		element.on("click", function(e) {
+			e.preventDefault();
+
+			if (scope.siteLanguage == "en") {
+				getLanguage($http, "fr", function(err, data) {
+					if (err) return console.log(err);
+					scope.siteLanguage = "fr";
+					//not working ( + using language in the address bar)
+					scope.data = data;
+				});
+			} else {
+				getLanguage($http, 'en', function(err, data) {
+					if (err) return console.log(err);
+					scope.siteLanguage = "en";
+					//not working ( + using language in the address bar)
+					scope.data = data;
+				});
+			}
+		});
+	}
+});

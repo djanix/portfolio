@@ -1,9 +1,9 @@
 app.controller("PortfolioGlobalCtrl", function($scope, $http) {
-	$http.get('data/i18n/en.json')
-	.success(function(data) {
+	getLanguage($http, 'en', function(err, data){
+		if (err) return console.log(err);
+
+		$scope.siteLanguage = 'en';
 		$scope.copy = data;
-	}).error(function(data) {
-		console.log(data);
 	});
 });
 
@@ -33,6 +33,15 @@ app.controller("PortfolioWorkDetailCtrl", function($scope, $http, $routeParams) 
 
 function getWork(http, section, callback) {
 	http.get('data/work/' + section + '.json')
+	.success(function(data) {
+		return callback(null, data);
+	}).error(function(data) {
+		return callback(data, null);
+	});
+}
+
+function getLanguage(http, language, callback) {
+	http.get('data/i18n/' + language + '.json')
 	.success(function(data) {
 		return callback(null, data);
 	}).error(function(data) {
