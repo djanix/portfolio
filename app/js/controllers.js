@@ -1,50 +1,68 @@
 app.controller("PortfolioGlobalCtrl", function($scope, $http) {
-	getLanguage($http, 'en', function(err, data){
-		if (err) return console.log(err);
-
+	$scope.defineDefaultLanguage = function() {
 		$scope.siteLanguage = 'en';
-		$scope.copy = data;
+	};
+
+	$scope.defineLanguage = function(language) {
+		$scope.siteLanguage = language;
+	};
+
+	$scope.getLanguage = function() {
+		if (!$scope.siteLanguage) {
+			$scope.siteLanguage = 'en';
+		}
+
+		$http.get('data/i18n/' + $scope.siteLanguage + '.json')
+			.success(function(data) {
+				$scope.copy = data;
+			}).error(function(data) {
+				console.log('error getting language copy from json file: ' + data);
+			});
+	};
+
+	$scope.getWork = function(section) {
+		$http.get('data/work/' + section + '.json')
+			.success(function(data) {
+				$scope[section] = data;
+			}).error(function(data) {
+				console.log('error getting ' + section + 'work from json file: ' + data);
+			});
+	};
+
+	$scope.getLanguage();
+});
+
+
+
+app.controller("PortfolioHomeCtrl", function($scope) {
+	$scope.getWork('web');
+	$scope.getWork('other');
+});
+
+
+
+app.controller("PortfolioWorkDetailCtrl", function($scope, $routeParams) {
+	$scope.getWork($routeParams.section);
+
+	$.each($scope[$routeParams.section], function(index, value){
+		if (value.link == $routeParams.title) {
+			$scope.item = $scope[$routeParams.section][index];
+		}
 	});
 });
 
-app.controller("PortfolioHomeCtrl", function($scope, $http) {
-	getWork($http, 'web', function(err, data) {
-		if (err) return console.log(err);
-		$scope.web = data;
-	});
 
-	getWork($http, 'other', function(err, data) {
-		if (err) return console.log(err);
-		$scope.other = data;
-	});
+
+app.controller("languageCtrl", function($scope) {
+	$scope.swapLanguage = function() {
+		if (!$scope.siteLanguage) $scope.defineDefaultLanguage();
+
+		if ($scope.siteLanguage == 'en') {
+			$scope.defineLanguage('fr');
+			$scope.getLanguage();
+		} else {
+			$scope.defineLanguage('en');
+			$scope.getLanguage();
+		}
+	};
 });
-
-app.controller("PortfolioWorkDetailCtrl", function($scope, $http, $routeParams) {
-	getWork($http, $routeParams.section, function(err, data) {
-		if (err) return console.log(err);
-
-		$.each(data, function(index, value){
-			if (value.link == $routeParams.title) {
-				$scope.item = data[index];
-			}
-		});
-	});
-});
-
-function getWork(http, section, callback) {
-	http.get('data/work/' + section + '.json')
-	.success(function(data) {
-		return callback(null, data);
-	}).error(function(data) {
-		return callback(data, null);
-	});
-}
-
-function getLanguage(http, language, callback) {
-	http.get('data/i18n/' + language + '.json')
-	.success(function(data) {
-		return callback(null, data);
-	}).error(function(data) {
-		return callback(data, null);
-	});
-}
