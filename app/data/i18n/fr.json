@@ -4,7 +4,7 @@
 	"website_author": "Janic Beauchemin",
 
 
-	"global_menu_1": "A propos de moi",
+	"global_menu_1": "A propos",
 	"global_menu_sub_1": "qui je suis",
 	"global_menu_2": "portfolio",
 	"global_menu_sub_2": "ce que je fais",
@@ -23,7 +23,7 @@
 	"global_more": "en voir plus",
 	"global_back": "retour",
 
-	"home_presentation_brief_title": "briève presentation",
+	"home_presentation_brief_title": "brève presentation",
 	"home_presentation_brief_text": "Bienvenue sur mon portfolio web personnel. Je suis un développeur web de Montréal (Canada) travaillant chez Sid Lee et qui mélange créativité et technologies pour livrer un produit de qualité supérieure.",
 	"home_presentation_skills_title": "talents",
 	"home_presentation_interests_title": "intérêts",

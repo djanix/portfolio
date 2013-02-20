@@ -29,6 +29,7 @@ app.controller("PortfolioGlobalCtrl", function($scope, $http) {
 			});
 	};
 
+	$scope.device = window.getComputedStyle(document.body,':after').getPropertyValue('content');
 	$scope.getLanguage();
 });
 
