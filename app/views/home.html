@@ -1,78 +1,123 @@
-<div class="presentationBloc">
+<section class="aboutMe" id="aboutMe">
+	<h2>{{copy.presentation_title}}</h2>
+
 	<div class="presentation">
-		<h3>{{copy.home_presentation_brief_title}}</h3>
-
-		<p>{{copy.home_presentation_brief_text}}</p>
-
-		<!--<p class="center">-->
-		<!--<a href="/assets/documents/CV_JanicBeauchemin_FR.pdf">Download my C.V.</a>-->
-		<!--</p>-->
-
-		<!--<p class="center">-->
-		<!--<a href="http://vimeo.com/18434230">View my Demo Reel</a>-->
-		<!--<p>-->
+		<p data-vert-align>{{copy.presentation_text}}</p>
 	</div>
 
-	<div class="programming">
-		<h3>{{copy.home_presentation_skills_title}}</h3>
+	<div class="banner">
+		Lorem ipsum dolor sit amet, consectetur adipiscing.
+	</div>
+</section>
 
-		<ul>
-			<li>Web development</li>
-			<li>HTML</li>
-			<li>CSS</li>
-			<li>JavaScript / jQuery</li>
-			<li>Photoshop</li>
-			<li>PHP</li>
+
+<section class="portfolio" id="portfolio">
+	<div class="menu clearfix">
+		<h2 class="left">{{copy.portfolio_title}}</h2>
+
+		<ul class="right">
+			<li><a href="#" class="active">{{copy.portfolio_cat_1}}</a></li><li>
+			<a href="#">{{copy.portfolio_cat_2}}</a></li><li>
+			<a href="#">{{copy.portfolio_cat_3}}</a></li><li>
+			<a href="#">{{copy.portfolio_cat_4}}</a></li>
 		</ul>
 	</div>
 
-	<div class="design">
-		<h3>{{copy.home_presentation_interests_title}}</h3>
+	<div class="slider webSection">
+		<ul class="web">
+			<li data-ng-repeat="workItem in web" data-check-last>
+				<div class="data">
+					<div class="picture">
+						<a href="/#/work/web/{{workItem.title}}">
+							<img src="" data-ng-src="{{workItem.thumb}}" alt="" />
+						</a>
+					</div>
 
-		<ul>
-			<li>AngularJS</li>
-			<li>NodeJS</li>
-			<li>Backbone</li>
-			<li>Twig</li>
-			<li>Arduino</li>
+					<div class="info">
+						<a href="{{workItem.link}}">{{workItem.title}}</a>
+						<br />{{workItem.date}}
+					</div>
+				</div>
+			</li>
 		</ul>
 	</div>
 
-	<div class="graph">
-		<img src="img/design/graph.gif" alt="60% programming / 40% design" height="133" width="134">
+	<div class="slider otherSection">
+		<ul class="other">
+			<li data-ng-repeat="workItem in other" data-check-last>
+				<div class="data">
+					<div class="picture">
+						<a href="/#/work/other/{{workItem.title}}">
+							<img src="" data-ng-src="{{workItem.thumb}}" alt="" />
+						</a>
+					</div>
+
+					<div class="info">
+						<a href="{{workItem.link}}">{{workItem.title}}</a>
+						<br />{{workItem.date}}
+					</div>
+				</div>
+			</li>
+		</ul>
 	</div>
-</div>
+</section>
 
-<div class="separator"></div>
+<section class="skills" id="skills">
+	<div class="skillset">
+		<h2>{{copy.skills}}</h2>
 
-<div class="slider webSection">
-	<h2>{{copy.work_web_title}}</h2>
+		<ul>
+			<li>
+				<div class="detail clearfix">
+					<span class="left">{{copy.skill_1}}</span>
+					<span class="right">{{copy.skill_1_percent}}%</span>
+				</div>
+				<div class="percent" data-percent="{{copy.skill_1_percent}}"></div>
+			</li>
 
-	<ul class="web">
-		<li data-ng-repeat="workItem in web" data-check-last>
-			<a href="/#/work/web/{{workItem.title}}">
-				<img src="" data-ng-src="{{workItem.thumb}}" alt="" />
-			</a>
+			<li>
+				<div class="detail clearfix">
+					<span class="left">{{copy.skill_2}}</span>
+					<span class="right">{{copy.skill_2_percent}}%</span>
+				</div>
+				<div class="percent" data-percent="{{copy.skill_2_percent}}"></div>
+			</li>
 
-			<p class="subtitle"><a href="{{workItem.link}}">{{workItem.title}}</a> <br />{{workItem.date}}</p>
-		</li>
-	</ul>
-</div>
+			<li>
+				<div class="detail clearfix">
+					<span class="left">{{copy.skill_3}}</span>
+					<span class="right">{{copy.skill_3_percent}}%</span>
+				</div>
+				<div class="percent" data-percent="{{copy.skill_3_percent}}"></div>
+			</li>
 
-<p class="more"><a href="#">{{copy.global_more}}</a></p>
+			<li>
+				<div class="detail clearfix">
+					<span class="left">{{copy.skill_4}}</span>
+					<span class="right">{{copy.skill_4_percent}}%</span>
+				</div>
+				<div class="percent" data-percent="{{copy.skill_4_percent}}"></div>
+			</li>
+		</ul>
+	</div>
 
-<div class="slider otherSection">
-	<h2>{{copy.work_other_title}}</h2>
+	<div class="interests">
+		<h3>{{copy.interests}}</h3>
 
-	<ul class="other">
-		<li data-ng-repeat="workItem in other" data-check-last>
-			<a href="/#/work/other/{{workItem.title}}">
-				<img src="" data-ng-src="{{workItem.thumb}}" alt="" />
-			</a>
+		<ul>
+			<li>{{copy.interests_1}}</li>
+			<li>{{copy.interests_2}}</li>
+			<li>{{copy.interests_3}}</li>
+			<li>{{copy.interests_4}}</li>
+			<li>{{copy.interests_5}}</li>
+		</ul>
+	</div>
+</section>
 
-			<p class="subtitle"><a href="{{workItem.link}}">{{workItem.title}}</a> <br />{{workItem.date}}</p>
-		</li>
-	</ul>
-</div>
+<section class="social" id="social">
+	 <h2>Recent Tweets</h2>
 
-<p class="more"><a href="#">{{copy.global_more}}</a></p>
+	<div class="tweets">
+
+	</div>
+</section>

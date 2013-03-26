@@ -1,43 +1,37 @@
 <header>
-	<div class="circles circleLeft">&nbsp;</div>
-	<div class="circles circleRight">&nbsp;</div>
-
 	<div class="content clearfix">
 		<div class="left">
 			<h1>
-				<a href="/">
-					<img src="img/design/logo.jpg" alt="{{copy.global_title}}">
-				</a>
+				<a href="/">Janic Beauchemin</a>
 			</h1>
 		</div>
 
-		<div class="menu right">
-			<ul class="clearfix">
-				<li>
-					<a href="/about">
-						<span class="title">{{copy.global_menu_1}}</span>
-						<span class="description">{{copy.global_menu_sub_1}}</span>
-					</a>
-				</li>
+		<nav class="right">
+			<a class="about" href="/about" data-menu-toggle-icons>
+				<span class="sprite icon_about"></span>
+				{{copy.menu_1}}
+			</a>
 
-				<li>
-					<a href="/portfolio">
-						<span class="title">{{copy.global_menu_2}}</span>
-						<span class="description">{{copy.global_menu_sub_2}}</span>
-					</a>
-				</li>
+			<a class="portfolio" href="/portfolio" data-menu-toggle-icons>
+				<span class="sprite icon_portfolio"></span>
+				{{copy.menu_2}}
+			</a>
 
-				<li>
-					<a href="/contact">
-						<span class="title">{{copy.global_menu_3}}</span>
-						<span class="description">{{copy.global_menu_sub_3}}</span>
-					</a>
-				</li>
-			</ul>
-		</div>
+			<a class="skills" href="/skills" data-menu-toggle-icons>
+				<span class="sprite icon_skills"></span>
+				{{copy.menu_3}}
+			</a>
 
-		<div class="language" data-ng-controller="languageCtrl">
-			<a href="/" data-change-language>{{copy.global_language}}</a>
+			<a class="social" href="/social" data-menu-toggle-icons>
+				<span class="sprite icon_social"></span>
+				{{copy.menu_4}}
+			</a>
+		</nav>
+	</div>
+
+	<div class="language" data-ng-controller="languageCtrl">
+		<div class="language_content">
+			<a href="/" data-change-language>{{copy.language}}</a>
 		</div>
 	</div>
 </header>

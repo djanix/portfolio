@@ -2,20 +2,106 @@ body:after {
 	display: none;
 }
 
+@media only screen and (min-width: 880px) {
+	body:after {
+		content: 'desktop';
+	}
+}
+
+@media only screen and (max-width: 879px) {
+	body:after {
+		content: 'tablet';
+	}
+
+	.site {
+		h1, h2, h3 {
+			text-align: center;
+		}
+
+		.left, .right {
+			float: inherit;
+			margin: 0 auto;
+			text-align: center;
+			width: 100%;
+		}
+
+		section {
+			margin: 30px 0;
+
+			&:first-child {
+				margin: 30px 0;
+				padding-top: 0;
+			}
+		}
+
+		header {
+			position: inherit;
+
+			h1 {
+				display: inline-block;
+			}
+
+			.language {
+				border-right: 1px solid @green;
+				bottom: inherit;
+				font-size: 12px;
+				padding-right: 1px;
+				right: 2px;
+				top: -2px;
+				width: 90px;
+			}
+		}
+
+		.aboutMe {
+			.presentation {
+				background-position: center top;
+
+				p {
+					padding: 640px 10px 0 10px;
+					text-align: center;
+				}
+			}
+		}
+	}
+}
+
 @media only screen and (max-width: 524px) {
 	body:after {
 		content: 'mobile';
 	}
-}
 
-@media only screen and (min-width: 525px) {
-	body:after {
-		content: 'tablet';
-	}
-}
+	.site {
+		header {
+			padding: 0;
 
-@media only screen and (min-width: 960px) {
-	body:after {
-		content: 'desktop';
+			h1 {
+				background-position: center center;
+				text-indent: -9999px;
+				width: 100%;
+
+				a {
+					display: block;
+					padding-bottom: 8px;
+					width: 100%;
+				}
+			}
+
+			nav a {
+				border-top: 1px solid @darkGrey;
+				display: block;
+				line-height: 45px;
+				margin: 0 auto;
+				padding: 0;
+				text-align: center;
+
+				&:last-child {
+					border-bottom: 1px solid @darkGrey;
+				}
+			}
+
+			.language {
+				display: none;
+			}
+		}
 	}
 }
