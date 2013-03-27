@@ -117,7 +117,9 @@
 <section class="social" id="social">
 	 <h2>Recent Tweets</h2>
 
-	<div class="tweets">
-
+	<div class="tweets" data-ng-controller="twitterFeedCtrl">
+		<p class="tweet" data-twitter-styling data-ng-repeat="tweet in tweets">
+			{{tweet}}
+		</p>
 	</div>
 </section>

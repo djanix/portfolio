@@ -257,6 +257,8 @@
 	/* ============================================================================== */
 	.skills {
 		.skillset {
+			margin-bottom: 50px;
+
 			li  {
 				background-color: @lightGrey;
 				display: block;
@@ -301,7 +303,7 @@
 				color: @darkGrey;
 				font-family: 'ChunkFiveRegular';
 				font-size: 18px;
-				margin-right: 10px;
+				margin: 0 10px 10px 0;
 				padding: 15px;
 
 				display: inline-block;
@@ -321,9 +323,15 @@
 	/* ============================================================================== */
 	.social {
 		.tweets {
-			background: url('@{image-path}bird.png') left center no-repeat;
+			background: url('@{image-path}bird.png') left top no-repeat;
 			min-height: 242px;
-			padding-left: 332px;
+			padding-left: 350px;
+
+			p {
+				background:  url('@{image-path}sprite.png') -128px 0 no-repeat;
+				min-height: 32px;
+				padding: 5px 0 0 40px;
+			}
 		}
 	}
 

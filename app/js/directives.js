@@ -1,5 +1,5 @@
 app.directive("checkLast", function($timeout) {
-	return function (scope, element) {
+	return function(scope, element) {
 		if (scope.$last !== true) return;
 
 		$timeout(function() {
@@ -29,7 +29,7 @@ app.directive("checkLast", function($timeout) {
 });
 
 app.directive("menuToggleIcons", function() {
-	return function (scope, element) {
+	return function(scope, element) {
 		element.on("mouseenter", function() {
 			element.find('span').addClass('hover');
 		});
@@ -50,7 +50,7 @@ app.directive("changeLanguage", function() {
 });
 
 app.directive("socialToggleIcons", function() {
-	return function (scope, element) {
+	return function(scope, element) {
 		element.on("mouseenter", function() {
 			$(this).find('.active').stop(true, true).animate({
 				opacity: '1'
@@ -65,8 +65,21 @@ app.directive("socialToggleIcons", function() {
 	}
 });
 
+app.directive("twitterStyling", function() {
+	return function(scope, element) {
+		if (scope.$last !== true) return;
+
+
+		var urlRegex = /(http?:\/\/[^\s]+)/g;
+
+		element.parent().find('p').text().replace(urlRegex, function(url) {
+			return '<a href="' + url + '">' + url + '</a>';
+		});
+	}
+});
+
 app.directive("vertAlign", function($timeout) {
-	return function (scope, element) {
+	return function(scope, element) {
 		$timeout(function() {
 			var height = element.height(),
 				parentHeight = element.parent().height(),
