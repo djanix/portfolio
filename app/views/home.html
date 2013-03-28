@@ -72,7 +72,7 @@
 					<span class="left">{{copy.skill_1}}</span>
 					<span class="right">{{copy.skill_1_percent}}%</span>
 				</div>
-				<div class="percent" data-percent="{{copy.skill_1_percent}}"></div>
+				<div class="percent" data-percent="{{copy.skill_1_percent}}" data-skill-percentage></div>
 			</li>
 
 			<li>
@@ -80,7 +80,7 @@
 					<span class="left">{{copy.skill_2}}</span>
 					<span class="right">{{copy.skill_2_percent}}%</span>
 				</div>
-				<div class="percent" data-percent="{{copy.skill_2_percent}}"></div>
+				<div class="percent" data-percent="{{copy.skill_2_percent}}" data-skill-percentage></div>
 			</li>
 
 			<li>
@@ -88,7 +88,7 @@
 					<span class="left">{{copy.skill_3}}</span>
 					<span class="right">{{copy.skill_3_percent}}%</span>
 				</div>
-				<div class="percent" data-percent="{{copy.skill_3_percent}}"></div>
+				<div class="percent" data-percent="{{copy.skill_3_percent}}" data-skill-percentage></div>
 			</li>
 
 			<li>
@@ -96,7 +96,7 @@
 					<span class="left">{{copy.skill_4}}</span>
 					<span class="right">{{copy.skill_4_percent}}%</span>
 				</div>
-				<div class="percent" data-percent="{{copy.skill_4_percent}}"></div>
+				<div class="percent" data-percent="{{copy.skill_4_percent}}" data-skill-percentage></div>
 			</li>
 		</ul>
 	</div>
@@ -118,8 +118,8 @@
 	 <h2>Recent Tweets</h2>
 
 	<div class="tweets" data-ng-controller="twitterFeedCtrl">
-		<p class="tweet" data-twitter-styling data-ng-repeat="tweet in tweets">
-			{{tweet}}
+		<p class="tweet" data-ng-repeat="tweet in tweets" data-twitter-styling>
+			{{tweet.text}}
 		</p>
 	</div>
 </section>

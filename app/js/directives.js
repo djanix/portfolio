@@ -24,7 +24,7 @@ app.directive("checkLast", function($timeout) {
 //					$container.isotope( 'appended', $( newElements ) );
 //				}
 //			);
-		}, 30);
+		}, 100);
 	}
 });
 
@@ -49,6 +49,27 @@ app.directive("changeLanguage", function() {
 	}
 });
 
+app.directive("skillPercentage", function() {
+	return function(scope, element) {
+		scope.$watch(element, function () {
+			element.css({width: element.attr('data-percent') + '%'});
+		});
+	}
+});
+
+app.directive("twitterStyling", function(jqtweet) {
+	return function(scope, element) {
+		scope.$watch(element, function () {
+			var newEl = jqtweet.ify.clean(element.text());
+
+			newEl.replace(/USER/g, scope.tweets[element.index()].user.screen_name)
+				 .replace(/ID/g, scope.tweets[element.index()].id_str);
+
+			element.html(newEl);
+		});
+	}
+});
+
 app.directive("socialToggleIcons", function() {
 	return function(scope, element) {
 		element.on("mouseenter", function() {
@@ -61,19 +82,6 @@ app.directive("socialToggleIcons", function() {
 			$(this).find('.active').stop(true, true).animate({
 				opacity: '0'
 			}, 300, 'easeInOutExpo')
-		});
-	}
-});
-
-app.directive("twitterStyling", function() {
-	return function(scope, element) {
-		if (scope.$last !== true) return;
-
-
-		var urlRegex = /(http?:\/\/[^\s]+)/g;
-
-		element.parent().find('p').text().replace(urlRegex, function(url) {
-			return '<a href="' + url + '">' + url + '</a>';
 		});
 	}
 });

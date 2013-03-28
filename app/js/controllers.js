@@ -68,27 +68,17 @@ app.controller("languageCtrl", function($scope) {
 	};
 });
 
+
+
 app.controller("twitterFeedCtrl", function($scope, $http, jqtweet) {
-	var url = 'https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=janiclb&count=5&callback=?';
 	$scope.tweets = [];
-	$scope.$watch('tweets');
 
-	jqtweet.loadTweets();
-
-//	TODO: SWITCH TO $HTTP GET
-//	$http.get(url)
-//	$.getJSON(url)
-//		.success(function(data) {
-//			$.each(data, function(index, tweet) {
-//				if (tweet.text !== undefined) {
-//					$scope.tweets.push(tweet.text);
-//					$scope.$digest();
-//
-////					TODO: REMOVE THIS
-////					$('.tweet_' + index).text($scope.tweets[index]);
-//				}
-//			});
-//		}).error(function(data) {
-//			console.log('error getting tweets from json twitter: ' + data);
-//		});
+	jqtweet.loadTweets(function(err, data) {
+		if (err) {
+			console.log('error getting tweets');
+		} else {
+			$scope.tweets = data;
+			$scope.$apply();
+		}
+	});
 });

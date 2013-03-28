@@ -1,0 +1,11 @@
+- add color transition plugin (for link hover)
+- put all work in same json + add category to json object
+- optimize carousel build with angular
+- portfolio menu animation
+- add waypoint.js
+	- different menu when top of website?
+	- skills percent bar animation when enter user screen
+- smoothscroll for main menu + footer
+- centering isotope
+- implement FitText.js for h2
+- finish responsive layout for smaller devices

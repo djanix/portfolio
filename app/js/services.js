@@ -1,6 +1,6 @@
 //	http://www.queness.com/post/8567/create-a-dead-simple-twitter-feed-with-jquery
 app.service('jqtweet', function() {
-	this.loadTweets = function() {
+	this.loadTweets = function(callback) {
 		$.ajax({
 			url: 'http://api.twitter.com/1/statuses/user_timeline.json/',
 			type: 'GET',
@@ -11,21 +11,12 @@ app.service('jqtweet', function() {
 				count: 5,
 				include_entities: true
 			},
-			success: function(data, textStatus, xhr) {
-
-				var html = '<div class="tweet">TWEET_TEXT<div class="time">AGO</div>';
-
-				// append tweets into page
-				for (var i = 0; i < data.length; i++) {
-					$('.tweets').append(
-						html.replace('TWEET_TEXT', this.ify.clean(data[i].text) )
-							.replace(/USER/g, data[i].user.screen_name)
-							.replace('AGO', this.timeAgo(data[i].created_at) )
-							.replace(/ID/g, data[i].id_str)
-					);
-				}
+			success: function(data) {
+				return callback(null, data);
+			},
+			error: function(data) {
+				return callback(data, null);
 			}
-
 		});
 
 	},
@@ -34,7 +25,7 @@ app.service('jqtweet', function() {
 		var rightNow = new Date();
 		var then = new Date(dateString);
 
-		if ($.browser.msie) {
+		if (!$.support.opacity) {
 			// IE can't parse these crazy Ruby dates
 			then = Date.parse(dateString.replace(/( \+)/, ' UTC$1'));
 		}

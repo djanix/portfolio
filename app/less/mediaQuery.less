@@ -1,5 +1,15 @@
 body:after {
-	display: none;
+	background-color: red;
+	color: #000;
+	display: block;
+	left: 0;
+	opacity: 0.4;
+	padding: 5px;
+	position: fixed;
+	text-align: center;
+	top: 0;
+	width: 100%;
+	z-index: 99999999999999;
 }
 
 @media only screen and (min-width: 880px) {
@@ -89,6 +99,19 @@ body:after {
 			.interests {
 				ul {
 					text-align: center;
+				}
+			}
+		}
+
+		.social {
+			.tweets {
+				background: none;
+				padding-left: 0;
+
+				p {
+					max-width: 600px;
+					margin-left: auto;
+					margin-right: auto;
 				}
 			}
 		}
