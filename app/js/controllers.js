@@ -20,15 +20,6 @@ app.controller("PortfolioGlobalCtrl", function($scope, $http) {
 			});
 	};
 
-	$scope.getWork = function() {
-		$http.get('data/work.json')
-			.success(function(data) {
-				$scope.work = data;
-			}).error(function(data) {
-				console.log('error getting work from json file: ' + data);
-			});
-	};
-
 	// IE8 fix for window.getComputedStyle
 	if (!window.getComputedStyle) {
 		window.getComputedStyle = function(el, pseudo) {
@@ -53,20 +44,13 @@ app.controller("PortfolioGlobalCtrl", function($scope, $http) {
 
 
 
-app.controller("PortfolioHomeCtrl", function($scope) {
-	$scope.getWork();
-});
-
-
-
-app.controller("PortfolioWorkDetailCtrl", function($scope, $routeParams) {
-	$scope.getWork();
-
-	$.each($scope.work, function(index, value){
-		if (value.link == $routeParams.title) {
-			$scope.item = $scope.work[index];
-		}
-	});
+app.controller("PortfolioHomeCtrl", function($scope, $http) {
+	$http.get('data/work.json')
+		.success(function(data) {
+			$scope.work = data;
+		}).error(function(data) {
+			console.log('error getting work from json file: ' + data);
+		});
 });
 
 

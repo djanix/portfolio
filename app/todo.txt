@@ -1,10 +1,15 @@
 //-- features
-- different menu when top of website?
-- finish responsive layout for smaller devices
-- detail pages
-- infinite scroll for isotope
 - add .active au bon menu sur click dans le footer
-- portfolio work hover behavior
+- redo work thumb images (need to be bigger)
+- fancybox on work img click
+
+//-- optimization
+- different menu when top of website?
+- infinite scroll for isotope
+- use data-ng-click / data-ng-mouseenter ?
+- find a way to show language box on mobile size window
+- remove path from work.json for images
+- all portfolio pictures in same folder?
 
 //-- bugs
 - optimize carousel build with angular

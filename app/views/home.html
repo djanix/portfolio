@@ -77,16 +77,23 @@
 	<div class="slider">
 		<ul>
 			<li class="{{workItem.category}}" data-ng-repeat="workItem in work" data-check-last>
-				<div class="data">
+				<div class="data" data-work-hover>
 					<div class="picture">
-						<a href="/#/work/{{workItem.title}}">
+						<a rel="portfolio" href="" data-ng-href="{{workItem.images[0]}}" data-fancybox>
 							<img src="" data-ng-src="{{workItem.thumb}}" alt="" />
 						</a>
 					</div>
 
 					<div class="info">
-						<a href="{{workItem.link}}">{{workItem.title}}</a>
-						<br />{{workItem.date}}
+						<p>{{workItem.title}}</p>
+						<p>Category: {{workItem.category}}</p>
+						<!--<p>Details: {{workItem.desc}}</p>-->
+						<p class="link">Link: <a href="{{workItem.link}}">{{workItem.link}}</a></p>
+						<p>Date: {{workItem.date}}</p>
+					</div>
+
+					<div class="zoom">
+						<a class="sprite icon_zoom" rel="portfolio" href="" data-ng-href="{{workItem.images[0]}}" data-fancybox></a>
 					</div>
 				</div>
 			</li>
@@ -98,8 +105,8 @@
 	 <h2 data-fit-text>Recent Tweets</h2>
 
 	<div class="tweets" data-ng-controller="twitterFeedCtrl">
-		<p class="tweet" data-ng-repeat="tweet in tweets" data-twitter-styling>
-			{{tweet.text}}
+		<p class="tweet" data-ng-repeat="tweet in tweets">
+			<span class="sprite icon_twitter_bird"></span><span class="text" data-twitter-styling>{{tweet.text}}</span>
 		</p>
 	</div>
 </section>

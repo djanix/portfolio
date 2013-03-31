@@ -52,6 +52,12 @@ app.directive("smoothScroll", function() {
 	}
 });
 
+app.directive("fancybox", function() {
+	return function(scope, element) {
+		element.fancybox();
+	}
+});
+
 app.directive("menuActivation", function() {
 	return function(scope, element) {
 		var elName = element.attr('id'),
@@ -75,6 +81,22 @@ app.directive("isotopeCategory", function() {
 
 			$('.slider ul').isotope({
 				filter: $(this).attr('data-filter')
+			});
+		});
+	}
+});
+
+app.directive("workHover", function() {
+	return function(scope, element) {
+		element.on('mouseenter', function() {
+			element.find('.info').stop(true, true).show(300, 'easeInOutExpo', function() {
+				element.find('.zoom').stop(true, true).show(300, 'easeInOutExpo');
+			});
+		});
+
+		element.on('mouseleave', function() {
+			element.find('.info').stop(true, true).hide(300, 'easeInOutExpo', function() {
+				element.find('.zoom').stop(true, true).hide(300, 'easeInOutExpo');
 			});
 		});
 	}
