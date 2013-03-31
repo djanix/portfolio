@@ -1,0 +1,321 @@
+[
+	{
+		"title": "Adidas: Go All In",
+		"category": "web",
+		"link": "http://adidas.com/goallin",
+		"desc": "",
+		"date": "2011-2012",
+		"thumb": "img/portfolio/web/small/adidasGoAllIn.jpg",
+		"images": [
+			"img/portfolio/web/big/adidasGoAllIn.jpg"
+		]
+	},
+	{
+		"title": "Brunet: Ma Santé Mobile",
+		"category": "web",
+		"link": "https://m.brunet.ca/masante/",
+		"desc": "",
+		"date": "2012",
+		"thumb": "img/portfolio/web/small/brunetMaSante.jpg",
+		"images": [
+			"img/portfolio/web/big/brunetMaSante.jpg"
+		]
+	},
+	{
+		"title": "Dewars: The Drinking Man's Scotch",
+		"category": "web",
+		"link": "http://thedrinkingmansscotch.dewars.com/",
+		"desc": "",
+		"date": "2012",
+		"thumb": "img/portfolio/web/small/dewarsTDMS.jpg",
+		"images": [
+			"img/portfolio/web/big/dewarsTDMS.jpg"
+		]
+	},
+	{
+		"title": "Dewars: Freemans",
+		"category": "web",
+		"link": "http://freemans.dewars.com/",
+		"desc": "",
+		"date": "2012",
+		"thumb": "img/portfolio/web/small/dewarsFreemans.jpg",
+		"images": [
+			"img/portfolio/web/big/dewarsFreemans.jpg"
+		]
+	},
+	{
+		"title": "Mars et Avril",
+		"category": "web",
+		"link": "https://www.facebook.com/MarsEtAvril/app_325309087564732",
+		"desc": "",
+		"date": "2012",
+		"thumb": "img/portfolio/web/small/marsEtAvril.jpg",
+		"images": [
+			"img/portfolio/web/big/marsEtAvril.jpg"
+		]
+	},
+	{
+		"title": "Rona: Foundation",
+		"category": "web",
+		"link": "http://foundation.rona.ca/",
+		"desc": "",
+		"date": "2012",
+		"thumb": "img/portfolio/web/small/ronaFoundation.jpg",
+		"images": [
+			"img/portfolio/web/big/ronaFoundation.jpg"
+		]
+	},
+	{
+		"title": "Agora des Arts",
+		"category": "web",
+		"link": "http://www.agoradesarts.com",
+		"desc": "",
+		"date": "2010",
+		"thumb": "img/portfolio/web/small/agoraDesArts.jpg",
+		"images": [
+			"img/portfolio/web/big/agoraDesArts.jpg"
+		]
+	},
+	{
+		"title": "ARFPA",
+		"category": "web",
+		"link": "http://www.arfpa.ca",
+		"desc": "",
+		"date": "2010",
+		"thumb": "img/portfolio/web/small/arfpa.jpg",
+		"images": [
+			"img/portfolio/web/big/arfpa.jpg"
+		]
+	},
+	{
+		"title": "GMF-UMF des Aurores Boréales",
+		"category": "web",
+		"link": "http://www.umfab.qc.ca",
+		"desc": "",
+		"date": "2010",
+		"thumb": "img/portfolio/web/small/gmfUmf.jpg",
+		"images": [
+			"img/portfolio/web/big/gmfUmf.jpg"
+		]
+	},
+	{
+		"title": "Clinique Tardif-Ouellet",
+		"category": "web",
+		"link": "http://www.cliniquetardifouellet.com",
+		"desc": "",
+		"date": "2010",
+		"thumb": "img/portfolio/web/small/cliniqueTardifOuellet.jpg",
+		"images": [
+			"img/portfolio/web/big/cliniqueTardifOuellet.jpg"
+		]
+	},
+	{
+		"title": "Hotel des Eskers",
+		"category": "web",
+		"link": "http://www.hoteleskers.com",
+		"desc": "",
+		"date": "2010",
+		"thumb": "img/portfolio/web/small/hotelEskers.jpg",
+		"images": [
+			"img/portfolio/web/big/hotelEskers.jpg"
+		]
+	},
+	{
+		"title": "Élevage Taiga",
+		"category": "web",
+		"link": "http://www.taiga-afghan.com",
+		"desc": "",
+		"date": "2009",
+		"thumb": "img/portfolio/web/small/taigaAfghan.jpg",
+		"images": [
+			"img/portfolio/web/big/taigaAfghan.jpg"
+		]
+	},
+	{
+		"title": "Jocam Canada",
+		"category": "web",
+		"link": "http://www.jocamcanada.com/",
+		"desc": "",
+		"date": "2009",
+		"thumb": "img/portfolio/web/small/jocam.jpg",
+		"images": [
+			"img/portfolio/web/big/jocam.jpg"
+		]
+	},
+	{
+		"title": "Ville La Sarre",
+		"category": "web",
+		"link": "",
+		"desc": "",
+		"date": "2009",
+		"thumb": "img/portfolio/web/small/villeLaSarre.jpg",
+		"images": [
+			"img/portfolio/web/big/villeLaSarre.jpg"
+		]
+	},
+	{
+		"title": "Créavenir",
+		"category": "web",
+		"link": "http://www.creavenir.ca",
+		"desc": "",
+		"date": "2009",
+		"thumb": "img/portfolio/web/small/creavenir.jpg",
+		"images": [
+			"img/portfolio/web/big/creavenir.jpg"
+		]
+	},
+	{
+		"title": "BidonVille  - UT3",
+		"category": "3d",
+		"link": "http://vimeo.com/18438152",
+		"desc": "",
+		"date": "2010",
+		"thumb": "img/portfolio/other/small/mapUnreal.jpg",
+		"images": [
+			"img/portfolio/other/big/mapUnreal.jpg"
+		]
+	},
+	{
+		"title": "Signature 3d",
+		"category": "3d",
+		"link": "http://vimeo.com/18436439",
+		"desc": "",
+		"date": "2010",
+		"thumb": "img/portfolio/other/small/3dSignature.jpg",
+		"images": [
+			"img/portfolio/other/big/3dSignature.jpg"
+		]
+	},
+	{
+		"title": "Bench press concept",
+		"category": "3d design",
+		"link": "",
+		"desc": "",
+		"date": "2010",
+		"thumb": "img/portfolio/other/small/3dBench.jpg",
+		"images": [
+			"img/portfolio/other/big/3dBench.jpg"
+		]
+	},
+	{
+		"title": "Publicité fête d'hiver",
+		"category": "design",
+		"link": "http://vimeo.com/18435854",
+		"desc": "",
+		"date": "2010",
+		"thumb": "img/portfolio/other/small/feteDhiver.jpg",
+		"images": [
+			"img/portfolio/other/big/feteDhiver.jpg"
+		]
+	},
+	{
+		"title": "La salle d'attente",
+		"category": "3d design",
+		"link": "http://vimeo.com/12965403",
+		"desc": "",
+		"date": "2009",
+		"thumb": "img/portfolio/other/small/salleDattente.jpg",
+		"images": [
+			"img/portfolio/other/big/salleDattente.jpg"
+		]
+	},
+	{
+		"title": "Pulsion",
+		"category": "design",
+		"link": "http://vimeo.com/12407850",
+		"desc": "",
+		"date": "2010",
+		"thumb": "img/portfolio/other/small/pulsion.jpg",
+		"images": [
+			"img/portfolio/other/big/pulsion.jpg"
+		]
+	},
+	{
+		"title": "Horox",
+		"category": "3d",
+		"link": "http://vimeo.com/18436531",
+		"desc": "",
+		"date": "2009",
+		"thumb": "img/portfolio/other/small/3dHorox.jpg",
+		"images": [
+			"img/portfolio/other/big/3dHorox.jpg"
+		]
+	},
+	{
+		"title": "Prison cell",
+		"category": "3d",
+		"link": "",
+		"desc": "",
+		"date": "2009",
+		"thumb": "img/portfolio/other/small/3dPrison.jpg",
+		"images": [
+			"img/portfolio/other/big/3dPrison.jpg"
+		]
+	},
+	{
+		"title": "Evolution theory",
+		"category": "3d design",
+		"link": "",
+		"desc": "",
+		"date": "2010",
+		"thumb": "img/portfolio/other/small/3dEvolution.jpg",
+		"images": [
+			"img/portfolio/other/big/3dEvolution.jpg"
+		]
+	},
+	{
+		"title": "Future prison concept",
+		"category": "3d",
+		"link": "",
+		"desc": "",
+		"date": "2010",
+		"thumb": "img/portfolio/other/small/3dPrison2.jpg",
+		"images": [
+			"img/portfolio/other/big/3dPrison2.jpg"
+		]
+	},
+	{
+		"title": "Scream!",
+		"category": "design",
+		"link": "",
+		"desc": "",
+		"date": "2010",
+		"thumb": "img/portfolio/other/small/afficheScream.jpg",
+		"images": [
+			"img/portfolio/other/big/afficheScream.jpg"
+		]
+	},
+	{
+		"title": "Blind",
+		"category": "3d",
+		"link": "",
+		"desc": "",
+		"date": "2009",
+		"thumb": "img/portfolio/other/small/3dMain.jpg",
+		"images": [
+			"img/portfolio/other/big/3dMain.jpg"
+		]
+	},
+	{
+		"title": "Drink responsibly",
+		"category": "3d design",
+		"link": "",
+		"desc": "",
+		"date": "2010",
+		"thumb": "img/portfolio/other/small/afficheAbsolute.jpg",
+		"images": [
+			"img/portfolio/other/big/afficheAbsolute.jpg"
+		]
+	},
+	{
+		"title": "Soudoyer",
+		"category": "design",
+		"link": "http://vimeo.com/18436033",
+		"desc": "",
+		"date": "2009",
+		"thumb": "img/portfolio/other/small/soudoyer.jpg",
+		"images": [
+			"img/portfolio/other/big/soudoyer.jpg"
+		]
+	}
+]

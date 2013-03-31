@@ -20,14 +20,32 @@ app.controller("PortfolioGlobalCtrl", function($scope, $http) {
 			});
 	};
 
-	$scope.getWork = function(section) {
-		$http.get('data/work/' + section + '.json')
+	$scope.getWork = function() {
+		$http.get('data/work.json')
 			.success(function(data) {
-				$scope[section] = data;
+				$scope.work = data;
 			}).error(function(data) {
-				console.log('error getting ' + section + 'work from json file: ' + data);
+				console.log('error getting work from json file: ' + data);
 			});
 	};
+
+	// IE8 fix for window.getComputedStyle
+	if (!window.getComputedStyle) {
+		window.getComputedStyle = function(el, pseudo) {
+			this.el = el;
+			this.getPropertyValue = function(prop) {
+				var re = /(\-([a-z]){1})/g;
+				if (prop == 'float') prop = 'styleFloat';
+				if (re.test(prop)) {
+					prop = prop.replace(re, function () {
+						return arguments[2].toUpperCase();
+					});
+				}
+				return el.currentStyle[prop] ? el.currentStyle[prop] : null;
+			}
+			return this;
+		}
+	}
 
 	$scope.device = window.getComputedStyle(document.body,':after').getPropertyValue('content');
 	$scope.getLanguage();
@@ -36,18 +54,17 @@ app.controller("PortfolioGlobalCtrl", function($scope, $http) {
 
 
 app.controller("PortfolioHomeCtrl", function($scope) {
-	$scope.getWork('web');
-	$scope.getWork('other');
+	$scope.getWork();
 });
 
 
 
 app.controller("PortfolioWorkDetailCtrl", function($scope, $routeParams) {
-	$scope.getWork($routeParams.section);
+	$scope.getWork();
 
-	$.each($scope[$routeParams.section], function(index, value){
+	$.each($scope.work, function(index, value){
 		if (value.link == $routeParams.title) {
-			$scope.item = $scope[$routeParams.section][index];
+			$scope.item = $scope.work[index];
 		}
 	});
 });

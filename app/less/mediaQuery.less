@@ -1,7 +1,8 @@
 body:after {
 	background-color: red;
-	color: #000;
+	color: #fff;
 	display: block;
+	font-weight: bold;
 	left: 0;
 	opacity: 0.4;
 	padding: 5px;
@@ -65,17 +66,25 @@ body:after {
 		.aboutMe {
 			.presentation {
 				background-position: center top;
+				font-size: 26px;
+				margin-bottom: 20px;
 
 				p {
 					padding: 640px 10px 0 10px;
 					text-align: center;
 				}
 			}
+
+			.banner {
+				margin-bottom: 50px;
+			}
 		}
 
 		.portfolio {
 			.menu {
 				ul {
+					text-align: center;
+
 					li {
 						margin-top: 20px;
 					}
@@ -125,35 +134,65 @@ body:after {
 
 	.site {
 		header {
-			padding: 0;
-
-			h1 {
-				background-position: center center;
-				text-indent: -9999px;
-				width: 100%;
-
-				a {
-					display: block;
-					padding-bottom: 8px;
-					width: 100%;
-				}
+			.content {
+				text-align: center;
 			}
 
-			nav a {
-				border-top: 1px solid @darkGrey;
-				display: block;
-				line-height: 45px;
-				margin: 0 auto;
-				padding: 0;
-				text-align: center;
+			h1 {
+				text-indent: -9999px;
+				width: 59px;
+			}
 
-				&:last-child {
-					border-bottom: 1px solid @darkGrey;
+			.left {
+				display: inline-block;
+				*display: inline;
+				zoom: 1;
+
+				width: auto;
+			}
+
+			nav.right {
+				padding-left: 10px;
+				vertical-align: middle;
+				width: auto;
+
+				display: inline-block;
+				*display: inline;
+				zoom: 1;
+
+				a {
+					height: 32px;
+					text-indent: -9999px;
+					overflow: hidden;
+					margin: 0;
+					padding: 8px;
+					width: 32px;
+
+					.sprite {
+						display: block;
+					}
 				}
 			}
 
 			.language {
 				display: none;
+			}
+		}
+
+		.aboutMe {
+			.banner {
+				font-size: 20px;
+			}
+		}
+
+		.portfolio {
+			.menu {
+				ul {
+					li {
+						margin-left: 0;
+						margin-right: 0;
+					}
+				}
 			}
 		}
 	}

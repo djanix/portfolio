@@ -3,11 +3,14 @@ app.directive("checkLast", function($timeout) {
 		if (scope.$last !== true) return;
 
 		$timeout(function() {
-			var container = $('.slider ul');
+			var container = element.parent('ul');
 
 			container.isotope({
 				itemSelector : 'li',
-				layoutMode : 'fitRows'
+				filter: '.web',
+				masonry: {
+					columnWidth: 346
+				}
 			});
 
 //			$container.infinitescroll({
@@ -24,18 +27,55 @@ app.directive("checkLast", function($timeout) {
 //					$container.isotope( 'appended', $( newElements ) );
 //				}
 //			);
-		}, 100);
+		}, 500);
 	}
 });
 
-app.directive("menuToggleIcons", function() {
-	return function(scope, element) {
-		element.on("mouseenter", function() {
-			element.find('span').addClass('hover');
-		});
+app.directive("smoothScroll", function() {
+	return function(scope, element, attr) {
+		var offset = parseInt('-' + $('header').outerHeight()),
+			navEl = $('nav');
 
-		element.on("mouseleave", function() {
-			element.find('span').removeClass('hover');
+		element.on("click", function(e) {
+			e.preventDefault();
+			$.smoothScroll({
+				scrollTarget: attr.smoothScroll,
+				offset: offset,
+				easing: 'easeInOutExpo',
+				speed: 1000,
+				afterScroll: function() {
+					navEl.find('.active').removeClass('active');
+					element.addClass('active');
+				}
+			});
+		});
+	}
+});
+
+app.directive("menuActivation", function() {
+	return function(scope, element) {
+		var elName = element.attr('id'),
+			menu = $('nav'),
+			menuEl = menu.find('.' + elName);
+
+		element.waypoint(function() {
+			menu.find('.active').removeClass('active');
+			menuEl.addClass('active');
+		});
+	}
+});
+
+app.directive("isotopeCategory", function() {
+	return function(scope, element) {
+		element.find('a').on('click', function(e) {
+			e.preventDefault();
+
+			element.find('.active').removeClass('active');
+			$(this).addClass('active');
+
+			$('.slider ul').isotope({
+				filter: $(this).attr('data-filter')
+			});
 		});
 	}
 });
@@ -49,11 +89,35 @@ app.directive("changeLanguage", function() {
 	}
 });
 
+app.directive("fitText", function() {
+	return function(scope, element) {
+		element.fitText(1, { maxFontSize: '60px' })
+	}
+});
+
 app.directive("skillPercentage", function() {
 	return function(scope, element) {
-		scope.$watch(element, function () {
-			element.css({width: element.attr('data-percent') + '%'});
+		var percentBar = element.find('.percent'),
+			percentDiv = element.find('.right'),
+			percentValue = 0;
+
+		scope.$watch(function() {
+			percentValue = percentBar.attr('data-percent');
 		});
+
+		element.waypoint(function() {
+			var animateVal = setInterval(function() {
+				var newWidth = Math.round(percentBar.width() / element.width() * 100);
+				percentDiv.html(newWidth + '%');
+			},20);
+
+			percentBar.animate({
+				width: percentValue + '%'
+			}, 1100, function() {
+				clearInterval(animateVal);
+				percentDiv.html(percentValue + '%');
+			});
+		}, {triggerOnce: true, offset: '80%'});
 	}
 });
 

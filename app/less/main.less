@@ -53,6 +53,13 @@
 		list-style-type: none;
 	}
 
+	a:hover, a:active, a:focus {
+		transition: all 0.2s ease;
+		-moz-transition: all 0.2s ease;
+		-webkit-transition: all 0.2s ease;
+		-o-transition: all 0.2s ease;
+	}
+
 	.content {
 		margin: 0 auto;
 		max-width: 1060px;
@@ -61,33 +68,18 @@
 	.sprite {
 		background: url('@{image-path}sprite.png') 0 0 no-repeat;
 		height: 32px;
-		width: 32px;
+		overflow: hidden;
 		vertical-align: middle;
+		width: 32px;
 
 		display: inline-block;
 		*display: inline;
 		zoom: 1;
 
-		&.icon_about {
-			background-position: 0 0;
-			&.hover { background-position: 0 -32px; }
-		}
-
-		&.icon_portfolio {
-			background-position: -32px 0;
-			&.hover { background-position: -32px -32px; }
-		}
-
-		&.icon_skills {
-			background-position: -64px 0;
-			&.hover { background-position: -64px -32px; }
-		}
-
-		&.icon_social {
-			background-position: -96px 0;
-			&.hover { background-position: -96px -32px; }
-		}
-
+		&.icon_about { background-position: 0 0; }
+		&.icon_portfolio { background-position: -32px 0; }
+		&.icon_skills { background-position: -64px 0; }
+		&.icon_social { background-position: -96px 0; }
 		&.icon_twitter_bird { background-position: -128px 0; }
 	}
 
@@ -116,6 +108,7 @@
 			text-transform: uppercase;
 
 			a {
+				color: @orange;
 				line-height: 59px;
 				margin: 0 10px;
 
@@ -123,8 +116,13 @@
 				*display: inline;
 				zoom: 1;
 
-				&:hover {
-					color: @orange;
+				filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+				filter: gray; /* IE6-9 */
+				-webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+
+				&:hover, &:active, &:focus, &.active {
+					filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+					-webkit-filter: grayscale(0%);
 				}
 			}
 
@@ -203,10 +201,11 @@
 			ul {
 				font-family: 'ChunkFiveRegular';
 				font-size: 22px;
+				text-align: right;
 				text-transform: uppercase;
 
 				li {
-					margin: 68px 20px 0 20px;
+					margin: 0 20px;
 
 					display: inline-block;
 					*display: inline;
@@ -226,16 +225,13 @@
 
 		.slider {
 			ul {
-				margin: 50px 0;
+				margin: 50px auto;
 
 				li {
 					background: url('@{image-path}shadow.png') center bottom no-repeat;
+					float: left;
 					margin: 0 30px 15px 0;
 					padding-bottom: 22px;
-
-					display: inline-block;
-					*display: inline;
-					zoom: 1;
 
 					.data {
 						border: 8px solid #fff;
@@ -310,10 +306,15 @@
 				*display: inline;
 				zoom: 1;
 
-				&:hover {
+				&:hover, &:active, &:focus {
 					background-color: @orange;
 					color: #fff;
 					cursor: pointer;
+
+					transition: all 0.2s ease;
+					-moz-transition: all 0.2s ease;
+					-webkit-transition: all 0.2s ease;
+					-o-transition: all 0.2s ease;
 				}
 			}
 		}
@@ -372,41 +373,41 @@
 
 				&.email img {
 					margin-left: -32px;
-					margin-top: -64px;
+					margin-top: -32px;
 
 					&.active {
 						margin-left: -32px;
-						margin-top: -96px;
+						margin-top: -64px;
 					}
 				}
 
 				&.linkedIn img {
 					margin-left: -64px;
-					margin-top: -64px;
+					margin-top: -32px;
 
 					&.active {
 						margin-left: -64px;
-						margin-top: -96px;
+						margin-top: -64px;
 					}
 				}
 
 				&.skype img {
 					margin-left: 0;
-					margin-top: -64px;
+					margin-top: -32px;
 
 					&.active {
 						margin-left: 0;
-						margin-top: -96px;
+						margin-top: -64px;
 					}
 				}
 
 				&.twitter img {
 					margin-left: -96px;
-					margin-top: -64px;
+					margin-top: -32px;
 
 					&.active {
 						margin-left: -96px;
-						margin-top: -96px;
+						margin-top: -64px;
 					}
 				}
 

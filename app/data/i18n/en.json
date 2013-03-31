@@ -4,15 +4,15 @@
 	"website_author": "Janic Beauchemin",
 
 	"menu_1": "about me",
-	"menu_2": "portfolio",
-	"menu_3": "skills",
+	"menu_2": "skills",
+	"menu_3": "portfolio",
 	"menu_4": "social",
 
 	"language": "Hey! Je parle français aussi!",
 
 	"presentation_title": "About Me",
 	"presentation_text": "Welcome to my Portfolio. I am a web developer based in Montreal, Canada. I'm currently working at Sid Lee and I use creativity blended with technology to deliver cutting edge work.",
-	"presentation_banner": "",
+	"presentation_banner": "frontend web developer",
 
 	"portfolio_title": "Portfolio",
 	"portfolio_cat_1": "all",

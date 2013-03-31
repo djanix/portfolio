@@ -4,15 +4,15 @@
 	"website_author": "Janic Beauchemin",
 
 	"menu_1": "A propos",
-	"menu_2": "portfolio",
-	"menu_3": "interets",
+	"menu_2": "interets",
+	"menu_3": "portfolio",
 	"menu_4": "social",
 
 	"language": "Hey! I speak english too!",
 
 	"presentation_title": "A propos",
 	"presentation_text": "Bienvenue sur mon portfolio web personnel. Je suis un développeur web de Montréal (Canada) travaillant chez Sid Lee et qui mélange créativité et technologies pour livrer un produit de qualité supérieure.",
-	"presentation_banner": "",
+	"presentation_banner": "développeur web frontend",
 
 	"portfolio_title": "Portfolio",
 	"portfolio_cat_1": "all",
