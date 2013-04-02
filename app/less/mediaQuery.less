@@ -1,7 +1,7 @@
 body:after {
 	background-color: red;
 	color: #fff;
-	display: block;
+	display: none;
 	font-weight: bold;
 	left: 0;
 	opacity: 0.4;
@@ -10,7 +10,7 @@ body:after {
 	text-align: center;
 	top: 0;
 	width: 100%;
-	z-index: 99999999999999;
+	z-index: 99999;
 }
 
 @media only screen and (min-width: 880px) {
@@ -50,6 +50,11 @@ body:after {
 				display: inline-block;
 			}
 
+			nav a {
+				margin: 0 8px;
+				font-size: 14px;
+			}
+
 			.language {
 				border-right: 1px solid @green;
 				bottom: inherit;
@@ -75,18 +80,19 @@ body:after {
 
 			.banner {
 				margin-bottom: 50px;
+				padding: 0;
+
+				p {
+					font-size: 30px;
+				}
 			}
 		}
 
-		.portfolio {
-			.menu {
-				ul {
-					text-align: center;
+		.portfolio .menu ul {
+			text-align: center;
 
-					li {
-						margin-top: 20px;
-					}
-				}
+			li {
+				margin-top: 20px;
 			}
 		}
 
@@ -103,10 +109,8 @@ body:after {
 				}
 			}
 
-			.interests {
-				ul {
-					text-align: center;
-				}
+			.interests ul {
+				text-align: center;
 			}
 		}
 
@@ -177,21 +181,13 @@ body:after {
 			}
 		}
 
-		.aboutMe {
-			.banner {
-				font-size: 20px;
-			}
+		.aboutMe .banner p {
+			font-size: 20px;
 		}
 
-		.portfolio {
-			.menu {
-				ul {
-					li {
-						margin-left: 0;
-						margin-right: 0;
-					}
-				}
-			}
+		.portfolio .menu ul li {
+			margin-left: 0;
+			margin-right: 0;
 		}
 	}
 }

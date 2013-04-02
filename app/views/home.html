@@ -6,13 +6,13 @@
 	</div>
 
 	<div class="banner">
-		{{copy.presentation_banner}}
+		<p>{{copy.presentation_banner}}</p>
 	</div>
 </section>
 
 <section class="skills" id="skills" data-menu-activation>
 	<div class="skillset">
-		<h2 data-fit-text>{{copy.skills}}</h2>
+		<h2 data-fit-text>{{copy.skills_title}}</h2>
 
 		<ul>
 			<li data-skill-percentage>
@@ -79,8 +79,8 @@
 			<li class="{{workItem.category}}" data-ng-repeat="workItem in work" data-check-last>
 				<div class="data" data-work-hover>
 					<div class="picture">
-						<a rel="portfolio" href="" data-ng-href="{{workItem.images[0]}}" data-fancybox>
-							<img src="" data-ng-src="{{workItem.thumb}}" alt="" />
+						<a rel="portfolio" href="" data-ng-href="/img/portfolio/{{workItem.images.selected}}" data-fancybox>
+							<img src="" data-ng-src="/img/portfolio/{{workItem.images.thumb}}" alt="" />
 						</a>
 					</div>
 
@@ -102,7 +102,7 @@
 </section>
 
 <section class="social" id="social" data-menu-activation>
-	 <h2 data-fit-text>Recent Tweets</h2>
+	 <h2 data-fit-text>{{copy.social_title}}</h2>
 
 	<div class="tweets" data-ng-controller="twitterFeedCtrl">
 		<p class="tweet" data-ng-repeat="tweet in tweets">

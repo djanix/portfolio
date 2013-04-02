@@ -12,15 +12,9 @@
 
 	"presentation_title": "About Me",
 	"presentation_text": "Welcome to my Portfolio. I am a web developer based in Montreal, Canada. I'm currently working at Sid Lee and I use creativity blended with technology to deliver cutting edge work.",
-	"presentation_banner": "frontend web developer",
+	"presentation_banner": "info@janicbeauchemin.com",
 
-	"portfolio_title": "Portfolio",
-	"portfolio_cat_1": "all",
-	"portfolio_cat_2": "web",
-	"portfolio_cat_3": "3d",
-	"portfolio_cat_4": "design",
-
-	"skills": "My Skills",
+	"skills_title": "My Skills",
 	"skill_1": "html / css",
 	"skill_1_percent": "99",
 	"skill_2": "js - jQuery",
@@ -36,6 +30,15 @@
 	"interests_3": "Backbone",
 	"interests_4": "Github",
 	"interests_5": "Arduino",
+
+	"portfolio_title": "Portfolio",
+	"portfolio_cat_1": "all",
+	"portfolio_cat_2": "web",
+	"portfolio_cat_3": "3d",
+	"portfolio_cat_4": "design",
+	"portfolio_txt_1": "Category",
+	"portfolio_txt_2": "Link",
+	"portfolio_txt_3": "Date",
 
 	"social_title": "Recent Tweets",
 	"social_linkedin": "Linked In",

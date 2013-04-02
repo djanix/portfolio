@@ -13,6 +13,14 @@ app.directive("checkLast", function($timeout) {
 				}
 			});
 
+			$.each(container.find('.link'), function() {
+				if ($(this).find('a').text() == "") {
+					$(this).hide();
+				}
+			});
+
+
+
 //			$container.infinitescroll({
 //					navSelector  : '#page_nav',    // selector for the paged navigation
 //					nextSelector : '#page_nav a',  // selector for the NEXT link (to page 2)
@@ -54,7 +62,9 @@ app.directive("smoothScroll", function() {
 
 app.directive("fancybox", function() {
 	return function(scope, element) {
-		element.fancybox();
+		element.fancybox({
+			padding: 0
+		});
 	}
 });
 
@@ -103,17 +113,34 @@ app.directive("workHover", function() {
 });
 
 app.directive("changeLanguage", function() {
-	return function(scope, element) {
+	return function(scope, element, attrs) {
+		var language = 'en';
+
+		if (attrs.changeLanguage) {
+			language = attrs.changeLanguage;
+		}
+
 		element.on("click", function(e) {
 			e.preventDefault();
-			scope.swapLanguage();
+
+			if (language == 'swap') {
+				scope.swapLanguage();
+			} else {
+				scope.changeLanguage(language);
+			}
 		});
 	}
 });
 
 app.directive("fitText", function() {
-	return function(scope, element) {
-		element.fitText(1, { maxFontSize: '60px' })
+	return function(scope, element, attr) {
+		var maxSize = "60px";
+
+		if (attr.fitText) {
+			maxSize = attr.fitText
+		}
+
+		element.fitText(1, { maxFontSize: maxSize })
 	}
 });
 

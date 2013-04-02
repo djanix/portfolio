@@ -176,15 +176,17 @@
 
 		.banner {
 			background: url('@{image-path}banner.png') center top no-repeat;
-			color: #fff;
-			font-family: 'ChunkFiveRegular';
-			font-size: 35px;
-			line-height: 57px;
-			overflow: hidden;
 			padding: 0 30px;
-			text-align: center;
-			text-overflow: ellipsis;
-			white-space: nowrap;
+
+			p {
+				color: #fff;
+				font-size: 35px;
+				font-weight: bold;
+				line-height: 57px;
+				margin: 0;
+				padding: 0;
+				text-align: center;
+			}
 		}
 	}
 
@@ -328,30 +330,28 @@
 			}
 		}
 
-		.interests {
-			li {
-				background-color: @lightGrey;
-				color: @darkGrey;
-				font-family: 'ChunkFiveRegular';
-				font-size: 18px;
-				margin: 0 10px 10px 0;
-				padding: 15px;
+		.interests li {
+			background-color: @lightGrey;
+			color: @darkGrey;
+			font-family: 'ChunkFiveRegular';
+			font-size: 18px;
+			margin: 0 10px 10px 0;
+			padding: 15px;
 
-				display: inline-block;
-				*display: inline;
-				zoom: 1;
+			display: inline-block;
+			*display: inline;
+			zoom: 1;
 
-				&:hover, &:active, &:focus {
-					background-color: @orange;
-					color: #fff;
-					cursor: pointer;
-
-					transition: all 0.2s ease;
-					-moz-transition: all 0.2s ease;
-					-webkit-transition: all 0.2s ease;
-					-o-transition: all 0.2s ease;
-				}
-			}
+//			&:hover, &:active, &:focus {
+//				background-color: @orange;
+//				color: #fff;
+//				cursor: pointer;
+//
+//				transition: all 0.2s ease;
+//				-moz-transition: all 0.2s ease;
+//				-webkit-transition: all 0.2s ease;
+//				-o-transition: all 0.2s ease;
+//			}
 		}
 	}
 
@@ -469,6 +469,10 @@
 					}
 				}
 			}
+		}
+
+		.language_footer a {
+			text-decoration: underline;
 		}
 
 		.legal {
