@@ -1,6 +1,7 @@
 //-- features
 - add .active au bon menu sur click dans le footer
 - fancybox link type = video
+- click logo = go to top
 
 //-- optimization
 - infinite scroll for isotope
@@ -12,3 +13,5 @@
 //-- bugs
 - optimize carousel build with angular
 - waypoint menu ajustements
+- firefox greyscale svg
+- ie8 footer icon start colored
