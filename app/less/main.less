@@ -24,7 +24,7 @@
 		}
 
 		span {
-			padding-left: 10px;
+			padding-left: 0;
 		}
 	}
 
@@ -114,7 +114,7 @@
 			a {
 				color: @orange;
 				line-height: 59px;
-				margin: 0 10px;
+				padding: 0 5px;
 
 				display: inline-block;
 				*display: inline;
@@ -128,14 +128,14 @@
 					filter: url(~"data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
 					-webkit-filter: grayscale(0%);
 				}
-			}
 
-			a:first-child {
-				margin-left: 0;
-			}
+				&:first-child {
+					padding-left: 0;
+				}
 
-			a:last-child {
-				margin-right: 0;
+				&.last {
+					padding-right: 0;
+				}
 			}
 		}
 	}
