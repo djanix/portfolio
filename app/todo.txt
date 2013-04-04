@@ -1,12 +1,10 @@
 //-- features
 - add .active au bon menu sur click dans le footer
 - fancybox link type = video
-- click logo = go to top
 
 //-- optimization
 - infinite scroll for isotope
 - use data-ng-click / data-ng-mouseenter ?
-- find a way to show language box on mobile size window
 - customize fancybox sprite
 - separate html for each website section (+ split less file)
 

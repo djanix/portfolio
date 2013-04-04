@@ -46,34 +46,81 @@ body:after {
 		}
 
 		header {
-			h1 {
+			.content {
+				text-align: center;
+			}
+
+			.left {
+				float: left;
+				height: 40px;
+				padding-left: 10px;
+				width: auto;
+
+				h1 {
+					line-height: 40px;
+					vertical-align: middle;
+
+					display: inline-block;
+					*display: inline;
+					zoom: 1;
+
+					img {
+						height: 40px;
+					}
+
+					span {
+						display: none;
+					}
+				}
+			}
+
+			nav.right {
+				height: 40px;
+				padding-left: 7px;
+				vertical-align: middle;
+				width: auto;
+
 				display: inline-block;
-			}
+				*display: inline;
+				zoom: 1;
 
-			nav a {
-				margin: 0 8px;
-				font-size: 14px;
+				a {
+					font-size: 13px;
+					line-height: 40px;
+					overflow: hidden;
+					margin: 0;
+					padding: 0 6px;
+				}
 			}
+		}
 
-			.language {
-				border-right: 1px solid @green;
-				bottom: inherit;
-				font-size: 12px;
-				padding-right: 1px;
-				right: 2px;
-				top: -2px;
-				width: 90px;
+		.language {
+			border: 0;
+			margin-top: 55px;
+			position: inherit;
+			text-align: right;
+			width: auto;
+
+			.language_content {
+				display: inline-block;
+				*display: inline;
+				zoom: 1;
+
+				a {
+					padding: 10px;
+				}
 			}
 		}
 
 		.aboutMe {
 			.presentation {
-				background-position: center top;
+				background: url('@{image-path}me.png') center top no-repeat;
 				font-size: 26px;
 				margin-bottom: 20px;
+				min-height: 0;
 
 				p {
-					padding: 640px 10px 0 10px;
+					padding: 440px 10px 10px 10px;
 					text-align: center;
 				}
 			}
@@ -135,56 +182,52 @@ body:after {
 	}
 
 	.site {
-		header {
-			.content {
-				text-align: center;
+		section:first-child {
+			margin-top: 20px;
+		}
+
+		header nav.right {
+			float: right;
+			padding-right: 10px;
+
+			a {
+				margin: 0;
+				padding: 5px 6px;
+
+				.text {
+					display: none;
+				}
+
+				.sprite {
+					display: block;
+				}
+			}
+		}
+
+		.language {
+			font-size: 13px;
+		}
+
+		.aboutMe {
+			h2 {
+				margin-bottom: 10px;
+				margin-top: 20px;
 			}
 
-			h1 {
-				text-indent: -9999px;
-				width: 59px;
-			}
+			.presentation {
+				background-image: url('@{image-path}me_small.png');
+				font-size: 22px;
 
-			.left {
-				display: inline-block;
-				*display: inline;
-				zoom: 1;
-
-				width: auto;
-			}
-
-			nav.right {
-				padding-left: 10px;
-				vertical-align: middle;
-				width: auto;
-
-				display: inline-block;
-				*display: inline;
-				zoom: 1;
-
-				a {
-					height: 32px;
-					text-indent: -9999px;
-					overflow: hidden;
-					margin: 0;
-					padding: 8px;
-					width: 32px;
-
-					.sprite {
-						display: block;
-					}
+				p {
+					padding-top: 340px;
 				}
 			}
 
-			.language {
-				display: none;
+			.banner p {
+				font-size: 20px;
+				line-height: 40px;
 			}
 		}
-
-		.aboutMe .banner p {
-			font-size: 20px;
-		}
-
 		.portfolio .menu ul li {
 			margin-left: 0;
 			margin-right: 0;

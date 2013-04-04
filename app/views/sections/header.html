@@ -2,36 +2,39 @@
 	<div class="content clearfix">
 		<div class="left">
 			<h1>
-				<a href="/">Janic Beauchemin</a>
+				<a href="/" data-smooth-scroll="#aboutMe">
+					<img src="/img/design/logo.png" alt="" />
+					<span class="text">Janic Beauchemin</span>
+				</a>
 			</h1>
 		</div>
 
 		<nav class="right">
 			<a class="aboutMe active" href="/about" data-smooth-scroll="#aboutMe">
 				<span class="sprite icon_about"></span>
-				{{copy.menu_1}}
+				<span class="text">{{copy.menu_1}}</span>
 			</a>
 
 			<a class="skills" href="/skills" data-smooth-scroll="#skills">
 				<span class="sprite icon_skills"></span>
-				{{copy.menu_2}}
+				<span class="text">{{copy.menu_2}}</span>
 			</a>
 
 			<a class="portfolio" href="/portfolio" data-smooth-scroll="#portfolio">
 				<span class="sprite icon_portfolio"></span>
-				{{copy.menu_3}}
+				<span class="text">{{copy.menu_3}}</span>
 			</a>
 
 			<a class="social" href="/social" data-smooth-scroll="#social">
 				<span class="sprite icon_social"></span>
-				{{copy.menu_4}}
+				<span class="text">{{copy.menu_4}}</span>
 			</a>
 		</nav>
 	</div>
-
-	<div class="language">
-		<div class="language_content">
-			<a href="/" data-change-language="swap">{{copy.language}}</a>
-		</div>
-	</div>
 </header>
+
+<div class="language">
+	<div class="language_content">
+		<a href="/" data-change-language="swap">{{copy.language}}</a>
+	</div>
+</div>
