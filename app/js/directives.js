@@ -183,10 +183,22 @@ app.directive("socialToggleIcons", function() {
 app.directive("vertAlign", function($timeout) {
 	return function(scope, element) {
 		$timeout(function() {
-			var height = element.height(),
-				parentHeight = element.parent().height(),
-				padding = (parentHeight - height) / 2;
-			element.css('padding-top', padding);
+			calculateHeight();
+
+			$(window).resize(function() {
+				calculateHeight()
+			});
 		});
+
+		function calculateHeight() {
+			if (scope.device == 'desktop') {
+				var height = element.height(),
+					parentHeight = element.parent().height(),
+					padding = (parentHeight - height) / 2;
+				element.css('padding-top', padding);
+			} else {
+				element.css('padding-top', 'inherit');
+			}
+		}
 	}
 });

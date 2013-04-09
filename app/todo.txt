@@ -1,4 +1,5 @@
 //-- features
+* portfolio touch event to see informations
 - fancybox link type = video
 - infinite scroll for isotope
 - customize fancybox sprite
