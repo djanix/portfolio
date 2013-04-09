@@ -33,11 +33,7 @@ app.directive("smoothScroll", function() {
 				scrollTarget: attr.smoothScroll,
 				offset: offset,
 				easing: 'easeInOutExpo',
-				speed: 1000,
-				afterScroll: function() {
-					navEl.find('.active').removeClass('active');
-					element.addClass('active');
-				}
+				speed: 1000
 			});
 		});
 	}
@@ -51,16 +47,18 @@ app.directive("fancybox", function() {
 	}
 });
 
-app.directive("menuActivation", function() {
+app.directive("menuActivation", function($timeout) {
 	return function(scope, element) {
 		var elName = element.attr('id'),
 			menu = $('nav'),
 			menuEl = menu.find('.' + elName);
 
-		element.waypoint(function() {
-			menu.find('.active').removeClass('active');
-			menuEl.addClass('active');
-		});
+		$timeout(function() {
+			element.waypoint(function() {
+				menu.find('.active').removeClass('active');
+				menuEl.addClass('active');
+			});
+		}, 1000);
 	}
 });
 

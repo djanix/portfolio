@@ -1,15 +1,11 @@
 //-- features
-- add .active au bon menu sur click dans le footer
 - fancybox link type = video
+- infinite scroll for isotope
+- customize fancybox sprite
 
 //-- optimization
-- infinite scroll for isotope
 - use data-ng-click / data-ng-mouseenter ?
-- customize fancybox sprite
 - separate html for each website section (+ split less file)
 
 //-- bugs
-- optimize carousel build with angular
-- waypoint menu ajustements
-- firefox greyscale svg
-- ie8 footer icon start colored
+- optimize carousel + waypoint build with angular (remove timeout)

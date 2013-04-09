@@ -56,7 +56,7 @@
 		list-style-type: none;
 	}
 
-	a:hover, a:active, a:focus {
+	a, a:hover, a:active, a:focus {
 		transition: all 0.2s ease;
 		-moz-transition: all 0.2s ease;
 		-webkit-transition: all 0.2s ease;
@@ -92,8 +92,8 @@
 		padding: 0 10px;
 
 		&:first-child {
-			margin-top: 0;
-			padding-top: 130px;
+			margin-top: 20px;
+			padding-top: 110px;
 		}
 	}
 
@@ -119,15 +119,6 @@
 				display: inline-block;
 				*display: inline;
 				zoom: 1;
-
-				filter: url(~"data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
-				filter: gray; /* IE6-9 */
-				-webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
-
-				&:hover, &:active, &:focus, &.active {
-					filter: url(~"data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
-					-webkit-filter: grayscale(0%);
-				}
 
 				&:first-child {
 					padding-left: 0;
@@ -468,6 +459,7 @@
 						&.active {
 							z-index: 1;
 							opacity: 0;
+							-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 						}
 					}
 				}
