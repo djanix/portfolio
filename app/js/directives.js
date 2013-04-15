@@ -166,13 +166,11 @@ app.directive("twitterStyling", function(jqtweet) {
 
 app.directive("socialToggleIcons", function() {
 	return function(scope, element) {
-		element.on("mouseenter", function() {
+		element.hover(function() {
 			$(this).find('.active').stop(true, true).transition({
 				opacity: '1'
 			}, 300, 'easeInOutExpo')
-		});
-
-		element.on("mouseleave", function() {
+		}, function() {
 			$(this).find('.active').stop(true, true).transition({
 				opacity: '0'
 			}, 300, 'easeInOutExpo')
@@ -197,7 +195,7 @@ app.directive("vertAlign", function($timeout) {
 					padding = (parentHeight - height) / 2;
 				element.css('padding-top', padding);
 			} else {
-				element.css('padding-top', 'inherit');
+				element.css('padding-top', '10px');
 			}
 		}
 	}
