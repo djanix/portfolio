@@ -5,8 +5,11 @@
 - customize fancybox sprite
 
 //-- optimization
-- use data-ng-click / data-ng-mouseenter ?
+- use data-ng-click / data-ng-mouseenter
 - separate html for each website section (+ split less file)
+- optimize for mobile devices (really slow)
 
 //-- bugs
+* about me padding bug on mobile + tablet
 - optimize carousel + waypoint build with angular (remove timeout)
+- portfolio images size on mobile wiuth with < 316px

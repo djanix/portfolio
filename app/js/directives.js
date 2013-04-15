@@ -138,14 +138,14 @@ app.directive("skillPercentage", function() {
 		element.waypoint(function() {
 			var animateVal = setInterval(function() {
 				var newWidth = Math.round(percentBar.width() / element.width() * 100);
-				percentDiv.html(newWidth + '%');
+				percentDiv.text(newWidth + '%');
 			},20);
 
-			percentBar.animate({
+			percentBar.transition({
 				width: percentValue + '%'
 			}, 1100, function() {
 				clearInterval(animateVal);
-				percentDiv.html(percentValue + '%');
+				percentDiv.text(percentValue + '%');
 			});
 		}, {triggerOnce: true, offset: '80%'});
 	}
@@ -167,13 +167,13 @@ app.directive("twitterStyling", function(jqtweet) {
 app.directive("socialToggleIcons", function() {
 	return function(scope, element) {
 		element.on("mouseenter", function() {
-			$(this).find('.active').stop(true, true).animate({
+			$(this).find('.active').stop(true, true).transition({
 				opacity: '1'
 			}, 300, 'easeInOutExpo')
 		});
 
 		element.on("mouseleave", function() {
-			$(this).find('.active').stop(true, true).animate({
+			$(this).find('.active').stop(true, true).transition({
 				opacity: '0'
 			}, 300, 'easeInOutExpo')
 		});
