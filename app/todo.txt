@@ -1,7 +1,6 @@
 //-- features
 * portfolio touch event to see informations
 - fancybox link type = video
-- infinite scroll for isotope
 - customize fancybox sprite
 
 //-- optimization
@@ -10,6 +9,5 @@
 - optimize for mobile devices (really slow)
 
 //-- bugs
-* about me padding bug on mobile + tablet
 - optimize carousel + waypoint build with angular (remove timeout)
-- portfolio images size on mobile wiuth with < 316px
+- portfolio images size on mobile width with < 316px
