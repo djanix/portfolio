@@ -39,6 +39,10 @@ app.controller("PortfolioGlobalCtrl", function($scope, $http) {
 		}
 	}
 
+	if (!$.support.transition) {
+		$.fn.transition = $.fn.animate;
+	}
+
 	$scope.device = window.getComputedStyle(document.body,':after').getPropertyValue('content');
 	$scope.siteLanguage = 'en';
 	$scope.currentYear = new Date().getFullYear();
