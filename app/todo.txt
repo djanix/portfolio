@@ -2,6 +2,8 @@
 * portfolio touch event to see informations
 - fancybox link type = video
 - customize fancybox sprite
+- retina images
+- change text size (too big on desktop)
 
 //-- optimization
 - use data-ng-click / data-ng-mouseenter

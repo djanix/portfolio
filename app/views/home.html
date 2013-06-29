@@ -6,7 +6,7 @@
 	</div>
 
 	<div class="banner">
-		<p><a href="mailto:info@janicbeauchemin.com">{{copy.presentation_banner}}</a></p>
+		<p><a href="https://github.com/djanix">{{copy.presentation_banner}}</a></p>
 	</div>
 </section>
 
@@ -65,18 +65,11 @@
 <section class="portfolio" id="portfolio" data-menu-activation>
 	<div class="menu clearfix">
 		<h2 data-fit-text>{{copy.portfolio_title}}</h2>
-
-		<ul data-isotope-category>
-			<li><a href="#" data-filter="*">{{copy.portfolio_cat_1}}</a></li><li>
-			<a href="#" data-filter=".web" class="active">{{copy.portfolio_cat_2}}</a></li><li>
-			<a href="#" data-filter=".3d">{{copy.portfolio_cat_3}}</a></li><li>
-			<a href="#" data-filter=".design">{{copy.portfolio_cat_4}}</a></li>
-		</ul>
 	</div>
 
-	<div class="slider">
+	<div class="slider clearfix">
 		<ul>
-			<li class="{{workItem.category}}" data-ng-repeat="workItem in work" data-load-isotope>
+			<li class="{{workItem.category}}" data-ng-repeat="workItem in work">
 				<div class="data" data-work-hover>
 					<div class="picture">
 						<a rel="portfolio" href="" data-ng-href="img/portfolio/{{workItem.images.selected}}" data-fancybox>
@@ -107,6 +100,7 @@
 	<div class="tweets" data-ng-controller="twitterFeedCtrl">
 		<p class="tweet" data-ng-repeat="tweet in tweets">
 			<span class="sprite icon_twitter_bird"></span><span class="text" data-twitter-styling>{{tweet.text}}</span>
+			<div id="tweets"></div>
 		</p>
 	</div>
 </section>

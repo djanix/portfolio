@@ -1,16 +1,15 @@
 //	http://www.queness.com/post/8567/create-a-dead-simple-twitter-feed-with-jquery
-tester();
+
 app.service('jqtweet', function() {
 	this.loadTweets = function(callback) {
 		$.ajax({
-			url: 'http://api.twitter.com/1/statuses/user_timeline.json/',
+			url: 'https://api.twitter.com/1.1/statuses/user_timeline.json',
 			type: 'GET',
 			dataType: 'jsonp',
 			data: {
 				screen_name: 'janiclb',
 				include_rts: true,
-				count: 5,
-				include_entities: true
+				count: 5
 			},
 			success: function(data) {
 				return callback(null, data);

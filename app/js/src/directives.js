@@ -1,27 +1,3 @@
-app.directive("loadIsotope", function($timeout) {
-	return function(scope, element) {
-		if (scope.$last !== true) return;
-
-		$timeout(function() {
-			var container = element.parent('ul');
-
-			container.isotope({
-				itemSelector : 'li',
-				filter: '.web',
-				masonry: {
-					columnWidth: 346
-				}
-			});
-
-			$.each(container.find('.link'), function() {
-				if ($(this).find('a').text() === "") {
-					$(this).hide();
-				}
-			});
-		}, 500);
-	};
-});
-
 app.directive("smoothScroll", function() {
 	return function(scope, element, attr) {
 		var offset = parseInt('-' + $('header').outerHeight(), 10);
@@ -58,21 +34,6 @@ app.directive("menuActivation", function($timeout) {
 				menuEl.addClass('active');
 			});
 		}, 1000);
-	};
-});
-
-app.directive("isotopeCategory", function() {
-	return function(scope, element) {
-		element.find('a').on('click', function(e) {
-			e.preventDefault();
-
-			element.find('.active').removeClass('active');
-			$(this).addClass('active');
-
-			$('.slider ul').isotope({
-				filter: $(this).attr('data-filter')
-			});
-		});
 	};
 });
 

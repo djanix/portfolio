@@ -188,35 +188,10 @@
 	/* ============================================================================== */
 	.portfolio {
 		.menu {
-//			border-bottom: 2px solid @darkGrey;
 			padding-bottom: 3px;
 
 			h2 {
 				margin-bottom: 0;
-			}
-
-			ul {
-				font-family: 'ChunkFiveRegular';
-				font-size: 22px;
-				text-align: right;
-				text-transform: uppercase;
-
-				li {
-					margin: 0 20px;
-
-					display: inline-block;
-					*display: inline;
-					zoom: 1;
-
-					a {
-						padding: 10px;
-
-						&.active, &:hover, &:active, &:focus {
-							color: #fff;
-							background-color: @green;
-						}
-					}
-				}
 			}
 		}
 
@@ -361,10 +336,17 @@
 			min-height: 242px;
 			padding-left: 350px;
 
+			.user {
+				display: none;
+			}
+
+			li {
+				position: relative;
+			}
+
 			.tweet {
 				min-height: 32px;
 				padding: 5px 0 0 40px;
-				position: relative;
 
 				a {
 					color: @orange;
@@ -373,12 +355,12 @@
 						color: darken(@orange, 10%);
 					}
 				}
+			}
 
-				.icon_twitter_bird {
-					left: 0;
-					position: absolute;
-					top: 0;
-				}
+			.icon_twitter_bird {
+				left: 0;
+				position: absolute;
+				top: 0;
 			}
 		}
 	}
