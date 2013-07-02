@@ -31,13 +31,9 @@ module.exports = function(grunt) {
 				mangle: false,
 				sourceMap: '<%= portfolio.app %>/<%= portfolio.jsDest %>/main.map.js'
 			},
-			dev: {
+			target: {
 				src: ['<%= portfolio.app %>/<%= portfolio.jsSrc %>/*.js'],
 				dest: '<%= portfolio.app %>/<%= portfolio.jsDest %>/main.min.js'
-			},
-			live: {
-				src: ['<%= portfolio.app %>/<%= portfolio.jsSrc %>/*.js'],
-				dest: '<%= portfolio.app %>/<%= portfolio.jsDest %>/main.min.live.js'
 			}
 		},
 		watch: {
