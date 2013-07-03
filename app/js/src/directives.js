@@ -111,18 +111,18 @@ app.directive("skillPercentage", function() {
 	};
 });
 
-app.directive("twitterStyling", function(jqtweet) {
-	return function(scope, element) {
-		scope.$watch(element, function () {
-			var newEl = jqtweet.ify.clean(element.text());
-
-			newEl.replace(/USER/g, scope.tweets[element.index()].user.screen_name)
-				.replace(/ID/g, scope.tweets[element.index()].id_str);
-
-			element.html(newEl);
-		});
-	};
-});
+//app.directive("twitterStyling", function(jqtweet) {
+//	return function(scope, element) {
+//		scope.$watch(element, function () {
+//			var newEl = jqtweet.ify.clean(element.text());
+//
+//			newEl.replace(/USER/g, scope.tweets[element.index()].user.screen_name)
+//				.replace(/ID/g, scope.tweets[element.index()].id_str);
+//
+//			element.html(newEl);
+//		});
+//	};
+//});
 
 app.directive("socialToggleIcons", function() {
 	return function(scope, element) {

@@ -74,15 +74,15 @@ app.controller("PortfolioHomeCtrl", function($scope, $http) {
 
 
 
-app.controller("twitterFeedCtrl", function($scope, $http, jqtweet) {
-	$scope.tweets = [];
-
-	jqtweet.loadTweets(function(err, data) {
-		if (err) {
-			console.log('error getting tweets');
-		} else {
-			$scope.tweets = data;
-			$scope.$apply();
-		}
-	});
-});
+//app.controller("twitterFeedCtrl", function($scope, $http, jqtweet) {
+//	$scope.tweets = [];
+//
+//	jqtweet.loadTweets(function(err, data) {
+//		if (err) {
+//			console.log('error getting tweets');
+//		} else {
+//			$scope.tweets = data;
+//			$scope.$apply();
+//		}
+//	});
+//});
