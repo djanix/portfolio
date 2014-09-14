@@ -2,7 +2,7 @@
 /* ============================================================================== */
 .social {
 	.tweets {
-		background: url('@{image-path}bird.png') left top no-repeat;
+		background: url('#{$image-path}bird.png') left top no-repeat;
 		min-height: 242px;
 		padding-left: 350px;
 
@@ -19,10 +19,10 @@
 			padding: 5px 0 0 40px;
 
 			a {
-				color: @orange;
+				color: $orange;
 
 				&:hover, &:active, &:focus {
-					color: darken(@orange, 10%);
+					color: darken($orange, 10%);
 				}
 			}
 		}

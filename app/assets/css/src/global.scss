@@ -2,8 +2,8 @@
 
 	/* GLOBAL */
 	/* ============================================================================== */
-	background: @lightGrey url('@{image-path}bg.jpg') top left repeat;
-	color: @darkGrey;
+	background: $lightGrey url('#{$image-path}bg.jpg') top left repeat;
+	color: $darkGrey;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 15px;
 	height: 100%;
@@ -30,14 +30,14 @@
 	}
 
 	h2 {
-		color: @green;
+		color: $green;
 		font-family: 'Sarina', cursive;
 		font-size: 60px;
 		margin: 30px 0;
 	}
 
 	h3 {
-		color: @green;
+		color: $green;
 		font-family: 'Sarina', cursive;
 		font-size: 40px;
 		margin: 15px 0;
@@ -70,7 +70,7 @@
 	}
 
 	.sprite {
-		background: url('@{image-path}sprite.png') 0 0 no-repeat;
+		background: url('#{$image-path}sprite.png') 0 0 no-repeat;
 		height: 32px;
 		overflow: hidden;
 		vertical-align: middle;
@@ -101,7 +101,7 @@
 	/* HEADER */
 	/* ============================================================================== */
 	header {
-		background: @midGrey url('@{image-path}bg_dark.jpg') top left repeat;
+		background: $midGrey url('#{$image-path}bg_dark.jpg') top left repeat;
 		padding: 8px 0;
 		position: fixed;
 		top: 0;
@@ -113,7 +113,7 @@
 			text-transform: uppercase;
 
 			a {
-				color: @orange;
+				color: $orange;
 				line-height: 59px;
 				padding: 0 5px;
 
@@ -133,9 +133,9 @@
 	}
 
 	.language {
-		border: 1px solid @green;
+		border: 1px solid $green;
 		border-right: 0;
-		color: @lightGrey;
+		color: $lightGrey;
 		padding: 1px 0 1px 1px;
 		position: absolute;
 		right: 0;
@@ -144,7 +144,7 @@
 		width: 120px;
 
 		.language_content {
-			background-color: @green;
+			background-color: $green;
 
 			a {
 				display: block;
@@ -156,14 +156,14 @@
 	/* FOOTER */
 	/* ============================================================================== */
 	footer {
-		background: @midGrey url('@{image-path}bg_dark.jpg') top left repeat;
+		background: $midGrey url('#{$image-path}bg_dark.jpg') top left repeat;
 		font-size: 13px;
 		padding: 15px 0 5px 0;
 		text-align: center;
 
 		nav {
 			a:hover, a:active, a:focus {
-				color: @orange;
+				color: $orange;
 			}
 		}
 

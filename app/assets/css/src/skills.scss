@@ -5,7 +5,7 @@
 		margin-bottom: 50px;
 
 		li  {
-			background-color: @lightGrey;
+			background-color: $lightGrey;
 			display: block;
 			font-size: 18px;
 			margin-bottom: 10px;
@@ -31,7 +31,7 @@
 			}
 
 			.percent {
-				background-color: @orange;
+				background-color: $orange;
 				left: 0;
 				height: 40px;
 				position: absolute;
@@ -43,8 +43,8 @@
 	}
 
 	.interests li {
-		background-color: @lightGrey;
-		color: @darkGrey;
+		background-color: $lightGrey;
+		color: $darkGrey;
 		font-family: 'ChunkFiveRegular';
 		font-size: 18px;
 		margin: 0 10px 10px 0;

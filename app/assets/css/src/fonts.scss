@@ -1,0 +1,10 @@
+@font-face {
+	font-family: 'ChunkFiveRegular';
+	src: url('#{$font-path}Chunkfive-webfont.eot');
+	src: url('#{$font-path}Chunkfive-webfont.eot?#iefix') format('embedded-opentype'),
+	url('#{$font-path}Chunkfive-webfont.svg#ChunkFiveRegular') format('svg'),
+	url('#{$font-path}Chunkfive-webfont.woff') format('woff'),
+	url('#{$font-path}Chunkfive-webfont.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}

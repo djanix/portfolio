@@ -2,7 +2,7 @@
 /* ============================================================================== */
 .aboutMe {
 	.presentation {
-		background: url('@{image-path}me_big.png') left center no-repeat;
+		background: url('#{$image-path}me_big.png') left center no-repeat;
 		font-size: 36px;
 		font-style:	italic;
 		margin: 0 0 60px 0;
@@ -15,7 +15,7 @@
 	}
 
 	.banner {
-		background: url('@{image-path}banner.png') center top no-repeat;
+		background: url('#{$image-path}banner.png') center top no-repeat;
 		padding: 0 30px;
 
 		p {

@@ -19,7 +19,7 @@
 			*zoom: 1;
 
 			li {
-				background: url('@{image-path}shadow.png') center bottom no-repeat;
+				background: url('#{$image-path}shadow.png') center bottom no-repeat;
 				margin: 0 15px 15px 15px;
 				padding-bottom: 22px;
 
