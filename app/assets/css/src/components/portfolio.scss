@@ -1,0 +1,105 @@
+.portfolio {
+	.menu {
+		padding-bottom: 3px;
+
+		h2 {
+			margin-bottom: 0;
+		}
+	}
+
+	.slider {
+		ul {
+			margin: 50px 0;
+			text-align: center;
+
+			display: inline-block;
+			*display: inline;
+			*zoom: 1;
+        }
+
+        li {
+            background: url('#{$image-path}shadow.png') center bottom no-repeat;
+            margin: 0 15px 15px 15px;
+            padding-bottom: 22px;
+
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+        }
+	}
+
+    .data {
+        border: 8px solid #fff;
+        position: relative;
+
+        img {
+            width: 300px;
+        }
+    }
+
+    .picture > a {
+        display: block;
+    }
+
+    .info {
+        background-color: #fff;
+        background-color: rgba(255, 255, 255, 0.7);
+        bottom: 0;
+        color: #000;
+        display: none;
+        font-weight: bold;
+        padding: 10px 0;
+        position: absolute;
+        width: 100% !important; //important for jquery animation
+
+        p {
+            margin: 0;
+            padding: 2px 10px;
+        }
+
+        .link {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            a {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .zoom {
+        background-color: #fff;
+        background-color: rgba(255, 255, 255, 0.7);
+        display: none;
+        padding: 5px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}
+
+@media only screen and (max-width: $tablet) {
+    .portfolio {
+        .menu ul {
+            text-align: center;
+
+            li {
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: $mobile) {
+    .portfolio {
+        .slider li {
+            margin-right: 0;
+        }
+
+        .menu li {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+}

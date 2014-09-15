@@ -21,6 +21,7 @@ $.ViewHome = ring.create([$.View], {
 
         self.headerOffset = parseInt('-' + self.el.find('header').outerHeight(), 10);
         self.bindEventsHook();
+        self.menuActivation();
 
         $.each(self.el.find('.skillset').find('li'), function (index, value) {
             self.skillPercent($(this));
@@ -71,19 +72,37 @@ $.ViewHome = ring.create([$.View], {
         var percentValue = percentBar.attr('data-percent');
 
         element.waypoint(function() {
-            console.log('trigger waypoint');
-//            var animateVal = setInterval(function() {
-//                var newWidth = Math.round(percentBar.width() / element.width() * 100);
-//                percentDiv.text(newWidth + '%');
-//            },20);
-//
-//            percentBar.transition({
-//                width: percentValue + '%'
-//            }, 1100, function() {
-//                clearInterval(animateVal);
-//                percentDiv.text(percentValue + '%');
-//            });
+            var animateVal = setInterval(function() {
+                var newWidth = Math.round(percentBar.width() / element.width() * 100);
+                percentDiv.text(newWidth + '%');
+            },20);
+
+            percentBar.transition({
+                width: percentValue + '%'
+            }, 1100, function() {
+                clearInterval(animateVal);
+                percentDiv.text(percentValue + '%');
+            });
         }, {triggerOnce: true, offset: '80%'});
+    },
+
+    menuActivation: function () {
+        var self = this;
+        var $menu = self.el.find('nav');
+
+        $.each(self.el.find('.main').find('section'), function (index, value) {
+            var elName = $(this).attr('id');
+            var menuEl = $menu.find('.' + elName);
+
+            $(this).waypoint(function() {
+                $menu.find('.active').removeClass('active');
+                menuEl.addClass('active');
+            });
+        });
+
+
+
+
     },
 
     empty: null

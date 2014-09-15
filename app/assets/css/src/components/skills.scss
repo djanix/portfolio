@@ -1,0 +1,79 @@
+.skillset {
+    margin-bottom: 50px;
+
+    li  {
+        background-color: $lightGrey;
+        display: block;
+        font-size: 18px;
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    .detail {
+        line-height: 40px;
+        padding: 0 15px;
+        position: relative;
+        z-index: 1;
+
+        .left {
+            color: #fff;
+            font-family: 'ChunkFiveRegular';
+            text-transform: uppercase;
+        }
+
+        .right {
+            color: #000;
+            font-weight: bold;
+            text-align: right;
+        }
+    }
+
+    .percent {
+        background-color: $orange;
+        left: 0;
+        height: 40px;
+        position: absolute;
+        top: 0;
+        width: 0;
+        z-index: 0;
+    }
+}
+
+.interests li {
+    background-color: $lightGrey;
+    color: $darkGrey;
+    font-family: 'ChunkFiveRegular';
+    font-size: 18px;
+    margin: 0 10px 10px 0;
+    padding: 15px;
+
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+
+@media only screen and (max-width: $tablet) {
+    .skillset {
+        .detail {
+            .left {
+                float: left;
+                width: auto;
+            }
+
+            .right {
+                float: right;
+                width: auto;
+            }
+        }
+    }
+
+    .interests ul {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: $mobile) {
+    .skillset {
+
+    }
+}
