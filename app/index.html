@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" data-ng-app="portfolio" data-ng-controller="PortfolioGlobalCtrl">
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -9,16 +9,10 @@
 		<meta name="author" content="Janic Beauchemin">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="stylesheet" href="assets/css/dest/style.css">
-		<link rel="stylesheet" href="assets/css/dest/filter.css">
+		<link rel="stylesheet" href="./assets/css/dest/main.css?v=1410744999993915910"/>
 		<link href='http://fonts.googleapis.com/css?family=Sarina' rel='stylesheet' type='text/css'>
 
-		<link rel="icon" type="image/png" href="favicon.png">
-		<!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/><![endif]-->
-		<link rel="apple-touch-icon-precomposed" href="favicon.png" />
-		<link rel="apple-touch-icon" href="favicon.png" />
-
-		<script type="text/javascript" src="assets/js/lib/modernizr/modernizr.min.js"></script>
+		<!--<script type="text/javascript" src="assets/js/lib/modernizr/modernizr.min.js?v=1410744999993246892"></script>-->
 
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
@@ -34,35 +28,209 @@
 	</head>
 
 	<body>
-		<div class="site">
-			<!--[if lt IE 7]>
-				<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-			<![endif]-->
+		<div id="site">
+            <div data-view="Home">
+                <header>
+                    <div class="content clearfix">
+                        <div class="left">
+                            <h1>
+                                <a href="/" title="home">
+                                    <img src="./assets/img/design/logo@2x.png" height="59" width="59" />
+                                    <span class="text">Janic Beauchemin</span>
+                                </a>
+                            </h1>
+                        </div>
 
-			<div data-ng-include data-src="'views/sections/header.html'"></div>
+                        <nav class="right">
+                            <a class="aboutMe active" href="#aboutMe" title="about me">
+                                <span class="sprite icon_about"></span>
+                                <span class="text">about me</span>
+                            </a>
 
-			<div class="main">
-				<div class="content">
-					<div data-ng-view></div>
-				</div>
-			</div>
+                            <a class="skills" href="#skills" title="skills">
+                                <span class="sprite icon_skills"></span>
+                                <span class="text">skills</span>
+                            </a>
 
-			<div data-ng-include data-src="'views/sections/footer.html'"></div>
+                            <a class="portfolio" href="#portfolio" title="portfolio">
+                                <span class="sprite icon_portfolio"></span>
+                                <span class="text">portfolio</span>
+                            </a>
+
+                            <a class="social last" href="#social" title="social">
+                                <span class="sprite icon_social"></span>
+                                <span class="text">social</span>
+                            </a>
+                        </nav>
+                    </div>
+                </header>
+
+                <div class="language">
+                    <div class="language_content">
+                        <a href="/" >Hey! Je parle français aussi!</a>
+                    </div>
+                </div>
+
+                <div class="main">
+                    <div class="content">
+                        <section class="aboutMe" id="aboutMe">
+                            <h2>About Me</h2>
+
+                            <div class="presentation">
+                                <p>
+                                    Welcome to my Portfolio. I am a web developer based in Montreal, Canada. I'm currently
+                                    working at Sid Lee and I use creativity blended with technology to deliver cutting edge
+                                    work.
+                                </p>
+                            </div>
+
+                            <div class="banner">
+                                <p><a href="https://github.com/djanix">github.com/djanix</a></p>
+                            </div>
+                        </section>
+
+                        <section class="skills" id="skills">
+                            <div class="skillset">
+                                <h2>My Skills</h2>
+
+                                <ul>
+                                    <li>
+                                        <div class="detail clearfix">
+                                            <span class="left">html / css</span>
+                                            <span class="right">0%</span>
+                                        </div>
+                                        <div class="percent" data-percent="98"></div>
+                                    </li>
+
+                                    <li>
+                                        <div class="detail clearfix">
+                                            <span class="left">js - jQuery</span>
+                                            <span class="right">0%</span>
+                                        </div>
+                                        <div class="percent" data-percent="90"></div>
+                                    </li>
+
+                                    <li>
+                                        <div class="detail clearfix">
+                                            <span class="left">photoshop</span>
+                                            <span class="right">0%</span>
+                                        </div>
+                                        <div class="percent" data-percent="75"></div>
+                                    </li>
+
+                                    <li>
+                                        <div class="detail clearfix">
+                                            <span class="left">php</span>
+                                            <span class="right">0%</span>
+                                        </div>
+                                        <div class="percent" data-percent="45"></div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="interests">
+                                <h3>Interests</h3>
+
+                                <ul>
+                                    <li>AngularJS</li>
+                                    <li>NodeJS</li>
+                                    <li>Backbone</li>
+                                    <li>Github</li>
+                                    <li>Arduino</li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <section class="portfolio" id="portfolio">
+                            <div class="menu clearfix">
+                                <h2>Portfolio</h2>
+                            </div>
+
+                            <div class="slider clearfix">
+                                <ul>
+                                    <li class="category">
+                                        <div class="data">
+                                            <div class="picture">
+                                                <a rel="portfolio" href="#">
+                                                    <img src="" alt="" />
+                                                </a>
+                                            </div>
+
+                                            <div class="info">
+                                                <p>title</p>
+                                                <p>Category: category</p>
+                                                <p class="link">Link: <a href="#">link</a></p>
+                                                <p>Date: date</p>
+                                            </div>
+
+                                            <div class="zoom">
+                                                <a class="sprite icon_zoom" rel="portfolio" href="#"></a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <section class="social" id="social">
+                            <h2>Recent Tweets</h2>
+
+                            <div class="tweets">
+                                <div class="tweet">
+                                    <span class="sprite icon_twitter_bird"></span><span class="text">tweet text</span>
+                                    <div id="tweets"></div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <footer>
+                    <div class="content">
+                        <nav>
+                            <a href="#aboutMe">About Me</a> -
+                            <a href="#skills">My Skills</a> -
+                            <a href="#portfolio">Portfolio</a> -
+                            <a href="#social">Recent Tweets</a>
+                        </nav>
+
+                        <ul>
+                            <li class="linkedIn">
+                                <a href="http://www.linkedin.com/pub/janic-beauchemin/20/186/a69">
+                                    <img src="./assets/img/design/sprite.png" alt="Linked In" title="Linked In" />
+                                    <img class="active" src="./assets/img/design/sprite.png" alt="Linked In" title="Linked In" />
+                                </a>
+                            </li>
+
+                            <li class="twitter">
+                                <a href="https://twitter.com/janiclb">
+                                    <img src="./assets/img/design/sprite.png" alt="Twitter" title="Twitter" />
+                                    <img class="active" src="./assets/img/design/sprite.png" alt="Twitter" title="Twitter" />
+                                </a>
+                            </li>
+
+                            <li class="email">
+                                <a href="mailto:info@janicbeauchemin.com">
+                                    <img src="./assets/img/design/sprite.png" alt="Email" title="Email" />
+                                    <img class="active" src="./assets/img/design/sprite.png" alt="Email" title="Email" />
+                                </a>
+                            </li>
+
+                            <li class="skype">
+                                <a href="skype:janicbeauchemin?chat">
+                                    <img src="./assets/img/design/sprite.png" alt="Skype" title="Skype" />
+                                    <img class="active" src="./assets/img/design/sprite.png" alt="Skype" title="Skype" />
+                                </a>
+                            </li>
+                        </ul>
+
+                        <p class="language_footer"><a href="/">fr</a> / <a href="/">en</a></p>
+                        <p class="legal">© Janic Beauchemin - <span class="year">2014</span> - All rights reserved</p>
+                    </div>
+                </footer>
+            </div>
 		</div>
 
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script>window.jQuery || document.write('<script type="text/javascript" src="assets/js/lib/jquery/jquery.min.js"><\/script>')</script>
-
-		<script type="text/javascript" src="assets/js/lib/angular/angular.min.js"></script>
-
-		<script type="text/javascript" src="assets/js/lib/jquery-easing/jquery.easing.min.js"></script>
-		<script type="text/javascript" src="assets/js/lib/jquery.smooth-scroll/jquery.smooth-scroll.js"></script>
-		<script type="text/javascript" src="assets/js/lib/jquery.waypoints.min.js"></script>
-		<script type="text/javascript" src="assets/js/lib/jquery.fittext.js"></script>
-		<script type="text/javascript" src="assets/js/lib/fancybox/source/jquery.fancybox.pack.js"></script>
-		<script type="text/javascript" src="assets/js/lib/jquery.transit/jquery.transit.js"></script>
-		<script type="text/javascript" src="assets/js/lib/twitterFetcher.js"></script>
-
-		<script type="text/javascript" src="assets/js/dest/main.min.js"></script>
+		<script type="text/javascript" src="./assets/js/dest/App.js?v=1410744999993246892"></script>
 	</body>
 </html>

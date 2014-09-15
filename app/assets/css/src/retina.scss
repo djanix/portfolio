@@ -1,5 +1,11 @@
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-	.site {
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) {
+    #site {
 		.sprite {
 			background-image: url('#{$image-path}sprite@2x.png');
 			background-size: 160px 96px;

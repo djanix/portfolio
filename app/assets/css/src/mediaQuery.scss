@@ -24,7 +24,7 @@ body:after {
 		content: 'tablet';
 	}
 
-	.site {
+	#site {
 		h1, h2, h3 {
 			text-align: center;
 		}
@@ -182,7 +182,7 @@ body:after {
 		content: 'mobile';
 	}
 
-	.site {
+	#site {
 		section:first-child {
 			margin-top: 20px;
 		}

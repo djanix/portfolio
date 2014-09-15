@@ -1,4 +1,4 @@
-.site {
+#site {
 
 	/* GLOBAL */
 	/* ============================================================================== */
@@ -23,6 +23,11 @@
 		a {
 			display: block;
 		}
+
+        img, span {
+            display: inline-block;
+            vertical-align: middle;
+        }
 
 		span {
 			padding-left: 0;
@@ -63,6 +68,14 @@
 		-webkit-transition: all 0.2s ease;
 		-o-transition: all 0.2s ease;
 	}
+
+    .left {
+        float: left;
+    }
+
+    .right {
+        float: right;
+    }
 
 	.content {
 		margin: 0 auto;
