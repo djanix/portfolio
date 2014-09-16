@@ -2,6 +2,7 @@
     background: url('#{$image-path}sprite.png') 0 0 no-repeat;
     height: 32px;
     overflow: hidden;
+    text-indent: -9999px;
     vertical-align: middle;
     width: 32px;
 
@@ -14,5 +15,10 @@
     &.icon_skills { background-position: -64px 0; }
     &.icon_social { background-position: -96px 0; }
     &.icon_twitter_bird { background-position: -128px 0; }
+
+    &.icon_skype { background-position:0 -64px; }
+    &.icon_email { background-position: -32px -64px; }
+    &.icon_linkedIn { background-position: -64px -64px; }
+    &.icon_twitter { background-position: -96px -64px; }
     &.icon_zoom { background-position: -128px -32px; }
 }

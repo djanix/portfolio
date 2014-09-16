@@ -4,7 +4,7 @@
     li  {
         background-color: $lightGrey;
         display: block;
-        font-size: 18px;
+        font-size: 1.2rem;
         margin-bottom: 10px;
         position: relative;
     }
@@ -43,7 +43,7 @@
     background-color: $lightGrey;
     color: $darkGrey;
     font-family: 'ChunkFiveRegular';
-    font-size: 18px;
+    font-size: 1.2rem;
     margin: 0 10px 10px 0;
     padding: 15px;
 
@@ -53,27 +53,9 @@
 }
 
 @media only screen and (max-width: $tablet) {
-    .skillset {
-        .detail {
-            .left {
-                float: left;
-                width: auto;
-            }
 
-            .right {
-                float: right;
-                width: auto;
-            }
-        }
-    }
-
-    .interests ul {
-        text-align: center;
-    }
 }
 
 @media only screen and (max-width: $mobile) {
-    .skillset {
 
-    }
 }

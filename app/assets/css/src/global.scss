@@ -1,10 +1,60 @@
-#site {
-	background: $lightGrey url('#{$image-path}bg.jpg') top left repeat;
-	color: $darkGrey;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 15px;
-	height: 100%;
-	line-height: normal;
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+html {
+    background: $lightGrey url('#{$image-path}bg.jpg') top left repeat;
+    color: $darkGrey;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    height: 100%;
+    line-height: 1.4;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+audio,
+canvas,
+img,
+video {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -15,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
     font-size: 24px;
-    line-height: 59px;
+    line-height: 2.5em;
     text-transform: uppercase;
 
     a {
@@ -35,14 +85,14 @@ h1 {
 h2 {
     color: $green;
     font-family: 'Sarina', cursive;
-    font-size: 60px;
+    font-size: 4rem;
     margin: 30px 0;
 }
 
 h3 {
     color: $green;
     font-family: 'Sarina', cursive;
-    font-size: 40px;
+    font-size: 2.7rem;
     margin: 15px 0;
 }
 
@@ -90,31 +140,10 @@ section {
     }
 }
 
-.language {
-    border: 1px solid $green;
-    border-right: 0;
-    color: $lightGrey;
-    padding: 1px 0 1px 1px;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    top: 100px;
-    width: 120px;
-
-    .language_content {
-        background-color: $green;
-
-        a {
-            display: block;
-            padding: 10px 0;
-        }
-    }
-}
-
 body:after {
     background-color: red;
     color: #fff;
-    content: desktop;
+    content: 'desktop';
     display: none;
     font-weight: bold;
     left: 0;
@@ -151,24 +180,6 @@ body:after {
             padding-top: 0;
         }
     }
-
-    .language {
-        border: 0;
-        margin-top: 55px;
-        position: inherit;
-        text-align: right;
-        width: auto;
-
-        .language_content {
-            display: inline-block;
-            *display: inline;
-            zoom: 1;
-
-            a {
-                padding: 10px;
-            }
-        }
-    }
 }
 
 @media only screen and (max-width: $mobile) {
@@ -178,9 +189,5 @@ body:after {
 
     section:first-child {
         margin-top: 20px;
-    }
-
-    .language {
-        font-size: 13px;
     }
 }

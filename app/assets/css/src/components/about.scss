@@ -1,16 +1,24 @@
 .aboutMe {
 	.presentation {
-		background: url('#{$image-path}me_big.png') left center no-repeat;
-		font-size: 36px;
+		font-size: 2.4rem;
 		font-style:	italic;
 		margin: 0 0 60px 0;
-		min-height: 286px;
-
-		p {
-			margin: 0;
-			padding: 0 0 0 350px;
-		}
 	}
+
+    .me,
+    .description {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .me {
+        padding-right: 20px;
+        width: 30%;
+    }
+
+    .description {
+        width: 70%;
+    }
 
 	.banner {
 		background: url('#{$image-path}banner.png') center top no-repeat;
@@ -18,58 +26,28 @@
 
 		p {
 			color: #fff;
-			font-size: 35px;
+			font-size: 2.34rem;
 			font-weight: bold;
-			line-height: 57px;
+			line-height: 1.63em;
 			margin: 0;
 			padding: 0;
 			text-align: center;
 		}
+
+        a {
+            display: block;
+        }
 	}
 }
 
 @media only screen and (max-width: $tablet) {
     .aboutMe {
-        .presentation {
-            background: url('#{$image-path}me.png') center top no-repeat;
-            font-size: 26px;
-            margin-bottom: 20px;
-            padding-top: 220px;
-            min-height: 0;
 
-            p {
-                padding: 10px;
-                text-align: center;
-            }
-        }
-
-        .banner {
-            margin-bottom: 50px;
-            padding: 0;
-
-            p {
-                font-size: 30px;
-            }
-        }
     }
 }
 
 @media only screen and (max-width: $mobile) {
     .aboutMe {
-        h2 {
-            margin-bottom: 10px;
-            margin-top: 20px;
-        }
 
-        .presentation {
-            background-image: url('#{$image-path}me_small.png');
-            font-size: 22px;
-            padding-top: 165px;
-        }
-
-        .banner p {
-            font-size: 20px;
-            line-height: 40px;
-        }
     }
 }

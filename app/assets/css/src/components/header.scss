@@ -1,6 +1,5 @@
 header {
     background: $midGrey url('#{$image-path}bg_dark.jpg') top left repeat;
-    padding: 8px 0;
     position: fixed;
     top: 0;
     width: 100%;
@@ -13,19 +12,12 @@ header {
         a {
             @include filter(grayscale, 100%);
             color: $orange;
-            line-height: 59px;
-            padding: 0 5px;
-
             display: inline-block;
-            *display: inline;
-            zoom: 1;
+            line-height: 4rem;
+            padding-left: 10px;
 
             &:first-child {
                 padding-left: 0;
-            }
-
-            &.last {
-                padding-right: 0;
             }
 
             &:hover, &:active, &:focus, &.active {
@@ -35,18 +27,11 @@ header {
     }
 }
 
-.content {
-    text-align: center;
-}
-
 .left {
-    float: left;
-    height: 40px;
-    padding-left: 10px;
-    width: auto;
+    line-height: 4rem;
 
     h1 {
-        line-height: 40px;
+        line-height: 4rem;
         vertical-align: middle;
 
         display: inline-block;
@@ -54,56 +39,20 @@ header {
         zoom: 1;
 
         img {
-            height: 40px;
+            height: auto;
             width: 40px;
-        }
-
-        span {
-            display: none;
         }
     }
 }
 
 @media only screen and (max-width: $tablet) {
     header {
-        nav.right {
-            height: 40px;
-            padding-left: 0;
-            vertical-align: middle;
-            width: auto;
 
-            display: inline-block;
-            *display: inline;
-            zoom: 1;
-
-            a {
-                font-size: 12px;
-                line-height: 40px;
-                overflow: hidden;
-                margin: 0;
-            }
-        }
     }
 }
 
 @media only screen and (max-width: $mobile) {
     header {
-        nav.right {
-            float: right;
-            padding-right: 10px;
 
-            a {
-                margin: 0;
-                padding: 5px 6px;
-
-                .text {
-                    display: none;
-                }
-
-                .sprite {
-                    display: block;
-                }
-            }
-        }
     }
 }
