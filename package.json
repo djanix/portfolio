@@ -27,11 +27,11 @@
     "jquery": "^1.11.1",
     "ring": "^2.0.1",
     "smooth-scroll": "^1.5.0",
-    "jquery.transit": "^0.9.12"
+    "jquery.transit": "^0.9.12",
+    "twitter": "^0.2.12"
   },
   "browser": {
     "easing": "./app/assets/js/lib/jquery.easing.1.3.js",
-    "twitterFetcher": "./app/assets/js/lib/twitterFetcher.js",
     "waypoints": "./app/assets/js/lib/waypoints.min.js"
   },
   "browserify-shim": "./shims.js"

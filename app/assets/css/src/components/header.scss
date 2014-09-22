@@ -1,9 +1,6 @@
 header {
     background: $midGrey url('#{$image-path}bg_dark.jpg') top left repeat;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 99;
+    line-height: 4em;
 
     nav {
         font-family: 'ChunkFiveRegular';
@@ -13,8 +10,8 @@ header {
             @include filter(grayscale, 100%);
             color: $orange;
             display: inline-block;
-            line-height: 4rem;
             padding-left: 10px;
+            vertical-align: middle;
 
             &:first-child {
                 padding-left: 0;
@@ -25,18 +22,10 @@ header {
             }
         }
     }
-}
-
-.left {
-    line-height: 4rem;
 
     h1 {
-        line-height: 4rem;
-        vertical-align: middle;
-
         display: inline-block;
-        *display: inline;
-        zoom: 1;
+        vertical-align: middle;
 
         img {
             height: auto;
@@ -47,12 +36,26 @@ header {
 
 @media only screen and (max-width: $tablet) {
     header {
-
+        h1 .text {
+            display: none;
+        }
     }
 }
 
 @media only screen and (max-width: $mobile) {
     header {
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
 
+        h1 img {
+            width: 30px;
+        }
+
+        nav .text {
+            display: none;
+        }
     }
 }

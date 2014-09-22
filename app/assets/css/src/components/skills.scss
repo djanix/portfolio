@@ -1,11 +1,10 @@
 .skillset {
-    margin-bottom: 50px;
-
     li  {
         background-color: $lightGrey;
         display: block;
         font-size: 1.2rem;
         margin-bottom: 10px;
+        overflow: hidden;
         position: relative;
     }
 
@@ -34,28 +33,24 @@
         height: 40px;
         position: absolute;
         top: 0;
+        transform: translateX(-100%);
+        transform-origin: 0 0;
+        transition: all 2.2s;
         width: 0;
         z-index: 0;
+    }
+
+    .is-active .percent {
+        transform: translateX(0);
     }
 }
 
 .interests li {
     background-color: $lightGrey;
     color: $darkGrey;
+    display: inline-block;
     font-family: 'ChunkFiveRegular';
     font-size: 1.2rem;
     margin: 0 10px 10px 0;
     padding: 15px;
-
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
-}
-
-@media only screen and (max-width: $tablet) {
-
-}
-
-@media only screen and (max-width: $mobile) {
-
 }

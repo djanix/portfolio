@@ -14,6 +14,7 @@
     .tweet {
         min-height: 32px;
         padding: 5px 0 0 40px;
+        position: relative;
 
         a {
             color: $orange;
@@ -33,7 +34,8 @@
 
 @media only screen and (max-width: $tablet) {
     .tweets {
-
+        background: none;
+        padding-left: 0;
     }
 }
 
