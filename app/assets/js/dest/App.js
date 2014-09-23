@@ -455,6 +455,7 @@ $.ViewHome = ring.create([$.View], {
         self.getPortfolioJson(function (err, res) {
             if (err) { return console.log(err); }
             self.showPortfolioItem(res);
+            self.portfolioAnim();
             self.el.find('.portfolio li').hover(function () {
                 $(this).addClass('is-active');
             }, function () {
@@ -582,10 +583,15 @@ $.ViewHome = ring.create([$.View], {
     showPortfolioItem: function (data) {
         var self = this;
         var html = '';
+        var activeClass = '';
+
+        if (window.deviceType == 'tablet' || window.deviceType == 'mobile') {
+            activeClass = 'is-active';
+        }
 
         $.each(data, function (index, value) {
             html +=
-                '<li>' +
+                '<li class="' + activeClass + '">' +
                     '<a href="' + value.link + '">' +
                         '<img src="/assets/img/portfolio/' + value.images.thumb + '" alt="" />' +
                     '</a>' +
@@ -599,6 +605,31 @@ $.ViewHome = ring.create([$.View], {
         });
 
         self.el.find('.portfolio ul').html(html);
+    },
+
+    portfolioAnim: function () {
+        var self = this;
+
+        self.el.find('.portfolio').find('li').waypoint(function (direction) {
+            var $item = $(this);
+            var itemsPerRow = 3;
+
+            if (window.deviceType == 'tablet') {
+                itemsPerRow = 2;
+            } else if (window.deviceType == 'mobile') {
+                itemsPerRow = 1;
+            }
+
+            var position = $(this).index() % itemsPerRow;
+            var delay = Math.round((1/3 * position) * 500);
+
+            setTimeout(function () {
+                $item.addClass('is-visible');
+            }, delay);
+        }, {
+            offset: '100%',
+            triggerOnce: true
+        });
     },
 
     empty: null
