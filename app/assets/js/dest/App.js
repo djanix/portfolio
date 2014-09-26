@@ -475,38 +475,24 @@ $.ViewHome = ring.create([$.View], {
     bindEventsHook: function () {
         var self = this;
 
-        self.el.find('nav').find('a').on('click', function (e) {
+        self.el.find('nav').find('a').on("click", function(e) {
+            var clickedItem = $(this);
             e.preventDefault();
-
-            $(this).on("click", function(e) {
-                e.preventDefault();
-                $.smoothScroll({
-                    scrollTarget: $(this).attr('href'),
-                    offset: self.headerOffset,
-                    easing: 'easeInOutExpo',
-                    speed: 1000
-                });
+            $.smoothScroll({
+                scrollTarget: $(this).attr('href'),
+                offset: self.headerOffset,
+                easing: 'easeInOutExpo',
+                speed: 1000,
+                afterScroll: function () {
+                    self.el.find('nav .active').removeClass('active');
+                    clickedItem.addClass('active');
+                }
             });
         });
     },
 
-    handleTweets: function () {
-        var self = this;
-        var x = tweets.length;
-        var n = 0;
-        var element = document.getElementById('tweets');
-        var html = '<ul>';
-        while(n < x) {
-            html += '<li><span class="sprite icon_twitter_bird "></span>' + tweets[n] + '</li>';
-            n++;
-        }
-        html += '</ul>';
-        element.innerHTML = html;
-    },
-
     skillPercent: function ($element) {
         var self = this;
-
         var $percentBar = $element.find('.percent');
         var $percentDiv = $element.find('.right');
         var percentValue = $percentBar.attr('data-percent');
@@ -561,6 +547,20 @@ $.ViewHome = ring.create([$.View], {
         });
     },
 
+    handleTweets: function () {
+        var self = this;
+        var x = tweets.length;
+        var n = 0;
+        var element = document.getElementById('tweets');
+        var html = '<ul>';
+        while(n < x) {
+            html += '<li><span class="sprite icon_twitter_bird "></span>' + tweets[n] + '</li>';
+            n++;
+        }
+        html += '</ul>';
+        element.innerHTML = html;
+    },
+
     getPortfolioJson: function (callback) {
         var self = this;
 
@@ -604,13 +604,13 @@ $.ViewHome = ring.create([$.View], {
                 '</li>';
         });
 
-        self.el.find('.portfolio ul').html(html);
+        self.el.find('.portfolio').find('.portfolioList').html(html);
     },
 
     portfolioAnim: function () {
         var self = this;
 
-        self.el.find('.portfolio').find('li').waypoint(function (direction) {
+        self.el.find('.portfolioList').find('li').waypoint(function (direction) {
             var $item = $(this);
             var itemsPerRow = 3;
 
