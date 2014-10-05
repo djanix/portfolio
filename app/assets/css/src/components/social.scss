@@ -1,46 +1,46 @@
-.tweets {
-    background: url('#{$image-path}bird.png') left top no-repeat;
-    min-height: 242px;
-    padding-left: 350px;
-
-    .user {
-        display: none;
-    }
-
-    li {
-        position: relative;
-    }
-
-    .tweet {
-        min-height: 32px;
-        padding: 5px 0 0 40px;
-        position: relative;
-
-        a {
-            color: $orange;
-
-            &:hover, &:active, &:focus {
-                color: darken($orange, 10%);
-            }
-        }
-    }
-
-    .icon_twitter_bird {
-        left: 0;
-        position: absolute;
-        top: 0;
-    }
-}
-
-@media only screen and (max-width: $tablet) {
-    .tweets {
-        background: none;
-        padding-left: 0;
-    }
-}
-
-@media only screen and (max-width: $mobile) {
-    .tweets {
-
-    }
-}
+//.tweets {
+//    background: url('#{$image-path}bird.png') left top no-repeat;
+//    min-height: 242px;
+//    padding-left: 350px;
+//
+//    .user {
+//        display: none;
+//    }
+//
+//    li {
+//        position: relative;
+//    }
+//
+//    .tweet {
+//        min-height: 32px;
+//        padding: 5px 0 0 40px;
+//        position: relative;
+//
+//        a {
+//            color: $orange;
+//
+//            &:hover, &:active, &:focus {
+//                color: darken($orange, 10%);
+//            }
+//        }
+//    }
+//
+//    .icon_twitter_bird {
+//        left: 0;
+//        position: absolute;
+//        top: 0;
+//    }
+//}
+//
+//@media only screen and (max-width: $tablet) {
+//    .tweets {
+//        background: none;
+//        padding-left: 0;
+//    }
+//}
+//
+//@media only screen and (max-width: $mobile) {
+//    .tweets {
+//
+//    }
+//}

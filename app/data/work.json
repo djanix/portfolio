@@ -1,4 +1,17 @@
 [
+    {
+        "title": "Sidlee.com",
+        "category": "web",
+        "link": "http://sidlee.com",
+        "desc": "",
+        "date": "2013-2014",
+        "images": {
+            "thumb": "sidlee_thumb.jpg",
+            "small": "sidlee_small.jpg",
+            "medium": "sidlee.jpg",
+            "big": "sidlee_big.jpg"
+        }
+    },
 	{
 		"title": "Adidas: Go All In",
 		"category": "web",
