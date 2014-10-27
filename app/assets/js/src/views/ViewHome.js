@@ -173,6 +173,7 @@ $.ViewHome = ring.create([$.View], {
                         '<p>' + value.title + '</p>' +
                         '<p class="link">Link: <a href="' + value.link + '">' + value.link + '</a></p>' +
                         '<p>Date: ' + value.date + '</p>' +
+                        '<p>While working at: <a href="' + value.company.link + '">' + value.company.name + '</a></p>' +
                     '</div>' +
                 '</li>';
         });

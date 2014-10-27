@@ -1,158 +1,184 @@
 [
     {
         "title": "Sidlee.com",
-        "category": "web",
         "link": "http://sidlee.com",
-        "desc": "",
         "date": "2013-2014",
+		"company" : {
+			"name": "Sidlee",
+			"link": "http://sidlee.com"
+		},
         "images": {
             "thumb": "sidlee_thumb.jpg",
-            "small": "sidlee_small.jpg",
-            "medium": "sidlee.jpg",
-            "big": "sidlee_big.jpg"
+            "big": "sidlee.jpg"
+        }
+    },
+	{
+        "title": "Canadian Tire 2013 Review",
+        "link": "http://2013.canadiantirecorporation.ca/",
+        "date": "2014",
+		"company" : {
+			"name": "Sidlee",
+			"link": "http://sidlee.com"
+		},
+        "images": {
+            "thumb": "canadianTire_thumb.jpg",
+            "big": "canadianTire_big.jpg"
+        }
+    },
+	{
+        "title": "Absoult Host",
+        "link": "http://absolutdrinks.com",
+        "date": "2013",
+		"company" : {
+			"name": "Sidlee",
+			"link": "http://sidlee.com"
+		},
+        "images": {
+            "thumb": "absolut_thumb.jpg",
+            "big": "absolut.jpg"
         }
     },
 	{
 		"title": "Adidas: Go All In",
-		"category": "web",
 		"link": "http://adidas.com/goallin",
-		"desc": "",
 		"date": "2011-2012",
+		"company" : {
+			"name": "Sidlee",
+			"link": "http://sidlee.com"
+		},
 		"images": {
 			"thumb": "adidasGoAllIn_thumb.jpg",
-			"small": "adidasGoAllIn_small.jpg",
-			"medium": "adidasGoAllIn.jpg",
-			"big": "adidasGoAllIn_big.jpg"
+			"big": "adidasGoAllIn.jpg"
 		}
 	},
 	{
 		"title": "Brunet: Ma Santé Mobile",
-		"category": "web",
 		"link": "https://m.brunet.ca/masante/",
-		"desc": "",
 		"date": "2012",
+		"company" : {
+			"name": "Sidlee",
+			"link": "http://sidlee.com"
+		},
 		"images": {
 			"thumb": "brunetMaSante_thumb.jpg",
-			"small": "brunetMaSante_small.jpg",
-			"medium": "brunetMaSante.jpg",
-			"big": "brunetMaSante_big.jpg"
+			"big": "brunetMaSante.jpg"
 		}
 	},
 	{
 		"title": "Dewars: The Drinking Man's Scotch",
-		"category": "web",
 		"link": "http://thedrinkingmansscotch.dewars.com/",
-		"desc": "",
 		"date": "2012",
+		"company" : {
+			"name": "Sidlee",
+			"link": "http://sidlee.com"
+		},
 		"images": {
 			"thumb": "dewarsTDMS_thumb.jpg",
-			"small": "dewarsTDMS_small.jpg",
-			"medium": "dewarsTDMS.jpg",
-			"big": "dewarsTDMS_big.jpg"
+			"big": "dewarsTDMS.jpg"
 		}
 	},
 	{
 		"title": "Dewars: Freemans",
-		"category": "web",
 		"link": "http://freemans.dewars.com/",
-		"desc": "",
 		"date": "2012",
+		"company" : {
+			"name": "Sidlee",
+			"link": "http://sidlee.com"
+		},
 		"images": {
 			"thumb": "dewarsFreemans_thumb.jpg",
-			"small": "dewarsFreemans_small.jpg",
-			"medium": "dewarsFreemans.jpg",
-			"big": "dewarsFreemans_big.jpg"
+			"big": "dewarsFreemans.jpg"
 		}
 	},
 	{
 		"title": "Mars et Avril",
-		"category": "web",
 		"link": "https://www.facebook.com/MarsEtAvril/app_325309087564732",
-		"desc": "",
 		"date": "2012",
+		"company" : {
+			"name": "Sidlee",
+			"link": "http://sidlee.com"
+		},
 		"images": {
 			"thumb": "marsEtAvril_thumb.jpg",
-			"small": "marsEtAvril_small.jpg",
-			"medium": "marsEtAvril.jpg",
-			"big": "marsEtAvril_big.jpg"
+			"big": "marsEtAvril.jpg"
 		}
 	},
 	{
 		"title": "Rona: Foundation",
-		"category": "web",
 		"link": "http://foundation.rona.ca/",
-		"desc": "",
 		"date": "2012",
+		"company" : {
+			"name": "Sidlee",
+			"link": "http://sidlee.com"
+		},
 		"images": {
 			"thumb": "ronaFoundation_thumb.jpg",
-			"small": "ronaFoundation_small.jpg",
-			"medium": "ronaFoundation.jpg",
-			"big": "ronaFoundation_big.jpg"
+			"big": "ronaFoundation.jpg"
 		}
 	},
 	{
 		"title": "Agora des Arts",
-		"category": "web",
 		"link": "http://www.agoradesarts.com",
-		"desc": "",
 		"date": "2010",
+		"company" : {
+			"name": "Radium",
+			"link": "http://radiumstudio.com"
+		},
 		"images": {
 			"thumb": "agoraDesArts_thumb.jpg",
-			"small": "agoraDesArts_small.jpg",
-			"medium": "agoraDesArts.jpg",
-			"big": "agoraDesArts_big.jpg"
+			"big": "agoraDesArts.jpg"
 		}
 	},
 	{
 		"title": "GMF-UMF des Aurores Boréales",
-		"category": "web",
 		"link": "http://www.umfab.qc.ca",
-		"desc": "",
 		"date": "2010",
+		"company" : {
+			"name": "Radium",
+			"link": "http://radiumstudio.com"
+		},
 		"images": {
 			"thumb": "gmfUmf_thumb.jpg",
-			"small": "gmfUmf_small.jpg",
-			"medium": "gmfUmf.jpg",
-			"big": "gmfUmf_big.jpg"
+			"big": "gmfUmf.jpg"
 		}
 	},
 	{
 		"title": "Hotel des Eskers",
-		"category": "web",
 		"link": "http://www.hoteleskers.com",
-		"desc": "",
 		"date": "2010",
+		"company" : {
+			"name": "Radium",
+			"link": "http://radiumstudio.com"
+		},
 		"images": {
 			"thumb": "hotelEskers_thumb.jpg",
-			"small": "hotelEskers_small.jpg",
-			"medium": "hotelEskers.jpg",
-			"big": "hotelEskers_big.jpg"
+			"big": "hotelEskers.jpg"
 		}
 	},
 	{
 		"title": "Élevage Taiga",
-		"category": "web",
 		"link": "http://www.taiga-afghan.com",
-		"desc": "",
 		"date": "2009",
+		"company" : {
+			"name": "Radium",
+			"link": "http://radiumstudio.com"
+		},
 		"images": {
 			"thumb": "taigaAfghan_thumb.jpg",
-			"small": "taigaAfghan_small.jpg",
-			"medium": "taigaAfghan.jpg",
-			"big": "taigaAfghan_big.jpg"
+			"big": "taigaAfghan.jpg"
 		}
 	},
 	{
 		"title": "Jocam Canada",
-		"category": "web",
 		"link": "http://www.jocamcanada.com/",
-		"desc": "",
 		"date": "2009",
+		"company" : {
+			"name": "Radium",
+			"link": "http://radiumstudio.com"
+		},
 		"images": {
 			"thumb": "jocam_thumb.jpg",
-			"small": "jocam_small.jpg",
-			"medium": "jocam.jpg",
-			"big": "jocam_big.jpg"
+			"big": "jocam.jpg"
 		}
 	}
 ]

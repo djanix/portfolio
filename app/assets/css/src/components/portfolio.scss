@@ -2,7 +2,7 @@
     .portfolioList {
         display: inline-block;
         max-width: 100%;
-        text-align: center;
+        text-align: left;
 
         li {
             display: inline-block;
@@ -104,6 +104,10 @@
 
         .info {
             transform: translateY(0%);
+            background-color: #fff;
+            bottom: inherit;
+            left: inherit;
+            position: relative;
         }
     }
 }
@@ -119,13 +123,6 @@
                     margin-right: 0;
                 }
             }
-        }
-
-        .info {
-            background-color: #fff;
-            bottom: inherit;
-            left: inherit;
-            position: relative;
         }
     }
 }
