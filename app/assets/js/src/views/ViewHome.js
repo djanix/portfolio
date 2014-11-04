@@ -1,9 +1,17 @@
-var util = require('util');
-var twitter = require('twitter');
-
+var React = require('react');
 var smoothScroll = require('smooth-scroll');
 var transit = require('jquery.transit');
 var waypoints = require('waypoints');
+
+
+
+
+
+
+
+
+
+
 
 $.ViewHome = ring.create([$.View], {
     constructor: function (el) {
@@ -102,37 +110,6 @@ $.ViewHome = ring.create([$.View], {
             });
         });
     },
-
-    //getTwitterFeed: function () {
-    //    var twit = new twitter({
-    //        consumer_key: 'slsuTJu0kMivG0tvQnAPg',
-    //        consumer_secret: 'cWHXoudWehashEzEcLE4qR3iPyGRwwetahaH0L6tQ',
-    //        access_token_key: 'z1Rx12iWd4DpItW5eubhDlJzBKFm3TPrTfHGH3jw',
-    //        access_token_secret: 'fN5uoG4YUT8TgI9QvQklB4S9P3OPxYpuU5eL5EE'
-    //    });
-    //
-    //    twit.stream('janiclb', {track:'nodejs'}, function(stream) {
-    //        stream.on('data', function(data) {
-    //            console.log(util.inspect(data));
-    //        });
-    //        // Disconnect stream after five seconds
-    //        setTimeout(stream.destroy, 5000);
-    //    });
-    //},
-    //
-    //handleTweets: function () {
-    //    var self = this;
-    //    var x = tweets.length;
-    //    var n = 0;
-    //    var element = document.getElementById('tweets');
-    //    var html = '<ul>';
-    //    while(n < x) {
-    //        html += '<li><span class="sprite icon_twitter_bird "></span>' + tweets[n] + '</li>';
-    //        n++;
-    //    }
-    //    html += '</ul>';
-    //    element.innerHTML = html;
-    //},
 
     getPortfolioJson: function (callback) {
         var self = this;

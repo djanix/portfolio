@@ -42,21 +42,20 @@ module.exports = function (grunt) {
             }
         },
         browserify: {
+            options: {
+                transform: ['browserify-shim']
+            },
             dev: {
                 files: {
                     '<%= config.jsDest %>/App.js': '<%= config.jsSrc %>/App.js'
                 },
                 options: {
-                    transform: ['browserify-shim'],
                     watch: true
                 }
             },
             prod: {
                 files: {
                     '<%= config.jsDest %>/App.js': '<%= config.jsSrc %>/App.js'
-                },
-                options: {
-                    transform: ['browserify-shim']
                 }
             }
         },
@@ -89,6 +88,19 @@ module.exports = function (grunt) {
             files: ['<%= config.jsSrc %>/**/*.js'],
             options: {
                 force: true
+            }
+        },
+        react: {
+            dynamic_mappings: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= config.jsSrc %>',
+                        src: ['**/*.jsx'],
+                        dest: '<%= config.jsDest %>',
+                        ext: '.js'
+                    }
+                ]
             }
         },
         replace: {
@@ -148,10 +160,10 @@ module.exports = function (grunt) {
             }
         },
         watch: {
-//            js: {
-//                files: ['<%= config.jsDest %>/**/*.js'],
-//                tasks: ['build:js']
-//            },
+            js: {
+                files: ['<%= config.jsSrc %>/App.js', '<%= config.jsSrc %>/**/*.jsx'],
+                tasks: ['build:jsDev']
+            },
             sass: {
                 files: ["<%= config.cssSrc %>/**/*.scss"],
                 tasks: ['build:css']
@@ -162,9 +174,10 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', ['build:js', 'build:css', 'browserSync', 'watch']);
-    grunt.registerTask('deploy', ['browserify:prod', 'uglify', 'build:css', 'replace:cache_break']);
+    grunt.registerTask('default', ['build:jsDev', 'build:css', 'browserSync', 'watch']);
+    grunt.registerTask('deploy', ['build:jsProd', 'build:css', 'replace:cache_break']);
 
     grunt.registerTask('build:css', ['sass_imports', 'replace:scss_import_path', 'sass', 'autoprefixer', 'csswring']);
-    grunt.registerTask('build:js', ['jshint', 'browserify:dev']);
+    grunt.registerTask('build:jsDev', ['jshint', 'react', 'browserify:dev', 'uglify']);
+    grunt.registerTask('build:jsProd', ['react', 'browserify:prod', 'uglify']);
 };
