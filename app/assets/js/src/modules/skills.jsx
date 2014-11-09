@@ -1,4 +1,5 @@
 var React = require('react');
+require('waypoints');
 
 var Skills = React.createClass({
     getInitialState: function(){
@@ -6,20 +7,16 @@ var Skills = React.createClass({
             skillset: [
                 {
                     name: 'html / css',
-                    currentPercent: 0,
                     percent: 98
                 }, {
                     name: 'javascript',
-                    currentPercent: 0,
                     percent: 90
                 }, {
                     name: 'photoshop',
-                    currentPercent: 0,
                     percent: 75
                 },
                 {
                     name: 'php',
-                    currentPercent: 0,
                     percent: 45
                 }
             ],
@@ -35,21 +32,15 @@ var Skills = React.createClass({
         }
     },
     render: function() {
-        var listSkillset = this.state.skillset.map(function(item) {
+        var listSkillset = this.state.skillset.map(function(item, i) {
             return (
-                <li>
-                    <div className="detail clearfix">
-                        <span className="left">{item.name}</span>
-                        <span className="right">{item.currentPercent}%</span>
-                    </div>
-                    <div className="percent" data-percent={item.percent}></div>
-                </li>
+                <SkillsItem  name={item.name} percent={item.percent} />
             );
         });
 
         var listInterests = this.state.interests.map(function(item) {
             return (
-                <li>{item}</li>
+                <SkillsInterests name={item} />
             );
         });
 
@@ -64,6 +55,64 @@ var Skills = React.createClass({
                     <ul>{listInterests}</ul>
                 </div>
             </div>
+        );
+    }
+});
+
+var SkillsItem = React.createClass({
+    getInitialState: function(){
+        return {
+            currentPercent: 0
+        }
+    },
+    componentDidMount: function(){
+        this.animateSkillPercent();
+    },
+    animateSkillPercent: function () {
+        var self = this;
+        var $element = $(this.getDOMNode());
+
+        $element.waypoint(function() {
+            $(this).addClass('is-active');
+            self.calculateSkillPercent();
+        }, {triggerOnce: true, offset: '80%'});
+
+    },
+    calculateSkillPercent: function () {
+        var self = this;
+        var intervalCalls = 1;
+        var animateVal = setInterval(function() {
+            intervalCalls ++;
+
+            var newValue = Math.round(intervalCalls * (self.props.percent / 100));
+            self.setState({currentPercent: newValue});
+
+            if (self.state.currentPercent >= self.props.percent) {
+                clearInterval(animateVal);
+            }
+        }, 20);
+    },
+    render: function() {
+        var divStyle = {
+            width: this.props.percent + '%'
+        };
+
+        return (
+            <li>
+                <div className="detail clearfix">
+                    <span className="left">{this.props.name}</span>
+                    <span className="right">{this.state.currentPercent}%</span>
+                </div>
+                <div className="percent" style={divStyle}></div>
+            </li>
+        );
+    }
+});
+
+var SkillsInterests = React.createClass({
+    render: function() {
+        return (
+            <li>{this.props.name}</li>
         );
     }
 });
