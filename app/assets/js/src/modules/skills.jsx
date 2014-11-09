@@ -1,5 +1,9 @@
 var React = require('react');
+
 require('waypoints');
+
+var SkillsInterests = require('./skillsInterests');
+var SkillsItem = require('./skillsItem');
 
 var Skills = React.createClass({
     getInitialState: function(){
@@ -55,64 +59,6 @@ var Skills = React.createClass({
                     <ul>{listInterests}</ul>
                 </div>
             </div>
-        );
-    }
-});
-
-var SkillsItem = React.createClass({
-    getInitialState: function(){
-        return {
-            currentPercent: 0
-        }
-    },
-    componentDidMount: function(){
-        this.animateSkillPercent();
-    },
-    animateSkillPercent: function () {
-        var self = this;
-        var $element = $(this.getDOMNode());
-
-        $element.waypoint(function() {
-            $(this).addClass('is-active');
-            self.calculateSkillPercent();
-        }, {triggerOnce: true, offset: '80%'});
-
-    },
-    calculateSkillPercent: function () {
-        var self = this;
-        var intervalCalls = 1;
-        var animateVal = setInterval(function() {
-            intervalCalls ++;
-
-            var newValue = Math.round(intervalCalls * (self.props.percent / 100));
-            self.setState({currentPercent: newValue});
-
-            if (self.state.currentPercent >= self.props.percent) {
-                clearInterval(animateVal);
-            }
-        }, 20);
-    },
-    render: function() {
-        var divStyle = {
-            width: this.props.percent + '%'
-        };
-
-        return (
-            <li>
-                <div className="detail clearfix">
-                    <span className="left">{this.props.name}</span>
-                    <span className="right">{this.state.currentPercent}%</span>
-                </div>
-                <div className="percent" style={divStyle}></div>
-            </li>
-        );
-    }
-});
-
-var SkillsInterests = React.createClass({
-    render: function() {
-        return (
-            <li>{this.props.name}</li>
         );
     }
 });

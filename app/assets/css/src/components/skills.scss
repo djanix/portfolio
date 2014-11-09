@@ -1,5 +1,5 @@
 .skillset {
-    li  {
+    li {
         background-color: $lightGrey;
         display: block;
         font-size: 1.2rem;
@@ -9,27 +9,19 @@
     }
 
     .detail {
+        color: #fff;
         line-height: 40px;
         padding: 0 15px;
         position: relative;
+        text-transform: uppercase;
         z-index: 1;
-
-        .left {
-            color: #fff;
-            text-transform: uppercase;
-        }
-
-        .right {
-            color: #000;
-            font-weight: bold;
-            text-align: right;
-        }
     }
 
     .percent {
         background-color: $orange;
         left: 0;
         height: 40px;
+        line-height: 40px;
         position: absolute;
         top: 0;
         transform: translateX(-100%);
@@ -37,10 +29,24 @@
         transition: all 2.2s;
         width: 0;
         z-index: 0;
+
+        .right {
+            color: #000;
+            font-weight: bold;
+            opacity: 0;
+            padding: 0 15px;
+            text-align: right;
+            transition: all 1.2s;
+            transition-delay: 0.5s;
+        }
     }
 
     .is-active .percent {
         transform: translateX(0);
+
+        .right  {
+            opacity: 1;
+        }
     }
 }
 

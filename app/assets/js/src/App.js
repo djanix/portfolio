@@ -1,11 +1,11 @@
-window.$ = require('jquery');
-window.jQuery = window.$;
+window.$ = window.jQuery = require('jquery');
 
 require('easing');
-require('../dest/modules/skills');
-require('../dest/modules/portfolio');
 
-
+$(function() {
+    require('../dest/modules/skills');
+    require('../dest/modules/portfolio');
+});
 
 //$.App = ring.create({
 //    constructor: function (el) {
