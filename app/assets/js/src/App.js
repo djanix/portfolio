@@ -4,6 +4,7 @@ require('easing');
 
 $(function() {
     require('../dest/modules/skills');
+    require('../dest/modules/menu');
     require('../dest/modules/portfolio');
 });
 
