@@ -3,6 +3,11 @@ var React = require('react');
 module.exports = React.createClass({
     render: function() {
         var imgPath = "/assets/img/portfolio/" + this.props.item.images.thumb;
+
+        //if (window.deviceType == 'tablet' || window.deviceType == 'mobile') {
+        //    activeClass = 'is-active';
+        //}
+
         return (
             <li>
                 <a href={this.props.item.link}>
