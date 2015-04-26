@@ -30,6 +30,6 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['build:js', 'build:css', 'browserSync', 'watch']);
     grunt.registerTask('deploy', ['browserify:prod', 'uglify', 'build:css', 'replace:cache_break']);
 
-    grunt.registerTask('build:css', ['sass_imports', 'replace:scss_import_path', 'sass', 'autoprefixer', 'csswring']);
+    grunt.registerTask('build:css', ['sass_imports', 'replace:scss_import_path', 'sass', 'postcss']);
     grunt.registerTask('build:js', ['jshint', 'browserify:dev']);
 };

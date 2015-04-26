@@ -1,14 +1,11 @@
 .sprite {
     background: url('#{$image-path}sprite.png') 0 0 no-repeat;
+    display: inline-block;
     height: 32px;
     overflow: hidden;
     text-indent: -9999px;
     vertical-align: middle;
     width: 32px;
-
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
 
     &.icon_about { background-position: 0 0; }
     &.icon_portfolio { background-position: -32px 0; }
