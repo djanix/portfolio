@@ -1,19 +1,22 @@
 module.exports = {
-    dev: {
-        files: {
-            '<%= jsDest %>/App.js': '<%= jsSrc %>/App.js'
-        },
-        options: {
-            transform: ['browserify-shim'],
-            watch: true
-        }
+    files: {
+        expand: true,
+        flatten: true,
+        src: '<%= jsSrc %>/boot.js',
+        dest: '<%= jsDest %>'
     },
-    prod: {
-        files: {
-            '<%= jsDest %>/App.js': '<%= jsSrc %>/App.js'
-        },
-        options: {
-            transform: ['browserify-shim']
+    options: {
+        plugin: [['minifyify', {
+            map: 'boot.map',
+            output: '<%= jsDest %>/boot.map'
+        }]],
+        transform: [
+            'babelify',
+            'browserify-shim'
+        ],
+        watch: true,
+        browserifyOptions: {
+            debug: true
         }
     }
 };

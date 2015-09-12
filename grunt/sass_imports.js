@@ -3,7 +3,8 @@ module.exports = {
         src: [
             '<%= cssSrc %>/helpers/vars.scss',
             '<%= cssSrc %>/helpers/*.scss',
-            '<%= cssSrc %>/**/*.scss'],
+            '<%= cssSrc %>/**/*.scss'
+        ],
         dest: '<%= cssDest %>/main.scss'
     }
 };

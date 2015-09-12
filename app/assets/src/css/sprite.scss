@@ -1,0 +1,115 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+```html
+<!-- `display: block` sprite -->
+<div class="icon-home"></div>
+
+<!-- `display: inline-block` sprite -->
+<img class="icon-home" />
+```
+*/
+.icon-footer-email {
+  background-image: url(../../img/design/sprite.png);
+  background-position: 0px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-footer-linkedIn {
+  background-image: url(../../img/design/sprite.png);
+  background-position: -32px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-footer-skype {
+  background-image: url(../../img/design/sprite.png);
+  background-position: 0px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-footer-twitter {
+  background-image: url(../../img/design/sprite.png);
+  background-position: -32px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-menu-about {
+  background-image: url(../../img/design/sprite.png);
+  background-position: -64px -32px;
+  width: 29px;
+  height: 29px;
+}
+.icon-menu-portfolio {
+  background-image: url(../../img/design/sprite.png);
+  background-position: 0px -64px;
+  width: 29px;
+  height: 29px;
+}
+.icon-menu-skills {
+  background-image: url(../../img/design/sprite.png);
+  background-position: -29px -64px;
+  width: 29px;
+  height: 29px;
+}
+.icon-menu-social {
+  background-image: url(../../img/design/sprite.png);
+  background-position: -58px -64px;
+  width: 29px;
+  height: 29px;
+}
+.icon-search {
+  background-image: url(../../img/design/sprite.png);
+  background-position: -64px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-twitter {
+  background-image: url(../../img/design/sprite.png);
+  background-position: -96px 0px;
+  width: 29px;
+  height: 29px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+  .icon-footer-email {
+    background-image: url(../../img/design/sprite@2x.png);
+    background-size: 125px 93px;
+  }
+  .icon-footer-linkedIn {
+    background-image: url(../../img/design/sprite@2x.png);
+    background-size: 125px 93px;
+  }
+  .icon-footer-skype {
+    background-image: url(../../img/design/sprite@2x.png);
+    background-size: 125px 93px;
+  }
+  .icon-footer-twitter {
+    background-image: url(../../img/design/sprite@2x.png);
+    background-size: 125px 93px;
+  }
+  .icon-menu-about {
+    background-image: url(../../img/design/sprite@2x.png);
+    background-size: 125px 93px;
+  }
+  .icon-menu-portfolio {
+    background-image: url(../../img/design/sprite@2x.png);
+    background-size: 125px 93px;
+  }
+  .icon-menu-skills {
+    background-image: url(../../img/design/sprite@2x.png);
+    background-size: 125px 93px;
+  }
+  .icon-menu-social {
+    background-image: url(../../img/design/sprite@2x.png);
+    background-size: 125px 93px;
+  }
+  .icon-search {
+    background-image: url(../../img/design/sprite@2x.png);
+    background-size: 125px 93px;
+  }
+  .icon-twitter {
+    background-image: url(../../img/design/sprite@2x.png);
+    background-size: 125px 93px;
+  }
+}

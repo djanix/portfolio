@@ -17,7 +17,7 @@ module.exports = {
             }
         ]
     },
-    'scss_import_path': {
+    scss_import_path: {
         src: ['<%= cssDest %>/*.scss'],
         overwrite: true,
         replacements: [

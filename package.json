@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Janic Beauchemin portfolio",
   "homepage": "http://janicbeauchemin.com",
   "author": {
@@ -8,33 +8,34 @@
     "url": "http://janicbeauchemin.com"
   },
   "devDependencies": {
-    "autoprefixer-core": "^5.1.11",
-    "browserify": "^9.0.8",
-    "browserify-shim": "^3.8.5",
-    "csswring": "^3.0.3",
+    "autoprefixer-core": "^6.0.1",
+    "babelify": "^6.3.0",
+    "browserify": "^11.1.0",
+    "browserify-shim": "^3.8.10",
+    "csswring": "^4.0.0",
     "grunt": "^0.4.5",
-    "grunt-browser-sync": "^2.1.2",
-    "grunt-browserify": "^3.7.0",
-    "grunt-contrib-jshint": "^0.11.2",
-    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-browser-sync": "^2.1.3",
+    "grunt-browserify": "^4.0.1",
+    "grunt-contrib-imagemin": "^0.9.4",
+    "grunt-contrib-jshint": "^0.11.3",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-postcss": "^0.3.0",
-    "grunt-sass": "^0.18.1",
+    "grunt-postcss": "^0.6.0",
+    "grunt-sass": "^1.0.0",
     "grunt-scss-imports": "0.0.2",
+    "grunt-spritesmith": "^5.1.0",
     "grunt-text-replace": "^0.4.0",
-    "load-grunt-config": "^0.17.1",
-    "matchdep": "^0.3.0"
+    "load-grunt-config": "^0.17.2",
+    "matchdep": "^0.3.0",
+    "minifyify": "^7.0.6"
   },
   "dependencies": {
-    "jquery": "^2.1.3",
-    "jquery.transit": "^0.9.12",
-    "ring": "^2.0.1",
-    "smooth-scroll": "^1.5.0",
-    "twitter": "^0.2.13"
+    "jquery": "^2.1.4",
+    "jquery-smooth-scroll": "^1.5.6",
+    "jquery.transit": "^0.9.12"
   },
   "browser": {
-    "easing": "./app/assets/js/lib/jquery.easing.1.3.js",
-    "waypoints": "./app/assets/js/lib/waypoints.min.js"
+    "easing": "./app/assets/src/js/lib/jquery.easing.1.3.js",
+    "waypoints": "./app/assets/src/js/lib/waypoints.min.js"
   },
   "browserify-shim": "./shims.js"
 }

@@ -10,8 +10,8 @@ module.exports = {
                 'ios 6',
                 'android 4',
                 'Firefox ESR'
-            ]}).postcss,
-            require('csswring').postcss
+            ]}),
+            require('csswring')
         ]
     },
     dist: {

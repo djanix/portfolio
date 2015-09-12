@@ -9,11 +9,12 @@ module.exports = function (grunt) {
                 'Copyright (c) <%= grunt.template.today("yyyy-mm-dd") %>',
         basePath: 'app',
         cacheBreaker: '<%= ((new Date()).valueOf().toString()) + (Math.floor((Math.random()*1000000)+1).toString()) %>',
-        cssSrc: '<%= basePath %>/assets/css/src',
-        cssDest: '<%= basePath %>/assets/css/dest',
+        cssSrc: '<%= basePath %>/assets/src/css',
+        cssDest: '<%= basePath %>/assets/dest/css',
         htmlFileExtension: 'html',
-        jsSrc: '<%= basePath %>/assets/js/src',
-        jsDest: '<%= basePath %>/assets/js/dest',
+        imgPath: '<%= basePath %>/assets/img',
+        jsSrc: '<%= basePath %>/assets/src/js',
+        jsDest: '<%= basePath %>/assets/dest/js',
         pkg: grunt.file.readJSON('package.json'),
         vhost: 'portfolio.local'
     };
@@ -27,9 +28,10 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', ['build:js', 'build:css', 'browserSync', 'watch']);
-    grunt.registerTask('deploy', ['browserify:prod', 'uglify', 'build:css', 'replace:cache_break']);
+    grunt.registerTask('default', ['build:css', 'build:js', 'browserSync', 'watch']);
+    grunt.registerTask('deploy', ['build:css', 'build:js', 'replace:cache_break']);
 
-    grunt.registerTask('build:css', ['sass_imports', 'replace:scss_import_path', 'sass', 'postcss']);
-    grunt.registerTask('build:js', ['jshint', 'browserify:dev']);
+    grunt.registerTask('build:css', ['sprite', 'sass_imports', 'replace:scss_import_path', 'sass', 'postcss']);
+    grunt.registerTask('build:js', ['jshint', 'browserify']);
+    grunt.registerTask('imageMin', ['imagemin']);
 };
