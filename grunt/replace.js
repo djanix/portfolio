@@ -1,6 +1,6 @@
 module.exports = {
     cache_break: {
-        src: ['<%= basePath %>/*.<%= htmlFileExtension %>'],
+        src: ['<%= basePath %>/partials/main.kit'],
         overwrite: true,
         replacements: [
             {

@@ -5,15 +5,15 @@ module.exports = {
     },
     sass: {
         files: ["<%= cssSrc %>/**/*.scss"],
-        tasks: ['build:css']
+        tasks: ['build:css', 'build:html']
     },
     html: {
-        files: ['<%= basePath %>/index_src.html'],
-        tasks: ['critical']
+        files: ['<%= basePath %>/partials/**/*.kit'],
+        tasks: ['build:html']
     },
     sprite: {
         files: ["<%= imgPath %>/design/sprite/*.png"],
-        tasks: ['sprite', 'build:css']
+        tasks: ['sprite', 'build:css', 'build:html']
     },
     options: {
         spawn: false

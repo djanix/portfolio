@@ -125,7 +125,7 @@ module.exports = {
             html +=
                 '<li class="' + activeClass + '">' +
                     '<a href="' + value.link + '">' +
-                        '<img src="/assets/img/portfolio/' + value.images.thumb + '" alt="" height="200" width="350" />' +
+                        '<img src="/assets/img/portfolio/placeholder.jpg" data-src="/assets/img/portfolio/' + value.images.thumb + '" alt="" height="200" width="350" />' +
                     '</a>' +
 
                     '<div class="info">' +
@@ -157,6 +157,8 @@ module.exports = {
             var delay = Math.round((1/3 * position) * 500);
 
             setTimeout(function () {
+                var $img = $item.find('img');
+                $img.attr('src', $img.data('src'));
                 $item.addClass('is-visible');
             }, delay);
         }, {
