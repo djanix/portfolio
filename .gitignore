@@ -29,6 +29,3 @@ node_modules/
 ## SASS CACHE FOLDER
 ############
 .sass-cache
-
-app/assets/dest
-app/assets/src/js/lib/*/
