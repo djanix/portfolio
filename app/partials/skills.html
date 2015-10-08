@@ -1,0 +1,61 @@
+<link rel="import" href="../assets/src/js/lib/polymer/polymer.html">
+<link href="../assets/src/js/lib/paper-button/paper-button.html" rel="import">
+
+<dom-module id="poly-skills">
+    <template>
+        <section class="skills" id="skills">
+            <div class="skillset">
+                <h2 class="light-blue-text text-accent-2">My Skills</h2>
+
+                <paper-button raised>
+                    <div class="detail clearfix">
+                        <span class="left">Responsive Web Design</span>
+                        <span class="right">0%</span>
+                    </div>
+                    <div class="percent" data-percent="98"></div>
+                </paper-button>
+
+                <paper-button raised>
+                    <div class="detail clearfix">
+                        <span class="left">Javascript</span>
+                        <span class="right">0%</span>
+                    </div>
+                    <div class="percent" data-percent="90"></div>
+                </paper-button>
+
+                <paper-button raised>
+                    <div class="detail clearfix">
+                        <span class="left">Photoshop</span>
+                        <span class="right">0%</span>
+                    </div>
+                    <div class="percent" data-percent="75"></div>
+                </paper-button>
+
+                <paper-button raised>
+                    <div class="detail clearfix">
+                        <span class="left">Php</span>
+                        <span class="right">0%</span>
+                    </div>
+                    <div class="percent" data-percent="45"></div>
+                </paper-button>
+            </div>
+
+            <h3 class="light-blue-text text-accent-2">Interests</h3>
+
+            <ul>
+                <li><div class="chip">NodeJS</div></li>
+                <li><div class="chip">React</div></li>
+                <li><div class="chip">Angular</div></li>
+                <li><div class="chip">Grunt / Gulp</div></li>
+                <li><div class="chip">Git</div></li>
+                <li><div class="chip">Arduino</div></li>
+            </ul>
+        </section>
+    </template>
+
+    <script>
+        Polymer({
+            is: "poly-skills"
+        });
+    </script>
+</dom-module>

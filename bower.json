@@ -2,7 +2,21 @@
   "name": "portfolio",
   "version": "1.0.0",
   "dependencies": {
-	"jquery": "1.11.1",
-    "modernizr": "~2.6.2"
-  }
+    "polymer": "Polymer/polymer#~1.1.4",
+    "iron-elements": "PolymerElements/iron-elements#~1.0.4",
+    "paper-elements": "PolymerElements/paper-elements#~1.0.5",
+    "Materialize": "materialize#~0.97.1"
+  },
+  "homepage": "https://github.com/djanix/portfolio",
+  "authors": [
+    "Janic Beauchemin <janic_33@msn.com>"
+  ],
+  "description": "",
+  "main": "app/index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "app/assets/src/js/lib"
+  ]
 }

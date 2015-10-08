@@ -1,7 +1,6 @@
 window.$ = require('jquery');
 window.jQuery = window.$;
 
-var easing = require('easing');
 var AppObj = require('./App');
 
 var ViewsObj = {
@@ -10,11 +9,9 @@ var ViewsObj = {
 
 $(function () {
     var App = Object.create(AppObj).init($('#site'));
-    var Views = {};
+    var $view = $('[data-view]');
 
-    $.each(ViewsObj, function (index, value) {
-        if ($(`[data-view="${index}"]`).length) {
-            Views[index] = Object.create(value).init($(`[data-view="${index}"]`));
-        }
-    });
+    if (ViewsObj[$view.data('view')]) {
+        Object.create(ViewsObj[$view.data('view')]).init($view);
+    }
 });

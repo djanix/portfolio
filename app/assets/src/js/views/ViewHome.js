@@ -1,8 +1,10 @@
-var util = require('util');
+//var util = require('util');
 
 var smoothScroll = require('jquery-smooth-scroll');
 var transit = require('jquery.transit');
-var waypoints = require('waypoints');
+
+//TODO: use scrollmagic instead? https://janpaepke.github.io/ScrollMagic/
+//var waypoints = require('waypoints');
 
 module.exports = {
     _el: null,
@@ -44,7 +46,7 @@ module.exports = {
             $.smoothScroll({
                 scrollTarget: $(this).attr('href'),
                 offset: self.headerOffset,
-                easing: 'easeInOutExpo',
+                //easing: 'easeInOutExpo',
                 speed: 1000,
                 afterScroll: function () {
                     _this._el.find('nav .active').removeClass('active');
@@ -62,20 +64,20 @@ module.exports = {
 
         $percentBar.css({ width: percentValue + "%" });
 
-        $element.waypoint(function() {
-            $element.addClass('is-active');
-
-            var intervalCalls = 0;
-            var animateVal = setInterval(function() {
-                intervalCalls ++;
-                var newValue = Math.round(intervalCalls * (percentValue / 100));
-                $percentDiv.text(newValue + '%');
-
-                if (newValue >= percentValue) {
-                    clearInterval(animateVal);
-                }
-            }, 20);
-        }, {triggerOnce: true, offset: '80%'});
+        //$element.waypoint(function() {
+        //    $element.addClass('is-active');
+        //
+        //    var intervalCalls = 0;
+        //    var animateVal = setInterval(function() {
+        //        intervalCalls ++;
+        //        var newValue = Math.round(intervalCalls * (percentValue / 100));
+        //        $percentDiv.text(newValue + '%');
+        //
+        //        if (newValue >= percentValue) {
+        //            clearInterval(animateVal);
+        //        }
+        //    }, 20);
+        //}, {triggerOnce: true, offset: '80%'});
     },
 
     menuActivation: function () {
@@ -86,10 +88,10 @@ module.exports = {
             var elName = $(this).attr('id');
             var menuEl = $menu.find('.' + elName);
 
-            $(this).waypoint(function() {
-                $menu.find('.active').removeClass('active');
-                menuEl.addClass('active');
-            });
+            //$(this).waypoint(function() {
+            //    $menu.find('.active').removeClass('active');
+            //    menuEl.addClass('active');
+            //});
         });
     },
 
@@ -143,27 +145,27 @@ module.exports = {
     portfolioAnim: function () {
         var _this = this;
 
-        _this._el.find('.portfolioList').find('li').waypoint(function (direction) {
-            var $item = $(this);
-            var itemsPerRow = 3;
-
-            if (window.deviceType == 'tablet') {
-                itemsPerRow = 2;
-            } else if (window.deviceType == 'mobile') {
-                itemsPerRow = 1;
-            }
-
-            var position = $(this).index() % itemsPerRow;
-            var delay = Math.round((1/3 * position) * 500);
-
-            setTimeout(function () {
-                var $img = $item.find('img');
-                $img.attr('src', $img.data('src'));
-                $item.addClass('is-visible');
-            }, delay);
-        }, {
-            offset: '100%',
-            triggerOnce: true
-        });
+        //_this._el.find('.portfolioList').find('li').waypoint(function (direction) {
+        //    var $item = $(this);
+        //    var itemsPerRow = 3;
+        //
+        //    if (window.deviceType == 'tablet') {
+        //        itemsPerRow = 2;
+        //    } else if (window.deviceType == 'mobile') {
+        //        itemsPerRow = 1;
+        //    }
+        //
+        //    var position = $(this).index() % itemsPerRow;
+        //    var delay = Math.round((1/3 * position) * 500);
+        //
+        //    setTimeout(function () {
+        //        var $img = $item.find('img');
+        //        $img.attr('src', $img.data('src'));
+        //        $item.addClass('is-visible');
+        //    }, delay);
+        //}, {
+        //    offset: '100%',
+        //    triggerOnce: true
+        //});
     }
 };

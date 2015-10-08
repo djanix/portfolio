@@ -1,20 +1,5 @@
 ############
-## Windows
-############
-# Windows image file caches
-Thumbs.db
-
-# Folder config file
-Desktop.ini
-
-############
-## Mac
-############
-# Mac crap
-.DS_Store
-
-############
-## PhpStorm
+## Webstorm
 ############
 .idea
 atlassian-ide-plugin.xml
@@ -22,10 +7,9 @@ atlassian-ide-plugin.xml
 ############
 ## NPM modules
 ############
-npm-debut.log
 node_modules/
 
 ############
-## SASS CACHE FOLDER
+## Bower plugins
 ############
-.sass-cache
+app/assets/src/js/lib

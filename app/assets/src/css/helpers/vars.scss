@@ -8,8 +8,8 @@ $orange: #f39e3a;
 $image-path: "/assets/img/design/";
 $font-path: "/assets/fonts/";
 
-$tablet: 1024px;
-$mobile: 540px;
+$tablet: 992px;
+$mobile: 600px;
 
 //usage: @include filter(grayscale, 100%);
 @mixin filter($filter-type, $filter-amount) {

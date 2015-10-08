@@ -1,89 +1,15 @@
 section.aboutMe {
-    .presentation {
-        margin: 0 0 60px 0;
-    }
 
-    .me,
-    .description {
-        display: inline-block;
-        vertical-align: middle;
-    }
-
-    .me {
-        padding-right: 20px;
-        width: 30%;
-
-        img {
-            border-radius: 50%;
-            height: auto;
-            width: 100%;
-        }
-    }
-
-    .description {
-        font-size: 2.4rem;
-        font-style:	italic;
-        width: 70%;
-    }
-
-	.banner {
-		background: url('#{$image-path}banner.png') center top no-repeat;
-		padding: 0 30px;
-	}
-
-    a {
-        color: #fff;
-        display: block;
-        font-size: 2rem;
-        font-weight: bold;
-        line-height: 57px;
-        margin: 0;
-        opacity: 0.9;
-        padding: 0;
-        text-align: center;
-        transform: scale(0.9);
-
-        &:hover, &:active, &:focus {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
 }
 
 @media only screen and (max-width: $tablet) {
     section.aboutMe {
-        .presentation {
-            margin-bottom: 20px;
-        }
 
-        .description {
-            font-size: 3.5vw;
-        }
-
-        a {
-            opacity: 1;
-            transform: scale(1);
-        }
     }
 }
 
 @media only screen and (max-width: $mobile) {
     section.aboutMe {
-        h2 {
-            margin-top: 50px;
-        }
 
-        .presentation {
-            margin-bottom: 0;
-        }
-
-        .me {
-            padding-right: 0;
-        }
-
-        .description {
-            font-size: 4.5vw;
-            width: 100%;
-        }
     }
 }

@@ -1,0 +1,49 @@
+<link rel="import" href="../assets/src/js/lib/polymer/polymer.html">
+<link href="../assets/src/js/lib/paper-card/paper-card.html" rel="import">
+<link href="../assets/src/js/lib/paper-button/paper-button.html" rel="import">
+<link href="../assets/src/js/lib/iron-icons/iron-icons.html" rel="import">
+
+<dom-module id="poly-portfolio">
+    <template>
+        <section class="portfolio" id="portfolio">
+            <h2 class="light-blue-text text-accent-2">Portfolio</h2>
+            <ul class="portfolioList"></ul>
+
+            <paper-card heading="Website Name" image="http://placehold.it/350x150" style="max-width: 400px;">
+                <div class="card-content">
+                    Lorem ipsum dolor sit amet, nec ad conceptam interpretaris, mea ne solet repudiandae. Laudem nostrud
+                    ei vim. Sapientem consequuntur usu ad, vel etiam philosophia ex, ad quidam option quo. Sed sale
+                    integre pericula ei, rebum adipiscing ius ea.
+                </div>
+
+                <div class="card-actions">
+                    <paper-button>Visit website</paper-button>
+                </div>
+            </paper-card>
+
+            <h3 class="light-blue-text text-accent-2">Other projects</h3>
+
+            <!--<paper-icon-button icon="arrow-forward"></paper-icon-button>-->
+
+            <ul class="collection">
+                <li class="collection-item">
+                    <a href="https://github.com/djanix/base-structure">Base project boilerplate</a>
+                </li>
+
+                <li class="collection-item">
+                    <a href="http://djanix.github.io/jquery.switcher/">jQuery switcher</a>
+                </li>
+
+                <li class="collection-item">
+                    <a href="./experiments/leap_motion/index.html">Leap motion basic experiment</a>
+                </li>
+            </ul>
+        </section>
+    </template>
+
+    <script>
+        Polymer({
+            is: "poly-portfolio"
+        });
+    </script>
+</dom-module>

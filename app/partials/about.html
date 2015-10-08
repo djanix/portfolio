@@ -1,0 +1,35 @@
+<link rel="import" href="../assets/src/js/lib/polymer/polymer.html">
+
+<dom-module id="poly-about">
+    <template>
+        <section class="aboutMe" id="aboutMe">
+            <h2 class="light-blue-text text-accent-2">About Me</h2>
+
+            <div class="row valign-wrapper">
+                <div class="col s12 m4 l3">
+                    <img src="../assets/img/design/me.jpg"  class="circle responsive-img" alt="" height="286" width="286" />
+                </div>
+
+                <div class="col s12 m8 l9">
+                    <span class="flow-text">
+                        Welcome to my Portfolio. I am a web developer based in Montreal, Canada. I'm currently
+                        working at U92 and I use creativity blended with technology to deliver cutting edge
+                        work.
+                    </span>
+                </div>
+            </div>
+
+            <paper-button class="amber darken-3">
+                <h3>
+                    <a href="https://github.com/djanix">github.com/djanix</a>
+                </h3>
+            </paper-button>
+        </section>
+    </template>
+
+    <script>
+        Polymer({
+            is: "poly-about"
+        });
+    </script>
+</dom-module>
