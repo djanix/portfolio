@@ -1,5 +1,12 @@
 section.portfolio {
-
+    .other-projects {
+        paper-button {
+            display: block;
+            line-height: 2;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+    }
 }
 
 @media only screen and (max-width: $tablet) {

@@ -1,5 +1,14 @@
 section.skills {
+    paper-button {
+        display: block;
+        line-height: 2;
+        margin-bottom: 15px;
+    }
 
+    .chip {
+        font-size: 20px;
+        margin: 0 10px 10px 0;
+    }
 }
 
 @media only screen and (max-width: $tablet) {

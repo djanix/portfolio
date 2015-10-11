@@ -61,11 +61,11 @@ module.exports = {
 };
 
 }).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/App.js","/")
-},{"/NJiQA":7,"buffer":4}],2:[function(require,module,exports){
+},{"/NJiQA":8,"buffer":5}],2:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict';
 
-window.$ = require('jquery');
+window.$ = require("./lib\\jquery\\dist\\jquery.js");
 window.jQuery = window.$;
 
 var AppObj = require('./App');
@@ -83,2569 +83,8 @@ $(function () {
     }
 });
 
-}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_aeff142c.js","/")
-},{"./App":1,"./views/ViewHome":3,"/NJiQA":7,"buffer":4,"jquery":10}],3:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-//var util = require('util');
-
-'use strict';
-
-var smoothScroll = require('jquery-smooth-scroll');
-var transit = require('jquery.transit');
-
-//TODO: use scrollmagic instead? https://janpaepke.github.io/ScrollMagic/
-//var waypoints = require('waypoints');
-
-module.exports = {
-    _el: null,
-    headerOffset: 0,
-
-    init: function init($el) {
-        var _this = this;
-
-        _this._el = $el;
-        _this.headerOffset = parseInt('-' + _this._el.find('header').outerHeight(), 10);
-
-        _this.bindEvents();
-        _this.menuActivation();
-
-        _this.getPortfolioJson(function (err, res) {
-            if (err) {
-                return console.log(err);
-            }
-            _this.showPortfolioItem(res);
-            _this.portfolioAnim();
-            _this._el.find('.portfolio li').hover(function () {
-                $(this).addClass('is-active');
-            }, function () {
-                $(this).removeClass('is-active');
-            });
-        });
-
-        $.each(_this._el.find('.skillset').find('li'), function () {
-            _this.skillPercent($(this));
-        });
-    },
-
-    //-- Functions
-    //--------------------------------------------------------------
-    bindEvents: function bindEvents() {
-        var _this = this;
-
-        _this._el.find('nav').find('a').on("click", function (e) {
-            var clickedItem = $(this);
-            e.preventDefault();
-            $.smoothScroll({
-                scrollTarget: $(this).attr('href'),
-                offset: self.headerOffset,
-                //easing: 'easeInOutExpo',
-                speed: 1000,
-                afterScroll: function afterScroll() {
-                    _this._el.find('nav .active').removeClass('active');
-                    clickedItem.addClass('active');
-                }
-            });
-        });
-    },
-
-    skillPercent: function skillPercent($element) {
-        var _this = this;
-        var $percentBar = $element.find('.percent');
-        var $percentDiv = $element.find('.right');
-        var percentValue = $percentBar.attr('data-percent');
-
-        $percentBar.css({ width: percentValue + "%" });
-
-        //$element.waypoint(function() {
-        //    $element.addClass('is-active');
-        //
-        //    var intervalCalls = 0;
-        //    var animateVal = setInterval(function() {
-        //        intervalCalls ++;
-        //        var newValue = Math.round(intervalCalls * (percentValue / 100));
-        //        $percentDiv.text(newValue + '%');
-        //
-        //        if (newValue >= percentValue) {
-        //            clearInterval(animateVal);
-        //        }
-        //    }, 20);
-        //}, {triggerOnce: true, offset: '80%'});
-    },
-
-    menuActivation: function menuActivation() {
-        var _this = this;
-        var $menu = _this._el.find('nav');
-
-        $.each(_this._el.find('.main').find('section'), function (index, value) {
-            var elName = $(this).attr('id');
-            var menuEl = $menu.find('.' + elName);
-
-            //$(this).waypoint(function() {
-            //    $menu.find('.active').removeClass('active');
-            //    menuEl.addClass('active');
-            //});
-        });
-    },
-
-    getPortfolioJson: function getPortfolioJson(callback) {
-        var _this = this;
-
-        $.ajax({
-            url: '/data/work.json',
-            dataType: 'json',
-            contentType: 'application/json',
-            data: null,
-            type: 'POST'
-        }).done(function (data, textStatus, jqXHR) {
-            var result = typeof data == "string" ? $.parseJSON(data) : data;
-            return callback(null, result);
-        }).fail(function (jqXHR, textStatus, errorThrown) {
-            return callback(['fail', errorThrown], null);
-        });
-    },
-
-    showPortfolioItem: function showPortfolioItem(data) {
-        var _this = this;
-        var html = '';
-        var activeClass = '';
-
-        if (window.deviceType == 'tablet' || window.deviceType == 'mobile') {
-            activeClass = 'is-active';
-        }
-
-        $.each(data, function (index, value) {
-            html += '<li class="' + activeClass + '">' + '<a href="' + value.link + '">' + '<img src="/assets/img/portfolio/placeholder.jpg" data-src="/assets/img/portfolio/' + value.images.thumb + '" alt="" height="200" width="350" />' + '</a>' + '<div class="info">' + '<p>' + value.title + '</p>' + '<p class="link">Link: <a href="' + value.link + '">' + value.link + '</a></p>' + '<p>Date: ' + value.date + '</p>' + '<p>While working at: <a href="' + value.company.link + '">' + value.company.name + '</a></p>' + '</div>' + '</li>';
-        });
-
-        _this._el.find('.portfolio').find('.portfolioList').html(html);
-    },
-
-    portfolioAnim: function portfolioAnim() {
-        var _this = this;
-
-        //_this._el.find('.portfolioList').find('li').waypoint(function (direction) {
-        //    var $item = $(this);
-        //    var itemsPerRow = 3;
-        //
-        //    if (window.deviceType == 'tablet') {
-        //        itemsPerRow = 2;
-        //    } else if (window.deviceType == 'mobile') {
-        //        itemsPerRow = 1;
-        //    }
-        //
-        //    var position = $(this).index() % itemsPerRow;
-        //    var delay = Math.round((1/3 * position) * 500);
-        //
-        //    setTimeout(function () {
-        //        var $img = $item.find('img');
-        //        $img.attr('src', $img.data('src'));
-        //        $item.addClass('is-visible');
-        //    }, delay);
-        //}, {
-        //    offset: '100%',
-        //    triggerOnce: true
-        //});
-    }
-};
-
-}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/views\\ViewHome.js","/views")
-},{"/NJiQA":7,"buffer":4,"jquery-smooth-scroll":8,"jquery.transit":9}],4:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-/*!
- * The buffer module from node.js, for the browser.
- *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
- * @license  MIT
- */
-
-'use strict';
-
-var base64 = require('base64-js');
-var ieee754 = require('ieee754');
-
-exports.Buffer = Buffer;
-exports.SlowBuffer = Buffer;
-exports.INSPECT_MAX_BYTES = 50;
-Buffer.poolSize = 8192;
-
-/**
- * If `Buffer._useTypedArrays`:
- *   === true    Use Uint8Array implementation (fastest)
- *   === false   Use Object implementation (compatible down to IE6)
- */
-Buffer._useTypedArrays = (function () {
-  // Detect if browser supports Typed Arrays. Supported browsers are IE 10+, Firefox 4+,
-  // Chrome 7+, Safari 5.1+, Opera 11.6+, iOS 4.2+. If the browser does not support adding
-  // properties to `Uint8Array` instances, then that's the same as no `Uint8Array` support
-  // because we need to be able to add all the node Buffer API methods. This is an issue
-  // in Firefox 4-29. Now fixed: https://bugzilla.mozilla.org/show_bug.cgi?id=695438
-  try {
-    var buf = new ArrayBuffer(0);
-    var arr = new Uint8Array(buf);
-    arr.foo = function () {
-      return 42;
-    };
-    return 42 === arr.foo() && typeof arr.subarray === 'function'; // Chrome 9-10 lack `subarray`
-  } catch (e) {
-    return false;
-  }
-})();
-
-/**
- * Class: Buffer
- * =============
- *
- * The Buffer constructor returns instances of `Uint8Array` that are augmented
- * with function properties for all the node `Buffer` API functions. We use
- * `Uint8Array` so that square bracket notation works as expected -- it returns
- * a single octet.
- *
- * By augmenting the instances, we can avoid modifying the `Uint8Array`
- * prototype.
- */
-function Buffer(subject, encoding, noZero) {
-  if (!(this instanceof Buffer)) return new Buffer(subject, encoding, noZero);
-
-  var type = typeof subject;
-
-  // Workaround: node's base64 implementation allows for non-padded strings
-  // while base64-js does not.
-  if (encoding === 'base64' && type === 'string') {
-    subject = stringtrim(subject);
-    while (subject.length % 4 !== 0) {
-      subject = subject + '=';
-    }
-  }
-
-  // Find the length
-  var length;
-  if (type === 'number') length = coerce(subject);else if (type === 'string') length = Buffer.byteLength(subject, encoding);else if (type === 'object') length = coerce(subject.length); // assume that object is array-like
-  else throw new Error('First argument needs to be a number, array or string.');
-
-  var buf;
-  if (Buffer._useTypedArrays) {
-    // Preferred: Return an augmented `Uint8Array` instance for best performance
-    buf = Buffer._augment(new Uint8Array(length));
-  } else {
-    // Fallback: Return THIS instance of Buffer (created by `new`)
-    buf = this;
-    buf.length = length;
-    buf._isBuffer = true;
-  }
-
-  var i;
-  if (Buffer._useTypedArrays && typeof subject.byteLength === 'number') {
-    // Speed optimization -- use set if we're copying from a typed array
-    buf._set(subject);
-  } else if (isArrayish(subject)) {
-    // Treat array-ish objects as a byte array
-    for (i = 0; i < length; i++) {
-      if (Buffer.isBuffer(subject)) buf[i] = subject.readUInt8(i);else buf[i] = subject[i];
-    }
-  } else if (type === 'string') {
-    buf.write(subject, 0, encoding);
-  } else if (type === 'number' && !Buffer._useTypedArrays && !noZero) {
-    for (i = 0; i < length; i++) {
-      buf[i] = 0;
-    }
-  }
-
-  return buf;
-}
-
-// STATIC METHODS
-// ==============
-
-Buffer.isEncoding = function (encoding) {
-  switch (String(encoding).toLowerCase()) {
-    case 'hex':
-    case 'utf8':
-    case 'utf-8':
-    case 'ascii':
-    case 'binary':
-    case 'base64':
-    case 'raw':
-    case 'ucs2':
-    case 'ucs-2':
-    case 'utf16le':
-    case 'utf-16le':
-      return true;
-    default:
-      return false;
-  }
-};
-
-Buffer.isBuffer = function (b) {
-  return !!(b !== null && b !== undefined && b._isBuffer);
-};
-
-Buffer.byteLength = function (str, encoding) {
-  var ret;
-  str = str + '';
-  switch (encoding || 'utf8') {
-    case 'hex':
-      ret = str.length / 2;
-      break;
-    case 'utf8':
-    case 'utf-8':
-      ret = utf8ToBytes(str).length;
-      break;
-    case 'ascii':
-    case 'binary':
-    case 'raw':
-      ret = str.length;
-      break;
-    case 'base64':
-      ret = base64ToBytes(str).length;
-      break;
-    case 'ucs2':
-    case 'ucs-2':
-    case 'utf16le':
-    case 'utf-16le':
-      ret = str.length * 2;
-      break;
-    default:
-      throw new Error('Unknown encoding');
-  }
-  return ret;
-};
-
-Buffer.concat = function (list, totalLength) {
-  assert(isArray(list), 'Usage: Buffer.concat(list, [totalLength])\n' + 'list should be an Array.');
-
-  if (list.length === 0) {
-    return new Buffer(0);
-  } else if (list.length === 1) {
-    return list[0];
-  }
-
-  var i;
-  if (typeof totalLength !== 'number') {
-    totalLength = 0;
-    for (i = 0; i < list.length; i++) {
-      totalLength += list[i].length;
-    }
-  }
-
-  var buf = new Buffer(totalLength);
-  var pos = 0;
-  for (i = 0; i < list.length; i++) {
-    var item = list[i];
-    item.copy(buf, pos);
-    pos += item.length;
-  }
-  return buf;
-};
-
-// BUFFER INSTANCE METHODS
-// =======================
-
-function _hexWrite(buf, string, offset, length) {
-  offset = Number(offset) || 0;
-  var remaining = buf.length - offset;
-  if (!length) {
-    length = remaining;
-  } else {
-    length = Number(length);
-    if (length > remaining) {
-      length = remaining;
-    }
-  }
-
-  // must be an even number of digits
-  var strLen = string.length;
-  assert(strLen % 2 === 0, 'Invalid hex string');
-
-  if (length > strLen / 2) {
-    length = strLen / 2;
-  }
-  for (var i = 0; i < length; i++) {
-    var byte = parseInt(string.substr(i * 2, 2), 16);
-    assert(!isNaN(byte), 'Invalid hex string');
-    buf[offset + i] = byte;
-  }
-  Buffer._charsWritten = i * 2;
-  return i;
-}
-
-function _utf8Write(buf, string, offset, length) {
-  var charsWritten = Buffer._charsWritten = blitBuffer(utf8ToBytes(string), buf, offset, length);
-  return charsWritten;
-}
-
-function _asciiWrite(buf, string, offset, length) {
-  var charsWritten = Buffer._charsWritten = blitBuffer(asciiToBytes(string), buf, offset, length);
-  return charsWritten;
-}
-
-function _binaryWrite(buf, string, offset, length) {
-  return _asciiWrite(buf, string, offset, length);
-}
-
-function _base64Write(buf, string, offset, length) {
-  var charsWritten = Buffer._charsWritten = blitBuffer(base64ToBytes(string), buf, offset, length);
-  return charsWritten;
-}
-
-function _utf16leWrite(buf, string, offset, length) {
-  var charsWritten = Buffer._charsWritten = blitBuffer(utf16leToBytes(string), buf, offset, length);
-  return charsWritten;
-}
-
-Buffer.prototype.write = function (string, offset, length, encoding) {
-  // Support both (string, offset, length, encoding)
-  // and the legacy (string, encoding, offset, length)
-  if (isFinite(offset)) {
-    if (!isFinite(length)) {
-      encoding = length;
-      length = undefined;
-    }
-  } else {
-    // legacy
-    var swap = encoding;
-    encoding = offset;
-    offset = length;
-    length = swap;
-  }
-
-  offset = Number(offset) || 0;
-  var remaining = this.length - offset;
-  if (!length) {
-    length = remaining;
-  } else {
-    length = Number(length);
-    if (length > remaining) {
-      length = remaining;
-    }
-  }
-  encoding = String(encoding || 'utf8').toLowerCase();
-
-  var ret;
-  switch (encoding) {
-    case 'hex':
-      ret = _hexWrite(this, string, offset, length);
-      break;
-    case 'utf8':
-    case 'utf-8':
-      ret = _utf8Write(this, string, offset, length);
-      break;
-    case 'ascii':
-      ret = _asciiWrite(this, string, offset, length);
-      break;
-    case 'binary':
-      ret = _binaryWrite(this, string, offset, length);
-      break;
-    case 'base64':
-      ret = _base64Write(this, string, offset, length);
-      break;
-    case 'ucs2':
-    case 'ucs-2':
-    case 'utf16le':
-    case 'utf-16le':
-      ret = _utf16leWrite(this, string, offset, length);
-      break;
-    default:
-      throw new Error('Unknown encoding');
-  }
-  return ret;
-};
-
-Buffer.prototype.toString = function (encoding, start, end) {
-  var self = this;
-
-  encoding = String(encoding || 'utf8').toLowerCase();
-  start = Number(start) || 0;
-  end = end !== undefined ? Number(end) : end = self.length;
-
-  // Fastpath empty strings
-  if (end === start) return '';
-
-  var ret;
-  switch (encoding) {
-    case 'hex':
-      ret = _hexSlice(self, start, end);
-      break;
-    case 'utf8':
-    case 'utf-8':
-      ret = _utf8Slice(self, start, end);
-      break;
-    case 'ascii':
-      ret = _asciiSlice(self, start, end);
-      break;
-    case 'binary':
-      ret = _binarySlice(self, start, end);
-      break;
-    case 'base64':
-      ret = _base64Slice(self, start, end);
-      break;
-    case 'ucs2':
-    case 'ucs-2':
-    case 'utf16le':
-    case 'utf-16le':
-      ret = _utf16leSlice(self, start, end);
-      break;
-    default:
-      throw new Error('Unknown encoding');
-  }
-  return ret;
-};
-
-Buffer.prototype.toJSON = function () {
-  return {
-    type: 'Buffer',
-    data: Array.prototype.slice.call(this._arr || this, 0)
-  };
-};
-
-// copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
-Buffer.prototype.copy = function (target, target_start, start, end) {
-  var source = this;
-
-  if (!start) start = 0;
-  if (!end && end !== 0) end = this.length;
-  if (!target_start) target_start = 0;
-
-  // Copy 0 bytes; we're done
-  if (end === start) return;
-  if (target.length === 0 || source.length === 0) return;
-
-  // Fatal error conditions
-  assert(end >= start, 'sourceEnd < sourceStart');
-  assert(target_start >= 0 && target_start < target.length, 'targetStart out of bounds');
-  assert(start >= 0 && start < source.length, 'sourceStart out of bounds');
-  assert(end >= 0 && end <= source.length, 'sourceEnd out of bounds');
-
-  // Are we oob?
-  if (end > this.length) end = this.length;
-  if (target.length - target_start < end - start) end = target.length - target_start + start;
-
-  var len = end - start;
-
-  if (len < 100 || !Buffer._useTypedArrays) {
-    for (var i = 0; i < len; i++) target[i + target_start] = this[i + start];
-  } else {
-    target._set(this.subarray(start, start + len), target_start);
-  }
-};
-
-function _base64Slice(buf, start, end) {
-  if (start === 0 && end === buf.length) {
-    return base64.fromByteArray(buf);
-  } else {
-    return base64.fromByteArray(buf.slice(start, end));
-  }
-}
-
-function _utf8Slice(buf, start, end) {
-  var res = '';
-  var tmp = '';
-  end = Math.min(buf.length, end);
-
-  for (var i = start; i < end; i++) {
-    if (buf[i] <= 0x7F) {
-      res += decodeUtf8Char(tmp) + String.fromCharCode(buf[i]);
-      tmp = '';
-    } else {
-      tmp += '%' + buf[i].toString(16);
-    }
-  }
-
-  return res + decodeUtf8Char(tmp);
-}
-
-function _asciiSlice(buf, start, end) {
-  var ret = '';
-  end = Math.min(buf.length, end);
-
-  for (var i = start; i < end; i++) ret += String.fromCharCode(buf[i]);
-  return ret;
-}
-
-function _binarySlice(buf, start, end) {
-  return _asciiSlice(buf, start, end);
-}
-
-function _hexSlice(buf, start, end) {
-  var len = buf.length;
-
-  if (!start || start < 0) start = 0;
-  if (!end || end < 0 || end > len) end = len;
-
-  var out = '';
-  for (var i = start; i < end; i++) {
-    out += toHex(buf[i]);
-  }
-  return out;
-}
-
-function _utf16leSlice(buf, start, end) {
-  var bytes = buf.slice(start, end);
-  var res = '';
-  for (var i = 0; i < bytes.length; i += 2) {
-    res += String.fromCharCode(bytes[i] + bytes[i + 1] * 256);
-  }
-  return res;
-}
-
-Buffer.prototype.slice = function (start, end) {
-  var len = this.length;
-  start = clamp(start, len, 0);
-  end = clamp(end, len, len);
-
-  if (Buffer._useTypedArrays) {
-    return Buffer._augment(this.subarray(start, end));
-  } else {
-    var sliceLen = end - start;
-    var newBuf = new Buffer(sliceLen, undefined, true);
-    for (var i = 0; i < sliceLen; i++) {
-      newBuf[i] = this[i + start];
-    }
-    return newBuf;
-  }
-};
-
-// `get` will be removed in Node 0.13+
-Buffer.prototype.get = function (offset) {
-  console.log('.get() is deprecated. Access using array indexes instead.');
-  return this.readUInt8(offset);
-};
-
-// `set` will be removed in Node 0.13+
-Buffer.prototype.set = function (v, offset) {
-  console.log('.set() is deprecated. Access using array indexes instead.');
-  return this.writeUInt8(v, offset);
-};
-
-Buffer.prototype.readUInt8 = function (offset, noAssert) {
-  if (!noAssert) {
-    assert(offset !== undefined && offset !== null, 'missing offset');
-    assert(offset < this.length, 'Trying to read beyond buffer length');
-  }
-
-  if (offset >= this.length) return;
-
-  return this[offset];
-};
-
-function _readUInt16(buf, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
-    assert(offset !== undefined && offset !== null, 'missing offset');
-    assert(offset + 1 < buf.length, 'Trying to read beyond buffer length');
-  }
-
-  var len = buf.length;
-  if (offset >= len) return;
-
-  var val;
-  if (littleEndian) {
-    val = buf[offset];
-    if (offset + 1 < len) val |= buf[offset + 1] << 8;
-  } else {
-    val = buf[offset] << 8;
-    if (offset + 1 < len) val |= buf[offset + 1];
-  }
-  return val;
-}
-
-Buffer.prototype.readUInt16LE = function (offset, noAssert) {
-  return _readUInt16(this, offset, true, noAssert);
-};
-
-Buffer.prototype.readUInt16BE = function (offset, noAssert) {
-  return _readUInt16(this, offset, false, noAssert);
-};
-
-function _readUInt32(buf, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
-    assert(offset !== undefined && offset !== null, 'missing offset');
-    assert(offset + 3 < buf.length, 'Trying to read beyond buffer length');
-  }
-
-  var len = buf.length;
-  if (offset >= len) return;
-
-  var val;
-  if (littleEndian) {
-    if (offset + 2 < len) val = buf[offset + 2] << 16;
-    if (offset + 1 < len) val |= buf[offset + 1] << 8;
-    val |= buf[offset];
-    if (offset + 3 < len) val = val + (buf[offset + 3] << 24 >>> 0);
-  } else {
-    if (offset + 1 < len) val = buf[offset + 1] << 16;
-    if (offset + 2 < len) val |= buf[offset + 2] << 8;
-    if (offset + 3 < len) val |= buf[offset + 3];
-    val = val + (buf[offset] << 24 >>> 0);
-  }
-  return val;
-}
-
-Buffer.prototype.readUInt32LE = function (offset, noAssert) {
-  return _readUInt32(this, offset, true, noAssert);
-};
-
-Buffer.prototype.readUInt32BE = function (offset, noAssert) {
-  return _readUInt32(this, offset, false, noAssert);
-};
-
-Buffer.prototype.readInt8 = function (offset, noAssert) {
-  if (!noAssert) {
-    assert(offset !== undefined && offset !== null, 'missing offset');
-    assert(offset < this.length, 'Trying to read beyond buffer length');
-  }
-
-  if (offset >= this.length) return;
-
-  var neg = this[offset] & 0x80;
-  if (neg) return (0xff - this[offset] + 1) * -1;else return this[offset];
-};
-
-function _readInt16(buf, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
-    assert(offset !== undefined && offset !== null, 'missing offset');
-    assert(offset + 1 < buf.length, 'Trying to read beyond buffer length');
-  }
-
-  var len = buf.length;
-  if (offset >= len) return;
-
-  var val = _readUInt16(buf, offset, littleEndian, true);
-  var neg = val & 0x8000;
-  if (neg) return (0xffff - val + 1) * -1;else return val;
-}
-
-Buffer.prototype.readInt16LE = function (offset, noAssert) {
-  return _readInt16(this, offset, true, noAssert);
-};
-
-Buffer.prototype.readInt16BE = function (offset, noAssert) {
-  return _readInt16(this, offset, false, noAssert);
-};
-
-function _readInt32(buf, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
-    assert(offset !== undefined && offset !== null, 'missing offset');
-    assert(offset + 3 < buf.length, 'Trying to read beyond buffer length');
-  }
-
-  var len = buf.length;
-  if (offset >= len) return;
-
-  var val = _readUInt32(buf, offset, littleEndian, true);
-  var neg = val & 0x80000000;
-  if (neg) return (0xffffffff - val + 1) * -1;else return val;
-}
-
-Buffer.prototype.readInt32LE = function (offset, noAssert) {
-  return _readInt32(this, offset, true, noAssert);
-};
-
-Buffer.prototype.readInt32BE = function (offset, noAssert) {
-  return _readInt32(this, offset, false, noAssert);
-};
-
-function _readFloat(buf, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
-    assert(offset + 3 < buf.length, 'Trying to read beyond buffer length');
-  }
-
-  return ieee754.read(buf, offset, littleEndian, 23, 4);
-}
-
-Buffer.prototype.readFloatLE = function (offset, noAssert) {
-  return _readFloat(this, offset, true, noAssert);
-};
-
-Buffer.prototype.readFloatBE = function (offset, noAssert) {
-  return _readFloat(this, offset, false, noAssert);
-};
-
-function _readDouble(buf, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
-    assert(offset + 7 < buf.length, 'Trying to read beyond buffer length');
-  }
-
-  return ieee754.read(buf, offset, littleEndian, 52, 8);
-}
-
-Buffer.prototype.readDoubleLE = function (offset, noAssert) {
-  return _readDouble(this, offset, true, noAssert);
-};
-
-Buffer.prototype.readDoubleBE = function (offset, noAssert) {
-  return _readDouble(this, offset, false, noAssert);
-};
-
-Buffer.prototype.writeUInt8 = function (value, offset, noAssert) {
-  if (!noAssert) {
-    assert(value !== undefined && value !== null, 'missing value');
-    assert(offset !== undefined && offset !== null, 'missing offset');
-    assert(offset < this.length, 'trying to write beyond buffer length');
-    verifuint(value, 0xff);
-  }
-
-  if (offset >= this.length) return;
-
-  this[offset] = value;
-};
-
-function _writeUInt16(buf, value, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(value !== undefined && value !== null, 'missing value');
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
-    assert(offset !== undefined && offset !== null, 'missing offset');
-    assert(offset + 1 < buf.length, 'trying to write beyond buffer length');
-    verifuint(value, 0xffff);
-  }
-
-  var len = buf.length;
-  if (offset >= len) return;
-
-  for (var i = 0, j = Math.min(len - offset, 2); i < j; i++) {
-    buf[offset + i] = (value & 0xff << 8 * (littleEndian ? i : 1 - i)) >>> (littleEndian ? i : 1 - i) * 8;
-  }
-}
-
-Buffer.prototype.writeUInt16LE = function (value, offset, noAssert) {
-  _writeUInt16(this, value, offset, true, noAssert);
-};
-
-Buffer.prototype.writeUInt16BE = function (value, offset, noAssert) {
-  _writeUInt16(this, value, offset, false, noAssert);
-};
-
-function _writeUInt32(buf, value, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(value !== undefined && value !== null, 'missing value');
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
-    assert(offset !== undefined && offset !== null, 'missing offset');
-    assert(offset + 3 < buf.length, 'trying to write beyond buffer length');
-    verifuint(value, 0xffffffff);
-  }
-
-  var len = buf.length;
-  if (offset >= len) return;
-
-  for (var i = 0, j = Math.min(len - offset, 4); i < j; i++) {
-    buf[offset + i] = value >>> (littleEndian ? i : 3 - i) * 8 & 0xff;
-  }
-}
-
-Buffer.prototype.writeUInt32LE = function (value, offset, noAssert) {
-  _writeUInt32(this, value, offset, true, noAssert);
-};
-
-Buffer.prototype.writeUInt32BE = function (value, offset, noAssert) {
-  _writeUInt32(this, value, offset, false, noAssert);
-};
-
-Buffer.prototype.writeInt8 = function (value, offset, noAssert) {
-  if (!noAssert) {
-    assert(value !== undefined && value !== null, 'missing value');
-    assert(offset !== undefined && offset !== null, 'missing offset');
-    assert(offset < this.length, 'Trying to write beyond buffer length');
-    verifsint(value, 0x7f, -0x80);
-  }
-
-  if (offset >= this.length) return;
-
-  if (value >= 0) this.writeUInt8(value, offset, noAssert);else this.writeUInt8(0xff + value + 1, offset, noAssert);
-};
-
-function _writeInt16(buf, value, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(value !== undefined && value !== null, 'missing value');
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
-    assert(offset !== undefined && offset !== null, 'missing offset');
-    assert(offset + 1 < buf.length, 'Trying to write beyond buffer length');
-    verifsint(value, 0x7fff, -0x8000);
-  }
-
-  var len = buf.length;
-  if (offset >= len) return;
-
-  if (value >= 0) _writeUInt16(buf, value, offset, littleEndian, noAssert);else _writeUInt16(buf, 0xffff + value + 1, offset, littleEndian, noAssert);
-}
-
-Buffer.prototype.writeInt16LE = function (value, offset, noAssert) {
-  _writeInt16(this, value, offset, true, noAssert);
-};
-
-Buffer.prototype.writeInt16BE = function (value, offset, noAssert) {
-  _writeInt16(this, value, offset, false, noAssert);
-};
-
-function _writeInt32(buf, value, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(value !== undefined && value !== null, 'missing value');
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
-    assert(offset !== undefined && offset !== null, 'missing offset');
-    assert(offset + 3 < buf.length, 'Trying to write beyond buffer length');
-    verifsint(value, 0x7fffffff, -0x80000000);
-  }
-
-  var len = buf.length;
-  if (offset >= len) return;
-
-  if (value >= 0) _writeUInt32(buf, value, offset, littleEndian, noAssert);else _writeUInt32(buf, 0xffffffff + value + 1, offset, littleEndian, noAssert);
-}
-
-Buffer.prototype.writeInt32LE = function (value, offset, noAssert) {
-  _writeInt32(this, value, offset, true, noAssert);
-};
-
-Buffer.prototype.writeInt32BE = function (value, offset, noAssert) {
-  _writeInt32(this, value, offset, false, noAssert);
-};
-
-function _writeFloat(buf, value, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(value !== undefined && value !== null, 'missing value');
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
-    assert(offset !== undefined && offset !== null, 'missing offset');
-    assert(offset + 3 < buf.length, 'Trying to write beyond buffer length');
-    verifIEEE754(value, 3.4028234663852886e+38, -3.4028234663852886e+38);
-  }
-
-  var len = buf.length;
-  if (offset >= len) return;
-
-  ieee754.write(buf, value, offset, littleEndian, 23, 4);
-}
-
-Buffer.prototype.writeFloatLE = function (value, offset, noAssert) {
-  _writeFloat(this, value, offset, true, noAssert);
-};
-
-Buffer.prototype.writeFloatBE = function (value, offset, noAssert) {
-  _writeFloat(this, value, offset, false, noAssert);
-};
-
-function _writeDouble(buf, value, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    assert(value !== undefined && value !== null, 'missing value');
-    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
-    assert(offset !== undefined && offset !== null, 'missing offset');
-    assert(offset + 7 < buf.length, 'Trying to write beyond buffer length');
-    verifIEEE754(value, 1.7976931348623157E+308, -1.7976931348623157E+308);
-  }
-
-  var len = buf.length;
-  if (offset >= len) return;
-
-  ieee754.write(buf, value, offset, littleEndian, 52, 8);
-}
-
-Buffer.prototype.writeDoubleLE = function (value, offset, noAssert) {
-  _writeDouble(this, value, offset, true, noAssert);
-};
-
-Buffer.prototype.writeDoubleBE = function (value, offset, noAssert) {
-  _writeDouble(this, value, offset, false, noAssert);
-};
-
-// fill(value, start=0, end=buffer.length)
-Buffer.prototype.fill = function (value, start, end) {
-  if (!value) value = 0;
-  if (!start) start = 0;
-  if (!end) end = this.length;
-
-  if (typeof value === 'string') {
-    value = value.charCodeAt(0);
-  }
-
-  assert(typeof value === 'number' && !isNaN(value), 'value is not a number');
-  assert(end >= start, 'end < start');
-
-  // Fill 0 bytes; we're done
-  if (end === start) return;
-  if (this.length === 0) return;
-
-  assert(start >= 0 && start < this.length, 'start out of bounds');
-  assert(end >= 0 && end <= this.length, 'end out of bounds');
-
-  for (var i = start; i < end; i++) {
-    this[i] = value;
-  }
-};
-
-Buffer.prototype.inspect = function () {
-  var out = [];
-  var len = this.length;
-  for (var i = 0; i < len; i++) {
-    out[i] = toHex(this[i]);
-    if (i === exports.INSPECT_MAX_BYTES) {
-      out[i + 1] = '...';
-      break;
-    }
-  }
-  return '<Buffer ' + out.join(' ') + '>';
-};
-
-/**
- * Creates a new `ArrayBuffer` with the *copied* memory of the buffer instance.
- * Added in Node 0.12. Only available in browsers that support ArrayBuffer.
- */
-Buffer.prototype.toArrayBuffer = function () {
-  if (typeof Uint8Array !== 'undefined') {
-    if (Buffer._useTypedArrays) {
-      return new Buffer(this).buffer;
-    } else {
-      var buf = new Uint8Array(this.length);
-      for (var i = 0, len = buf.length; i < len; i += 1) buf[i] = this[i];
-      return buf.buffer;
-    }
-  } else {
-    throw new Error('Buffer.toArrayBuffer not supported in this browser');
-  }
-};
-
-// HELPER FUNCTIONS
-// ================
-
-function stringtrim(str) {
-  if (str.trim) return str.trim();
-  return str.replace(/^\s+|\s+$/g, '');
-}
-
-var BP = Buffer.prototype;
-
-/**
- * Augment a Uint8Array *instance* (not the Uint8Array class!) with Buffer methods
- */
-Buffer._augment = function (arr) {
-  arr._isBuffer = true;
-
-  // save reference to original Uint8Array get/set methods before overwriting
-  arr._get = arr.get;
-  arr._set = arr.set;
-
-  // deprecated, will be removed in node 0.13+
-  arr.get = BP.get;
-  arr.set = BP.set;
-
-  arr.write = BP.write;
-  arr.toString = BP.toString;
-  arr.toLocaleString = BP.toString;
-  arr.toJSON = BP.toJSON;
-  arr.copy = BP.copy;
-  arr.slice = BP.slice;
-  arr.readUInt8 = BP.readUInt8;
-  arr.readUInt16LE = BP.readUInt16LE;
-  arr.readUInt16BE = BP.readUInt16BE;
-  arr.readUInt32LE = BP.readUInt32LE;
-  arr.readUInt32BE = BP.readUInt32BE;
-  arr.readInt8 = BP.readInt8;
-  arr.readInt16LE = BP.readInt16LE;
-  arr.readInt16BE = BP.readInt16BE;
-  arr.readInt32LE = BP.readInt32LE;
-  arr.readInt32BE = BP.readInt32BE;
-  arr.readFloatLE = BP.readFloatLE;
-  arr.readFloatBE = BP.readFloatBE;
-  arr.readDoubleLE = BP.readDoubleLE;
-  arr.readDoubleBE = BP.readDoubleBE;
-  arr.writeUInt8 = BP.writeUInt8;
-  arr.writeUInt16LE = BP.writeUInt16LE;
-  arr.writeUInt16BE = BP.writeUInt16BE;
-  arr.writeUInt32LE = BP.writeUInt32LE;
-  arr.writeUInt32BE = BP.writeUInt32BE;
-  arr.writeInt8 = BP.writeInt8;
-  arr.writeInt16LE = BP.writeInt16LE;
-  arr.writeInt16BE = BP.writeInt16BE;
-  arr.writeInt32LE = BP.writeInt32LE;
-  arr.writeInt32BE = BP.writeInt32BE;
-  arr.writeFloatLE = BP.writeFloatLE;
-  arr.writeFloatBE = BP.writeFloatBE;
-  arr.writeDoubleLE = BP.writeDoubleLE;
-  arr.writeDoubleBE = BP.writeDoubleBE;
-  arr.fill = BP.fill;
-  arr.inspect = BP.inspect;
-  arr.toArrayBuffer = BP.toArrayBuffer;
-
-  return arr;
-};
-
-// slice(start, end)
-function clamp(index, len, defaultValue) {
-  if (typeof index !== 'number') return defaultValue;
-  index = ~ ~index; // Coerce to integer.
-  if (index >= len) return len;
-  if (index >= 0) return index;
-  index += len;
-  if (index >= 0) return index;
-  return 0;
-}
-
-function coerce(length) {
-  // Coerce length to a number (possibly NaN), round up
-  // in case it's fractional (e.g. 123.456) then do a
-  // double negate to coerce a NaN to 0. Easy, right?
-  length = ~ ~Math.ceil(+length);
-  return length < 0 ? 0 : length;
-}
-
-function isArray(subject) {
-  return (Array.isArray || function (subject) {
-    return Object.prototype.toString.call(subject) === '[object Array]';
-  })(subject);
-}
-
-function isArrayish(subject) {
-  return isArray(subject) || Buffer.isBuffer(subject) || subject && typeof subject === 'object' && typeof subject.length === 'number';
-}
-
-function toHex(n) {
-  if (n < 16) return '0' + n.toString(16);
-  return n.toString(16);
-}
-
-function utf8ToBytes(str) {
-  var byteArray = [];
-  for (var i = 0; i < str.length; i++) {
-    var b = str.charCodeAt(i);
-    if (b <= 0x7F) byteArray.push(str.charCodeAt(i));else {
-      var start = i;
-      if (b >= 0xD800 && b <= 0xDFFF) i++;
-      var h = encodeURIComponent(str.slice(start, i + 1)).substr(1).split('%');
-      for (var j = 0; j < h.length; j++) byteArray.push(parseInt(h[j], 16));
-    }
-  }
-  return byteArray;
-}
-
-function asciiToBytes(str) {
-  var byteArray = [];
-  for (var i = 0; i < str.length; i++) {
-    // Node's code seems to be doing this and not & 0x7F..
-    byteArray.push(str.charCodeAt(i) & 0xFF);
-  }
-  return byteArray;
-}
-
-function utf16leToBytes(str) {
-  var c, hi, lo;
-  var byteArray = [];
-  for (var i = 0; i < str.length; i++) {
-    c = str.charCodeAt(i);
-    hi = c >> 8;
-    lo = c % 256;
-    byteArray.push(lo);
-    byteArray.push(hi);
-  }
-
-  return byteArray;
-}
-
-function base64ToBytes(str) {
-  return base64.toByteArray(str);
-}
-
-function blitBuffer(src, dst, offset, length) {
-  var pos;
-  for (var i = 0; i < length; i++) {
-    if (i + offset >= dst.length || i >= src.length) break;
-    dst[i + offset] = src[i];
-  }
-  return i;
-}
-
-function decodeUtf8Char(str) {
-  try {
-    return decodeURIComponent(str);
-  } catch (err) {
-    return String.fromCharCode(0xFFFD); // UTF 8 invalid char
-  }
-}
-
-/*
- * We have to make sure that the value is a valid integer. This means that it
- * is non-negative. It has no fractional component and that it does not
- * exceed the maximum allowed value.
- */
-function verifuint(value, max) {
-  assert(typeof value === 'number', 'cannot write a non-number as a number');
-  assert(value >= 0, 'specified a negative value for writing an unsigned value');
-  assert(value <= max, 'value is larger than maximum value for type');
-  assert(Math.floor(value) === value, 'value has a fractional component');
-}
-
-function verifsint(value, max, min) {
-  assert(typeof value === 'number', 'cannot write a non-number as a number');
-  assert(value <= max, 'value larger than maximum allowed value');
-  assert(value >= min, 'value smaller than minimum allowed value');
-  assert(Math.floor(value) === value, 'value has a fractional component');
-}
-
-function verifIEEE754(value, max, min) {
-  assert(typeof value === 'number', 'cannot write a non-number as a number');
-  assert(value <= max, 'value larger than maximum allowed value');
-  assert(value >= min, 'value smaller than minimum allowed value');
-}
-
-function assert(test, message) {
-  if (!test) throw new Error(message || 'Failed assertion');
-}
-
-}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\..\\..\\..\\node_modules\\gulp-browserify\\node_modules\\browserify\\node_modules\\buffer\\index.js","/..\\..\\..\\..\\node_modules\\gulp-browserify\\node_modules\\browserify\\node_modules\\buffer")
-},{"/NJiQA":7,"base64-js":5,"buffer":4,"ieee754":6}],5:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-'use strict';
-
-var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
-
-;(function (exports) {
-	'use strict';
-
-	var Arr = typeof Uint8Array !== 'undefined' ? Uint8Array : Array;
-
-	var PLUS = '+'.charCodeAt(0);
-	var SLASH = '/'.charCodeAt(0);
-	var NUMBER = '0'.charCodeAt(0);
-	var LOWER = 'a'.charCodeAt(0);
-	var UPPER = 'A'.charCodeAt(0);
-	var PLUS_URL_SAFE = '-'.charCodeAt(0);
-	var SLASH_URL_SAFE = '_'.charCodeAt(0);
-
-	function decode(elt) {
-		var code = elt.charCodeAt(0);
-		if (code === PLUS || code === PLUS_URL_SAFE) return 62; // '+'
-		if (code === SLASH || code === SLASH_URL_SAFE) return 63; // '/'
-		if (code < NUMBER) return -1; //no match
-		if (code < NUMBER + 10) return code - NUMBER + 26 + 26;
-		if (code < UPPER + 26) return code - UPPER;
-		if (code < LOWER + 26) return code - LOWER + 26;
-	}
-
-	function b64ToByteArray(b64) {
-		var i, j, l, tmp, placeHolders, arr;
-
-		if (b64.length % 4 > 0) {
-			throw new Error('Invalid string. Length must be a multiple of 4');
-		}
-
-		// the number of equal signs (place holders)
-		// if there are two placeholders, than the two characters before it
-		// represent one byte
-		// if there is only one, then the three characters before it represent 2 bytes
-		// this is just a cheap hack to not do indexOf twice
-		var len = b64.length;
-		placeHolders = '=' === b64.charAt(len - 2) ? 2 : '=' === b64.charAt(len - 1) ? 1 : 0;
-
-		// base64 is 4/3 + up to two characters of the original data
-		arr = new Arr(b64.length * 3 / 4 - placeHolders);
-
-		// if there are placeholders, only get up to the last complete 4 chars
-		l = placeHolders > 0 ? b64.length - 4 : b64.length;
-
-		var L = 0;
-
-		function push(v) {
-			arr[L++] = v;
-		}
-
-		for (i = 0, j = 0; i < l; i += 4, j += 3) {
-			tmp = decode(b64.charAt(i)) << 18 | decode(b64.charAt(i + 1)) << 12 | decode(b64.charAt(i + 2)) << 6 | decode(b64.charAt(i + 3));
-			push((tmp & 0xFF0000) >> 16);
-			push((tmp & 0xFF00) >> 8);
-			push(tmp & 0xFF);
-		}
-
-		if (placeHolders === 2) {
-			tmp = decode(b64.charAt(i)) << 2 | decode(b64.charAt(i + 1)) >> 4;
-			push(tmp & 0xFF);
-		} else if (placeHolders === 1) {
-			tmp = decode(b64.charAt(i)) << 10 | decode(b64.charAt(i + 1)) << 4 | decode(b64.charAt(i + 2)) >> 2;
-			push(tmp >> 8 & 0xFF);
-			push(tmp & 0xFF);
-		}
-
-		return arr;
-	}
-
-	function uint8ToBase64(uint8) {
-		var i,
-		    extraBytes = uint8.length % 3,
-		    // if we have 1 byte left, pad 2 bytes
-		output = "",
-		    temp,
-		    length;
-
-		function encode(num) {
-			return lookup.charAt(num);
-		}
-
-		function tripletToBase64(num) {
-			return encode(num >> 18 & 0x3F) + encode(num >> 12 & 0x3F) + encode(num >> 6 & 0x3F) + encode(num & 0x3F);
-		}
-
-		// go through the array every three bytes, we'll deal with trailing stuff later
-		for (i = 0, length = uint8.length - extraBytes; i < length; i += 3) {
-			temp = (uint8[i] << 16) + (uint8[i + 1] << 8) + uint8[i + 2];
-			output += tripletToBase64(temp);
-		}
-
-		// pad the end with zeros, but make sure to not forget the extra bytes
-		switch (extraBytes) {
-			case 1:
-				temp = uint8[uint8.length - 1];
-				output += encode(temp >> 2);
-				output += encode(temp << 4 & 0x3F);
-				output += '==';
-				break;
-			case 2:
-				temp = (uint8[uint8.length - 2] << 8) + uint8[uint8.length - 1];
-				output += encode(temp >> 10);
-				output += encode(temp >> 4 & 0x3F);
-				output += encode(temp << 2 & 0x3F);
-				output += '=';
-				break;
-		}
-
-		return output;
-	}
-
-	exports.toByteArray = b64ToByteArray;
-	exports.fromByteArray = uint8ToBase64;
-})(typeof exports === 'undefined' ? undefined.base64js = {} : exports);
-
-}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\..\\..\\..\\node_modules\\gulp-browserify\\node_modules\\browserify\\node_modules\\buffer\\node_modules\\base64-js\\lib\\b64.js","/..\\..\\..\\..\\node_modules\\gulp-browserify\\node_modules\\browserify\\node_modules\\buffer\\node_modules\\base64-js\\lib")
-},{"/NJiQA":7,"buffer":4}],6:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-"use strict";
-
-exports.read = function (buffer, offset, isLE, mLen, nBytes) {
-  var e, m;
-  var eLen = nBytes * 8 - mLen - 1;
-  var eMax = (1 << eLen) - 1;
-  var eBias = eMax >> 1;
-  var nBits = -7;
-  var i = isLE ? nBytes - 1 : 0;
-  var d = isLE ? -1 : 1;
-  var s = buffer[offset + i];
-
-  i += d;
-
-  e = s & (1 << -nBits) - 1;
-  s >>= -nBits;
-  nBits += eLen;
-  for (; nBits > 0; e = e * 256 + buffer[offset + i], i += d, nBits -= 8) {}
-
-  m = e & (1 << -nBits) - 1;
-  e >>= -nBits;
-  nBits += mLen;
-  for (; nBits > 0; m = m * 256 + buffer[offset + i], i += d, nBits -= 8) {}
-
-  if (e === 0) {
-    e = 1 - eBias;
-  } else if (e === eMax) {
-    return m ? NaN : (s ? -1 : 1) * Infinity;
-  } else {
-    m = m + Math.pow(2, mLen);
-    e = e - eBias;
-  }
-  return (s ? -1 : 1) * m * Math.pow(2, e - mLen);
-};
-
-exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
-  var e, m, c;
-  var eLen = nBytes * 8 - mLen - 1;
-  var eMax = (1 << eLen) - 1;
-  var eBias = eMax >> 1;
-  var rt = mLen === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0;
-  var i = isLE ? 0 : nBytes - 1;
-  var d = isLE ? 1 : -1;
-  var s = value < 0 || value === 0 && 1 / value < 0 ? 1 : 0;
-
-  value = Math.abs(value);
-
-  if (isNaN(value) || value === Infinity) {
-    m = isNaN(value) ? 1 : 0;
-    e = eMax;
-  } else {
-    e = Math.floor(Math.log(value) / Math.LN2);
-    if (value * (c = Math.pow(2, -e)) < 1) {
-      e--;
-      c *= 2;
-    }
-    if (e + eBias >= 1) {
-      value += rt / c;
-    } else {
-      value += rt * Math.pow(2, 1 - eBias);
-    }
-    if (value * c >= 2) {
-      e++;
-      c /= 2;
-    }
-
-    if (e + eBias >= eMax) {
-      m = 0;
-      e = eMax;
-    } else if (e + eBias >= 1) {
-      m = (value * c - 1) * Math.pow(2, mLen);
-      e = e + eBias;
-    } else {
-      m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen);
-      e = 0;
-    }
-  }
-
-  for (; mLen >= 8; buffer[offset + i] = m & 0xff, i += d, m /= 256, mLen -= 8) {}
-
-  e = e << mLen | m;
-  eLen += mLen;
-  for (; eLen > 0; buffer[offset + i] = e & 0xff, i += d, e /= 256, eLen -= 8) {}
-
-  buffer[offset + i - d] |= s * 128;
-};
-
-}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\..\\..\\..\\node_modules\\gulp-browserify\\node_modules\\browserify\\node_modules\\buffer\\node_modules\\ieee754\\index.js","/..\\..\\..\\..\\node_modules\\gulp-browserify\\node_modules\\browserify\\node_modules\\buffer\\node_modules\\ieee754")
-},{"/NJiQA":7,"buffer":4}],7:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-// shim for using process in browser
-
-'use strict';
-
-var process = module.exports = {};
-
-process.nextTick = (function () {
-    var canSetImmediate = typeof window !== 'undefined' && window.setImmediate;
-    var canPost = typeof window !== 'undefined' && window.postMessage && window.addEventListener;
-
-    if (canSetImmediate) {
-        return function (f) {
-            return window.setImmediate(f);
-        };
-    }
-
-    if (canPost) {
-        var queue = [];
-        window.addEventListener('message', function (ev) {
-            var source = ev.source;
-            if ((source === window || source === null) && ev.data === 'process-tick') {
-                ev.stopPropagation();
-                if (queue.length > 0) {
-                    var fn = queue.shift();
-                    fn();
-                }
-            }
-        }, true);
-
-        return function nextTick(fn) {
-            queue.push(fn);
-            window.postMessage('process-tick', '*');
-        };
-    }
-
-    return function nextTick(fn) {
-        setTimeout(fn, 0);
-    };
-})();
-
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-// TODO(shtylman)
-process.cwd = function () {
-    return '/';
-};
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-
-}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\..\\..\\..\\node_modules\\gulp-browserify\\node_modules\\browserify\\node_modules\\process\\browser.js","/..\\..\\..\\..\\node_modules\\gulp-browserify\\node_modules\\browserify\\node_modules\\process")
-},{"/NJiQA":7,"buffer":4}],8:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-/*!
- * jQuery Smooth Scroll - v1.5.6 - 2015-09-08
- * https://github.com/kswedberg/jquery-smooth-scroll
- * Copyright (c) 2015 Karl Swedberg
- * Licensed MIT (https://github.com/kswedberg/jquery-smooth-scroll/blob/master/LICENSE-MIT)
- */
-
-'use strict';
-
-(function (factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['jquery'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS
-    factory(require('jquery'));
-  } else {
-    // Browser globals
-    factory(jQuery);
-  }
-})(function ($) {
-
-  var version = '1.5.6',
-      optionOverrides = {},
-      defaults = {
-    exclude: [],
-    excludeWithin: [],
-    offset: 0,
-
-    // one of 'top' or 'left'
-    direction: 'top',
-
-    // jQuery set of elements you wish to scroll (for $.smoothScroll).
-    //  if null (default), $('html, body').firstScrollable() is used.
-    scrollElement: null,
-
-    // only use if you want to override default behavior
-    scrollTarget: null,
-
-    // fn(opts) function to be called before scrolling occurs.
-    // `this` is the element(s) being scrolled
-    beforeScroll: function beforeScroll() {},
-
-    // fn(opts) function to be called after scrolling occurs.
-    // `this` is the triggering element
-    afterScroll: function afterScroll() {},
-    easing: 'swing',
-    speed: 400,
-
-    // coefficient for "auto" speed
-    autoCoefficient: 2,
-
-    // $.fn.smoothScroll only: whether to prevent the default click action
-    preventDefault: true
-  },
-      getScrollable = function getScrollable(opts) {
-    var scrollable = [],
-        scrolled = false,
-        dir = opts.dir && opts.dir === 'left' ? 'scrollLeft' : 'scrollTop';
-
-    this.each(function () {
-      var el = $(this);
-
-      if (this === document || this === window) {
-        return;
-      }
-
-      if (document.scrollingElement && (this === document.documentElement || this === document.body)) {
-        scrollable.push(document.scrollingElement);
-
-        return false;
-      }
-
-      if (el[dir]() > 0) {
-        scrollable.push(this);
-      } else {
-        // if scroll(Top|Left) === 0, nudge the element 1px and see if it moves
-        el[dir](1);
-        scrolled = el[dir]() > 0;
-        if (scrolled) {
-          scrollable.push(this);
-        }
-        // then put it back, of course
-        el[dir](0);
-      }
-    });
-
-    // If no scrollable elements, fall back to <body>,
-    // if it's in the jQuery collection
-    // (doing this because Safari sets scrollTop async,
-    // so can't set it to 1 and immediately get the value.)
-    if (!scrollable.length) {
-      this.each(function () {
-        if (this.nodeName === 'BODY') {
-          scrollable = [this];
-        }
-      });
-    }
-
-    // Use the first scrollable element if we're calling firstScrollable()
-    if (opts.el === 'first' && scrollable.length > 1) {
-      scrollable = [scrollable[0]];
-    }
-
-    return scrollable;
-  };
-
-  $.fn.extend({
-    scrollable: function scrollable(dir) {
-      var scrl = getScrollable.call(this, { dir: dir });
-      return this.pushStack(scrl);
-    },
-    firstScrollable: function firstScrollable(dir) {
-      var scrl = getScrollable.call(this, { el: 'first', dir: dir });
-      return this.pushStack(scrl);
-    },
-
-    smoothScroll: function smoothScroll(options, extra) {
-      options = options || {};
-
-      if (options === 'options') {
-        if (!extra) {
-          return this.first().data('ssOpts');
-        }
-        return this.each(function () {
-          var $this = $(this),
-              opts = $.extend($this.data('ssOpts') || {}, extra);
-
-          $(this).data('ssOpts', opts);
-        });
-      }
-
-      var opts = $.extend({}, $.fn.smoothScroll.defaults, options),
-          locationPath = $.smoothScroll.filterPath(location.pathname);
-
-      this.unbind('click.smoothscroll').bind('click.smoothscroll', function (event) {
-        var link = this,
-            $link = $(this),
-            thisOpts = $.extend({}, opts, $link.data('ssOpts') || {}),
-            exclude = opts.exclude,
-            excludeWithin = thisOpts.excludeWithin,
-            elCounter = 0,
-            ewlCounter = 0,
-            include = true,
-            clickOpts = {},
-            hostMatch = location.hostname === link.hostname || !link.hostname,
-            pathMatch = thisOpts.scrollTarget || $.smoothScroll.filterPath(link.pathname) === locationPath,
-            thisHash = escapeSelector(link.hash);
-
-        if (!thisOpts.scrollTarget && (!hostMatch || !pathMatch || !thisHash)) {
-          include = false;
-        } else {
-          while (include && elCounter < exclude.length) {
-            if ($link.is(escapeSelector(exclude[elCounter++]))) {
-              include = false;
-            }
-          }
-          while (include && ewlCounter < excludeWithin.length) {
-            if ($link.closest(excludeWithin[ewlCounter++]).length) {
-              include = false;
-            }
-          }
-        }
-
-        if (include) {
-
-          if (thisOpts.preventDefault) {
-            event.preventDefault();
-          }
-
-          $.extend(clickOpts, thisOpts, {
-            scrollTarget: thisOpts.scrollTarget || thisHash,
-            link: link
-          });
-
-          $.smoothScroll(clickOpts);
-        }
-      });
-
-      return this;
-    }
-  });
-
-  $.smoothScroll = function (options, px) {
-    if (options === 'options' && typeof px === 'object') {
-      return $.extend(optionOverrides, px);
-    }
-    var opts,
-        $scroller,
-        scrollTargetOffset,
-        speed,
-        delta,
-        scrollerOffset = 0,
-        offPos = 'offset',
-        scrollDir = 'scrollTop',
-        aniProps = {},
-        aniOpts = {};
-
-    if (typeof options === 'number') {
-      opts = $.extend({ link: null }, $.fn.smoothScroll.defaults, optionOverrides);
-      scrollTargetOffset = options;
-    } else {
-      opts = $.extend({ link: null }, $.fn.smoothScroll.defaults, options || {}, optionOverrides);
-      if (opts.scrollElement) {
-        offPos = 'position';
-        if (opts.scrollElement.css('position') === 'static') {
-          opts.scrollElement.css('position', 'relative');
-        }
-      }
-    }
-
-    scrollDir = opts.direction === 'left' ? 'scrollLeft' : scrollDir;
-
-    if (opts.scrollElement) {
-      $scroller = opts.scrollElement;
-      if (!/^(?:HTML|BODY)$/.test($scroller[0].nodeName)) {
-        scrollerOffset = $scroller[scrollDir]();
-      }
-    } else {
-      $scroller = $('html, body').firstScrollable(opts.direction);
-    }
-
-    // beforeScroll callback function must fire before calculating offset
-    opts.beforeScroll.call($scroller, opts);
-
-    scrollTargetOffset = typeof options === 'number' ? options : px || $(opts.scrollTarget)[offPos]() && $(opts.scrollTarget)[offPos]()[opts.direction] || 0;
-
-    aniProps[scrollDir] = scrollTargetOffset + scrollerOffset + opts.offset;
-    speed = opts.speed;
-
-    // automatically calculate the speed of the scroll based on distance / coefficient
-    if (speed === 'auto') {
-
-      // $scroller.scrollTop() is position before scroll, aniProps[scrollDir] is position after
-      // When delta is greater, speed will be greater.
-      delta = aniProps[scrollDir] - $scroller.scrollTop();
-      if (delta < 0) {
-        delta *= -1;
-      }
-
-      // Divide the delta by the coefficient
-      speed = delta / opts.autoCoefficient;
-    }
-
-    aniOpts = {
-      duration: speed,
-      easing: opts.easing,
-      complete: function complete() {
-        opts.afterScroll.call(opts.link, opts);
-      }
-    };
-
-    if (opts.step) {
-      aniOpts.step = opts.step;
-    }
-
-    if ($scroller.length) {
-      $scroller.stop().animate(aniProps, aniOpts);
-    } else {
-      opts.afterScroll.call(opts.link, opts);
-    }
-  };
-
-  $.smoothScroll.version = version;
-  $.smoothScroll.filterPath = function (string) {
-    string = string || '';
-    return string.replace(/^\//, '').replace(/(?:index|default).[a-zA-Z]{3,4}$/, '').replace(/\/$/, '');
-  };
-
-  // default options
-  $.fn.smoothScroll.defaults = defaults;
-
-  function escapeSelector(str) {
-    return str.replace(/(:|\.|\/)/g, '\\$1');
-  }
-});
-
-}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\..\\..\\..\\node_modules\\jquery-smooth-scroll\\jquery.smooth-scroll.js","/..\\..\\..\\..\\node_modules\\jquery-smooth-scroll")
-},{"/NJiQA":7,"buffer":4,"jquery":10}],9:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-/*!
- * jQuery Transit - CSS3 transitions and transformations
- * (c) 2011-2014 Rico Sta. Cruz
- * MIT Licensed.
- *
- * http://ricostacruz.com/jquery.transit
- * http://github.com/rstacruz/jquery.transit
- */
-
-/* jshint expr: true */
-
-'use strict';
-
-;(function (root, factory) {
-
-  if (typeof define === 'function' && define.amd) {
-    define(['jquery'], factory);
-  } else if (typeof exports === 'object') {
-    module.exports = factory(require('jquery'));
-  } else {
-    factory(root.jQuery);
-  }
-})(undefined, function ($) {
-
-  $.transit = {
-    version: "0.9.12",
-
-    // Map of $.css() keys to values for 'transitionProperty'.
-    // See https://developer.mozilla.org/en/CSS/CSS_transitions#Properties_that_can_be_animated
-    propertyMap: {
-      marginLeft: 'margin',
-      marginRight: 'margin',
-      marginBottom: 'margin',
-      marginTop: 'margin',
-      paddingLeft: 'padding',
-      paddingRight: 'padding',
-      paddingBottom: 'padding',
-      paddingTop: 'padding'
-    },
-
-    // Will simply transition "instantly" if false
-    enabled: true,
-
-    // Set this to false if you don't want to use the transition end property.
-    useTransitionEnd: false
-  };
-
-  var div = document.createElement('div');
-  var support = {};
-
-  // Helper function to get the proper vendor property name.
-  // (`transition` => `WebkitTransition`)
-  function getVendorPropertyName(prop) {
-    // Handle unprefixed versions (FF16+, for example)
-    if (prop in div.style) return prop;
-
-    var prefixes = ['Moz', 'Webkit', 'O', 'ms'];
-    var prop_ = prop.charAt(0).toUpperCase() + prop.substr(1);
-
-    for (var i = 0; i < prefixes.length; ++i) {
-      var vendorProp = prefixes[i] + prop_;
-      if (vendorProp in div.style) {
-        return vendorProp;
-      }
-    }
-  }
-
-  // Helper function to check if transform3D is supported.
-  // Should return true for Webkits and Firefox 10+.
-  function checkTransform3dSupport() {
-    div.style[support.transform] = '';
-    div.style[support.transform] = 'rotateY(90deg)';
-    return div.style[support.transform] !== '';
-  }
-
-  var isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-
-  // Check for the browser's transitions support.
-  support.transition = getVendorPropertyName('transition');
-  support.transitionDelay = getVendorPropertyName('transitionDelay');
-  support.transform = getVendorPropertyName('transform');
-  support.transformOrigin = getVendorPropertyName('transformOrigin');
-  support.filter = getVendorPropertyName('Filter');
-  support.transform3d = checkTransform3dSupport();
-
-  var eventNames = {
-    'transition': 'transitionend',
-    'MozTransition': 'transitionend',
-    'OTransition': 'oTransitionEnd',
-    'WebkitTransition': 'webkitTransitionEnd',
-    'msTransition': 'MSTransitionEnd'
-  };
-
-  // Detect the 'transitionend' event needed.
-  var transitionEnd = support.transitionEnd = eventNames[support.transition] || null;
-
-  // Populate jQuery's `$.support` with the vendor prefixes we know.
-  // As per [jQuery's cssHooks documentation](http://api.jquery.com/jQuery.cssHooks/),
-  // we set $.support.transition to a string of the actual property name used.
-  for (var key in support) {
-    if (support.hasOwnProperty(key) && typeof $.support[key] === 'undefined') {
-      $.support[key] = support[key];
-    }
-  }
-
-  // Avoid memory leak in IE.
-  div = null;
-
-  // ## $.cssEase
-  // List of easing aliases that you can use with `$.fn.transition`.
-  $.cssEase = {
-    '_default': 'ease',
-    'in': 'ease-in',
-    'out': 'ease-out',
-    'in-out': 'ease-in-out',
-    'snap': 'cubic-bezier(0,1,.5,1)',
-    // Penner equations
-    'easeInCubic': 'cubic-bezier(.550,.055,.675,.190)',
-    'easeOutCubic': 'cubic-bezier(.215,.61,.355,1)',
-    'easeInOutCubic': 'cubic-bezier(.645,.045,.355,1)',
-    'easeInCirc': 'cubic-bezier(.6,.04,.98,.335)',
-    'easeOutCirc': 'cubic-bezier(.075,.82,.165,1)',
-    'easeInOutCirc': 'cubic-bezier(.785,.135,.15,.86)',
-    'easeInExpo': 'cubic-bezier(.95,.05,.795,.035)',
-    'easeOutExpo': 'cubic-bezier(.19,1,.22,1)',
-    'easeInOutExpo': 'cubic-bezier(1,0,0,1)',
-    'easeInQuad': 'cubic-bezier(.55,.085,.68,.53)',
-    'easeOutQuad': 'cubic-bezier(.25,.46,.45,.94)',
-    'easeInOutQuad': 'cubic-bezier(.455,.03,.515,.955)',
-    'easeInQuart': 'cubic-bezier(.895,.03,.685,.22)',
-    'easeOutQuart': 'cubic-bezier(.165,.84,.44,1)',
-    'easeInOutQuart': 'cubic-bezier(.77,0,.175,1)',
-    'easeInQuint': 'cubic-bezier(.755,.05,.855,.06)',
-    'easeOutQuint': 'cubic-bezier(.23,1,.32,1)',
-    'easeInOutQuint': 'cubic-bezier(.86,0,.07,1)',
-    'easeInSine': 'cubic-bezier(.47,0,.745,.715)',
-    'easeOutSine': 'cubic-bezier(.39,.575,.565,1)',
-    'easeInOutSine': 'cubic-bezier(.445,.05,.55,.95)',
-    'easeInBack': 'cubic-bezier(.6,-.28,.735,.045)',
-    'easeOutBack': 'cubic-bezier(.175, .885,.32,1.275)',
-    'easeInOutBack': 'cubic-bezier(.68,-.55,.265,1.55)'
-  };
-
-  // ## 'transform' CSS hook
-  // Allows you to use the `transform` property in CSS.
-  //
-  //     $("#hello").css({ transform: "rotate(90deg)" });
-  //
-  //     $("#hello").css('transform');
-  //     //=> { rotate: '90deg' }
-  //
-  $.cssHooks['transit:transform'] = {
-    // The getter returns a `Transform` object.
-    get: function get(elem) {
-      return $(elem).data('transform') || new Transform();
-    },
-
-    // The setter accepts a `Transform` object or a string.
-    set: function set(elem, v) {
-      var value = v;
-
-      if (!(value instanceof Transform)) {
-        value = new Transform(value);
-      }
-
-      // We've seen the 3D version of Scale() not work in Chrome when the
-      // element being scaled extends outside of the viewport.  Thus, we're
-      // forcing Chrome to not use the 3d transforms as well.  Not sure if
-      // translate is affectede, but not risking it.  Detection code from
-      // http://davidwalsh.name/detecting-google-chrome-javascript
-      if (support.transform === 'WebkitTransform' && !isChrome) {
-        elem.style[support.transform] = value.toString(true);
-      } else {
-        elem.style[support.transform] = value.toString();
-      }
-
-      $(elem).data('transform', value);
-    }
-  };
-
-  // Add a CSS hook for `.css({ transform: '...' })`.
-  // In jQuery 1.8+, this will intentionally override the default `transform`
-  // CSS hook so it'll play well with Transit. (see issue #62)
-  $.cssHooks.transform = {
-    set: $.cssHooks['transit:transform'].set
-  };
-
-  // ## 'filter' CSS hook
-  // Allows you to use the `filter` property in CSS.
-  //
-  //     $("#hello").css({ filter: 'blur(10px)' });
-  //
-  $.cssHooks.filter = {
-    get: function get(elem) {
-      return elem.style[support.filter];
-    },
-    set: function set(elem, value) {
-      elem.style[support.filter] = value;
-    }
-  };
-
-  // jQuery 1.8+ supports prefix-free transitions, so these polyfills will not
-  // be necessary.
-  if ($.fn.jquery < "1.8") {
-    // ## 'transformOrigin' CSS hook
-    // Allows the use for `transformOrigin` to define where scaling and rotation
-    // is pivoted.
-    //
-    //     $("#hello").css({ transformOrigin: '0 0' });
-    //
-    $.cssHooks.transformOrigin = {
-      get: function get(elem) {
-        return elem.style[support.transformOrigin];
-      },
-      set: function set(elem, value) {
-        elem.style[support.transformOrigin] = value;
-      }
-    };
-
-    // ## 'transition' CSS hook
-    // Allows you to use the `transition` property in CSS.
-    //
-    //     $("#hello").css({ transition: 'all 0 ease 0' });
-    //
-    $.cssHooks.transition = {
-      get: function get(elem) {
-        return elem.style[support.transition];
-      },
-      set: function set(elem, value) {
-        elem.style[support.transition] = value;
-      }
-    };
-  }
-
-  // ## Other CSS hooks
-  // Allows you to rotate, scale and translate.
-  registerCssHook('scale');
-  registerCssHook('scaleX');
-  registerCssHook('scaleY');
-  registerCssHook('translate');
-  registerCssHook('rotate');
-  registerCssHook('rotateX');
-  registerCssHook('rotateY');
-  registerCssHook('rotate3d');
-  registerCssHook('perspective');
-  registerCssHook('skewX');
-  registerCssHook('skewY');
-  registerCssHook('x', true);
-  registerCssHook('y', true);
-
-  // ## Transform class
-  // This is the main class of a transformation property that powers
-  // `$.fn.css({ transform: '...' })`.
-  //
-  // This is, in essence, a dictionary object with key/values as `-transform`
-  // properties.
-  //
-  //     var t = new Transform("rotate(90) scale(4)");
-  //
-  //     t.rotate             //=> "90deg"
-  //     t.scale              //=> "4,4"
-  //
-  // Setters are accounted for.
-  //
-  //     t.set('rotate', 4)
-  //     t.rotate             //=> "4deg"
-  //
-  // Convert it to a CSS string using the `toString()` and `toString(true)` (for WebKit)
-  // functions.
-  //
-  //     t.toString()         //=> "rotate(90deg) scale(4,4)"
-  //     t.toString(true)     //=> "rotate(90deg) scale3d(4,4,0)" (WebKit version)
-  //
-  function Transform(str) {
-    if (typeof str === 'string') {
-      this.parse(str);
-    }
-    return this;
-  }
-
-  Transform.prototype = {
-    // ### setFromString()
-    // Sets a property from a string.
-    //
-    //     t.setFromString('scale', '2,4');
-    //     // Same as set('scale', '2', '4');
-    //
-    setFromString: function setFromString(prop, val) {
-      var args = typeof val === 'string' ? val.split(',') : val.constructor === Array ? val : [val];
-
-      args.unshift(prop);
-
-      Transform.prototype.set.apply(this, args);
-    },
-
-    // ### set()
-    // Sets a property.
-    //
-    //     t.set('scale', 2, 4);
-    //
-    set: function set(prop) {
-      var args = Array.prototype.slice.apply(arguments, [1]);
-      if (this.setter[prop]) {
-        this.setter[prop].apply(this, args);
-      } else {
-        this[prop] = args.join(',');
-      }
-    },
-
-    get: function get(prop) {
-      if (this.getter[prop]) {
-        return this.getter[prop].apply(this);
-      } else {
-        return this[prop] || 0;
-      }
-    },
-
-    setter: {
-      // ### rotate
-      //
-      //     .css({ rotate: 30 })
-      //     .css({ rotate: "30" })
-      //     .css({ rotate: "30deg" })
-      //     .css({ rotate: "30deg" })
-      //
-      rotate: function rotate(theta) {
-        this.rotate = unit(theta, 'deg');
-      },
-
-      rotateX: function rotateX(theta) {
-        this.rotateX = unit(theta, 'deg');
-      },
-
-      rotateY: function rotateY(theta) {
-        this.rotateY = unit(theta, 'deg');
-      },
-
-      // ### scale
-      //
-      //     .css({ scale: 9 })      //=> "scale(9,9)"
-      //     .css({ scale: '3,2' })  //=> "scale(3,2)"
-      //
-      scale: function scale(x, y) {
-        if (y === undefined) {
-          y = x;
-        }
-        this.scale = x + "," + y;
-      },
-
-      // ### skewX + skewY
-      skewX: function skewX(x) {
-        this.skewX = unit(x, 'deg');
-      },
-
-      skewY: function skewY(y) {
-        this.skewY = unit(y, 'deg');
-      },
-
-      // ### perspectvie
-      perspective: function perspective(dist) {
-        this.perspective = unit(dist, 'px');
-      },
-
-      // ### x / y
-      // Translations. Notice how this keeps the other value.
-      //
-      //     .css({ x: 4 })       //=> "translate(4px, 0)"
-      //     .css({ y: 10 })      //=> "translate(4px, 10px)"
-      //
-      x: function x(_x) {
-        this.set('translate', _x, null);
-      },
-
-      y: function y(_y) {
-        this.set('translate', null, _y);
-      },
-
-      // ### translate
-      // Notice how this keeps the other value.
-      //
-      //     .css({ translate: '2, 5' })    //=> "translate(2px, 5px)"
-      //
-      translate: function translate(x, y) {
-        if (this._translateX === undefined) {
-          this._translateX = 0;
-        }
-        if (this._translateY === undefined) {
-          this._translateY = 0;
-        }
-
-        if (x !== null && x !== undefined) {
-          this._translateX = unit(x, 'px');
-        }
-        if (y !== null && y !== undefined) {
-          this._translateY = unit(y, 'px');
-        }
-
-        this.translate = this._translateX + "," + this._translateY;
-      }
-    },
-
-    getter: {
-      x: function x() {
-        return this._translateX || 0;
-      },
-
-      y: function y() {
-        return this._translateY || 0;
-      },
-
-      scale: function scale() {
-        var s = (this.scale || "1,1").split(',');
-        if (s[0]) {
-          s[0] = parseFloat(s[0]);
-        }
-        if (s[1]) {
-          s[1] = parseFloat(s[1]);
-        }
-
-        // "2.5,2.5" => 2.5
-        // "2.5,1" => [2.5,1]
-        return s[0] === s[1] ? s[0] : s;
-      },
-
-      rotate3d: function rotate3d() {
-        var s = (this.rotate3d || "0,0,0,0deg").split(',');
-        for (var i = 0; i <= 3; ++i) {
-          if (s[i]) {
-            s[i] = parseFloat(s[i]);
-          }
-        }
-        if (s[3]) {
-          s[3] = unit(s[3], 'deg');
-        }
-
-        return s;
-      }
-    },
-
-    // ### parse()
-    // Parses from a string. Called on constructor.
-    parse: function parse(str) {
-      var self = this;
-      str.replace(/([a-zA-Z0-9]+)\((.*?)\)/g, function (x, prop, val) {
-        self.setFromString(prop, val);
-      });
-    },
-
-    // ### toString()
-    // Converts to a `transition` CSS property string. If `use3d` is given,
-    // it converts to a `-webkit-transition` CSS property string instead.
-    toString: function toString(use3d) {
-      var re = [];
-
-      for (var i in this) {
-        if (this.hasOwnProperty(i)) {
-          // Don't use 3D transformations if the browser can't support it.
-          if (!support.transform3d && (i === 'rotateX' || i === 'rotateY' || i === 'perspective' || i === 'transformOrigin')) {
-            continue;
-          }
-
-          if (i[0] !== '_') {
-            if (use3d && i === 'scale') {
-              re.push(i + "3d(" + this[i] + ",1)");
-            } else if (use3d && i === 'translate') {
-              re.push(i + "3d(" + this[i] + ",0)");
-            } else {
-              re.push(i + "(" + this[i] + ")");
-            }
-          }
-        }
-      }
-
-      return re.join(" ");
-    }
-  };
-
-  function callOrQueue(self, queue, fn) {
-    if (queue === true) {
-      self.queue(fn);
-    } else if (queue) {
-      self.queue(queue, fn);
-    } else {
-      self.each(function () {
-        fn.call(this);
-      });
-    }
-  }
-
-  // ### getProperties(dict)
-  // Returns properties (for `transition-property`) for dictionary `props`. The
-  // value of `props` is what you would expect in `$.css(...)`.
-  function getProperties(props) {
-    var re = [];
-
-    $.each(props, function (key) {
-      key = $.camelCase(key); // Convert "text-align" => "textAlign"
-      key = $.transit.propertyMap[key] || $.cssProps[key] || key;
-      key = uncamel(key); // Convert back to dasherized
-
-      // Get vendor specify propertie
-      if (support[key]) key = uncamel(support[key]);
-
-      if ($.inArray(key, re) === -1) {
-        re.push(key);
-      }
-    });
-
-    return re;
-  }
-
-  // ### getTransition()
-  // Returns the transition string to be used for the `transition` CSS property.
-  //
-  // Example:
-  //
-  //     getTransition({ opacity: 1, rotate: 30 }, 500, 'ease');
-  //     //=> 'opacity 500ms ease, -webkit-transform 500ms ease'
-  //
-  function getTransition(properties, duration, easing, delay) {
-    // Get the CSS properties needed.
-    var props = getProperties(properties);
-
-    // Account for aliases (`in` => `ease-in`).
-    if ($.cssEase[easing]) {
-      easing = $.cssEase[easing];
-    }
-
-    // Build the duration/easing/delay attributes for it.
-    var attribs = '' + toMS(duration) + ' ' + easing;
-    if (parseInt(delay, 10) > 0) {
-      attribs += ' ' + toMS(delay);
-    }
-
-    // For more properties, add them this way:
-    // "margin 200ms ease, padding 200ms ease, ..."
-    var transitions = [];
-    $.each(props, function (i, name) {
-      transitions.push(name + ' ' + attribs);
-    });
-
-    return transitions.join(', ');
-  }
-
-  // ## $.fn.transition
-  // Works like $.fn.animate(), but uses CSS transitions.
-  //
-  //     $("...").transition({ opacity: 0.1, scale: 0.3 });
-  //
-  //     // Specific duration
-  //     $("...").transition({ opacity: 0.1, scale: 0.3 }, 500);
-  //
-  //     // With duration and easing
-  //     $("...").transition({ opacity: 0.1, scale: 0.3 }, 500, 'in');
-  //
-  //     // With callback
-  //     $("...").transition({ opacity: 0.1, scale: 0.3 }, function() { ... });
-  //
-  //     // With everything
-  //     $("...").transition({ opacity: 0.1, scale: 0.3 }, 500, 'in', function() { ... });
-  //
-  //     // Alternate syntax
-  //     $("...").transition({
-  //       opacity: 0.1,
-  //       duration: 200,
-  //       delay: 40,
-  //       easing: 'in',
-  //       complete: function() { /* ... */ }
-  //      });
-  //
-  $.fn.transition = $.fn.transit = function (properties, duration, easing, callback) {
-    var self = this;
-    var delay = 0;
-    var queue = true;
-
-    var theseProperties = $.extend(true, {}, properties);
-
-    // Account for `.transition(properties, callback)`.
-    if (typeof duration === 'function') {
-      callback = duration;
-      duration = undefined;
-    }
-
-    // Account for `.transition(properties, options)`.
-    if (typeof duration === 'object') {
-      easing = duration.easing;
-      delay = duration.delay || 0;
-      queue = typeof duration.queue === "undefined" ? true : duration.queue;
-      callback = duration.complete;
-      duration = duration.duration;
-    }
-
-    // Account for `.transition(properties, duration, callback)`.
-    if (typeof easing === 'function') {
-      callback = easing;
-      easing = undefined;
-    }
-
-    // Alternate syntax.
-    if (typeof theseProperties.easing !== 'undefined') {
-      easing = theseProperties.easing;
-      delete theseProperties.easing;
-    }
-
-    if (typeof theseProperties.duration !== 'undefined') {
-      duration = theseProperties.duration;
-      delete theseProperties.duration;
-    }
-
-    if (typeof theseProperties.complete !== 'undefined') {
-      callback = theseProperties.complete;
-      delete theseProperties.complete;
-    }
-
-    if (typeof theseProperties.queue !== 'undefined') {
-      queue = theseProperties.queue;
-      delete theseProperties.queue;
-    }
-
-    if (typeof theseProperties.delay !== 'undefined') {
-      delay = theseProperties.delay;
-      delete theseProperties.delay;
-    }
-
-    // Set defaults. (`400` duration, `ease` easing)
-    if (typeof duration === 'undefined') {
-      duration = $.fx.speeds._default;
-    }
-    if (typeof easing === 'undefined') {
-      easing = $.cssEase._default;
-    }
-
-    duration = toMS(duration);
-
-    // Build the `transition` property.
-    var transitionValue = getTransition(theseProperties, duration, easing, delay);
-
-    // Compute delay until callback.
-    // If this becomes 0, don't bother setting the transition property.
-    var work = $.transit.enabled && support.transition;
-    var i = work ? parseInt(duration, 10) + parseInt(delay, 10) : 0;
-
-    // If there's nothing to do...
-    if (i === 0) {
-      var fn = function fn(next) {
-        self.css(theseProperties);
-        if (callback) {
-          callback.apply(self);
-        }
-        if (next) {
-          next();
-        }
-      };
-
-      callOrQueue(self, queue, fn);
-      return self;
-    }
-
-    // Save the old transitions of each element so we can restore it later.
-    var oldTransitions = {};
-
-    var run = function run(nextCall) {
-      var bound = false;
-
-      // Prepare the callback.
-      var cb = function cb() {
-        if (bound) {
-          self.unbind(transitionEnd, cb);
-        }
-
-        if (i > 0) {
-          self.each(function () {
-            this.style[support.transition] = oldTransitions[this] || null;
-          });
-        }
-
-        if (typeof callback === 'function') {
-          callback.apply(self);
-        }
-        if (typeof nextCall === 'function') {
-          nextCall();
-        }
-      };
-
-      if (i > 0 && transitionEnd && $.transit.useTransitionEnd) {
-        // Use the 'transitionend' event if it's available.
-        bound = true;
-        self.bind(transitionEnd, cb);
-      } else {
-        // Fallback to timers if the 'transitionend' event isn't supported.
-        window.setTimeout(cb, i);
-      }
-
-      // Apply transitions.
-      self.each(function () {
-        if (i > 0) {
-          this.style[support.transition] = transitionValue;
-        }
-        $(this).css(theseProperties);
-      });
-    };
-
-    // Defer running. This allows the browser to paint any pending CSS it hasn't
-    // painted yet before doing the transitions.
-    var deferredRun = function deferredRun(next) {
-      this.offsetWidth; // force a repaint
-      run(next);
-    };
-
-    // Use jQuery's fx queue.
-    callOrQueue(self, queue, deferredRun);
-
-    // Chainability.
-    return this;
-  };
-
-  function registerCssHook(prop, isPixels) {
-    // For certain properties, the 'px' should not be implied.
-    if (!isPixels) {
-      $.cssNumber[prop] = true;
-    }
-
-    $.transit.propertyMap[prop] = support.transform;
-
-    $.cssHooks[prop] = {
-      get: function get(elem) {
-        var t = $(elem).css('transit:transform');
-        return t.get(prop);
-      },
-
-      set: function set(elem, value) {
-        var t = $(elem).css('transit:transform');
-        t.setFromString(prop, value);
-
-        $(elem).css({ 'transit:transform': t });
-      }
-    };
-  }
-
-  // ### uncamel(str)
-  // Converts a camelcase string to a dasherized string.
-  // (`marginLeft` => `margin-left`)
-  function uncamel(str) {
-    return str.replace(/([A-Z])/g, function (letter) {
-      return '-' + letter.toLowerCase();
-    });
-  }
-
-  // ### unit(number, unit)
-  // Ensures that number `number` has a unit. If no unit is found, assume the
-  // default is `unit`.
-  //
-  //     unit(2, 'px')          //=> "2px"
-  //     unit("30deg", 'rad')   //=> "30deg"
-  //
-  function unit(i, units) {
-    if (typeof i === "string" && !i.match(/^[\-0-9\.]+$/)) {
-      return i;
-    } else {
-      return "" + i + units;
-    }
-  }
-
-  // ### toMS(duration)
-  // Converts given `duration` to a millisecond string.
-  //
-  // toMS('fast') => $.fx.speeds[i] => "200ms"
-  // toMS('normal') //=> $.fx.speeds._default => "400ms"
-  // toMS(10) //=> '10ms'
-  // toMS('100ms') //=> '100ms' 
-  //
-  function toMS(duration) {
-    var i = duration;
-
-    // Allow string durations like 'fast' and 'slow', without overriding numeric values.
-    if (typeof i === 'string' && !i.match(/^[\-0-9\.]+/)) {
-      i = $.fx.speeds[i] || $.fx.speeds._default;
-    }
-
-    return unit(i, 'ms');
-  }
-
-  // Export some functions for testable-ness.
-  $.transit.getTransitionValue = getTransition;
-
-  return $;
-});
-
-}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\..\\..\\..\\node_modules\\jquery.transit\\jquery.transit.js","/..\\..\\..\\..\\node_modules\\jquery.transit")
-},{"/NJiQA":7,"buffer":4,"jquery":10}],10:[function(require,module,exports){
+}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_a1edb15c.js","/")
+},{"./App":1,"./lib\\jquery\\dist\\jquery.js":3,"./views/ViewHome":4,"/NJiQA":8,"buffer":5}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /*!
  * jQuery JavaScript Library v2.1.4
@@ -4102,5 +1541,2566 @@ _$=window.$;jQuery.noConflict = function(deep){if(window.$ === jQuery){window.$ 
 // and CommonJS for browser emulators (#13566)
 if(typeof noGlobal === strundefined){window.jQuery = window.$ = jQuery;}return jQuery;}); // Otherwise append directly
 
-}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\..\\..\\..\\node_modules\\jquery\\dist\\jquery.js","/..\\..\\..\\..\\node_modules\\jquery\\dist")
-},{"/NJiQA":7,"buffer":4}]},{},[2])
+}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/lib\\jquery\\dist\\jquery.js","/lib\\jquery\\dist")
+},{"/NJiQA":8,"buffer":5}],4:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+//var util = require('util');
+
+'use strict';
+
+var smoothScroll = require('jquery-smooth-scroll');
+var transit = require('jquery.transit');
+
+//TODO: use scrollmagic instead? https://janpaepke.github.io/ScrollMagic/
+//var waypoints = require('waypoints');
+
+module.exports = {
+    _el: null,
+    headerOffset: 0,
+
+    init: function init($el) {
+        var _this = this;
+
+        _this._el = $el;
+        _this.headerOffset = parseInt('-' + _this._el.find('header').outerHeight(), 10);
+
+        _this.bindEvents();
+        _this.menuActivation();
+
+        _this.getPortfolioJson(function (err, res) {
+            if (err) {
+                return console.log(err);
+            }
+            _this.showPortfolioItem(res);
+            _this.portfolioAnim();
+            _this._el.find('.portfolio li').hover(function () {
+                $(this).addClass('is-active');
+            }, function () {
+                $(this).removeClass('is-active');
+            });
+        });
+
+        $.each(_this._el.find('.skillset').find('li'), function () {
+            _this.skillPercent($(this));
+        });
+    },
+
+    //-- Functions
+    //--------------------------------------------------------------
+    bindEvents: function bindEvents() {
+        var _this = this;
+
+        _this._el.find('nav').find('a').on("click", function (e) {
+            var clickedItem = $(this);
+            e.preventDefault();
+            $.smoothScroll({
+                scrollTarget: $(this).attr('href'),
+                offset: self.headerOffset,
+                //easing: 'easeInOutExpo',
+                speed: 1000,
+                afterScroll: function afterScroll() {
+                    _this._el.find('nav .active').removeClass('active');
+                    clickedItem.addClass('active');
+                }
+            });
+        });
+    },
+
+    skillPercent: function skillPercent($element) {
+        var _this = this;
+        var $percentBar = $element.find('.percent');
+        var $percentDiv = $element.find('.right');
+        var percentValue = $percentBar.attr('data-percent');
+
+        $percentBar.css({ width: percentValue + "%" });
+
+        //$element.waypoint(function() {
+        //    $element.addClass('is-active');
+        //
+        //    var intervalCalls = 0;
+        //    var animateVal = setInterval(function() {
+        //        intervalCalls ++;
+        //        var newValue = Math.round(intervalCalls * (percentValue / 100));
+        //        $percentDiv.text(newValue + '%');
+        //
+        //        if (newValue >= percentValue) {
+        //            clearInterval(animateVal);
+        //        }
+        //    }, 20);
+        //}, {triggerOnce: true, offset: '80%'});
+    },
+
+    menuActivation: function menuActivation() {
+        var _this = this;
+        var $menu = _this._el.find('nav');
+
+        $.each(_this._el.find('.main').find('section'), function (index, value) {
+            var elName = $(this).attr('id');
+            var menuEl = $menu.find('.' + elName);
+
+            //$(this).waypoint(function() {
+            //    $menu.find('.active').removeClass('active');
+            //    menuEl.addClass('active');
+            //});
+        });
+    },
+
+    getPortfolioJson: function getPortfolioJson(callback) {
+        var _this = this;
+
+        $.ajax({
+            url: '/data/work.json',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: null,
+            type: 'POST'
+        }).done(function (data, textStatus, jqXHR) {
+            var result = typeof data == "string" ? $.parseJSON(data) : data;
+            return callback(null, result);
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            return callback(['fail', errorThrown], null);
+        });
+    },
+
+    showPortfolioItem: function showPortfolioItem(data) {
+        var _this = this;
+        var html = '';
+        var activeClass = '';
+
+        if (window.deviceType == 'tablet' || window.deviceType == 'mobile') {
+            activeClass = 'is-active';
+        }
+
+        $.each(data, function (index, value) {
+            html += '<li class="' + activeClass + '">' + '<a href="' + value.link + '">' + '<img src="/assets/img/portfolio/placeholder.jpg" data-src="/assets/img/portfolio/' + value.images.thumb + '" alt="" height="200" width="350" />' + '</a>' + '<div class="info">' + '<p>' + value.title + '</p>' + '<p class="link">Link: <a href="' + value.link + '">' + value.link + '</a></p>' + '<p>Date: ' + value.date + '</p>' + '<p>While working at: <a href="' + value.company.link + '">' + value.company.name + '</a></p>' + '</div>' + '</li>';
+        });
+
+        _this._el.find('.portfolio').find('.portfolioList').html(html);
+    },
+
+    portfolioAnim: function portfolioAnim() {
+        var _this = this;
+
+        //_this._el.find('.portfolioList').find('li').waypoint(function (direction) {
+        //    var $item = $(this);
+        //    var itemsPerRow = 3;
+        //
+        //    if (window.deviceType == 'tablet') {
+        //        itemsPerRow = 2;
+        //    } else if (window.deviceType == 'mobile') {
+        //        itemsPerRow = 1;
+        //    }
+        //
+        //    var position = $(this).index() % itemsPerRow;
+        //    var delay = Math.round((1/3 * position) * 500);
+        //
+        //    setTimeout(function () {
+        //        var $img = $item.find('img');
+        //        $img.attr('src', $img.data('src'));
+        //        $item.addClass('is-visible');
+        //    }, delay);
+        //}, {
+        //    offset: '100%',
+        //    triggerOnce: true
+        //});
+    }
+};
+
+}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/views\\ViewHome.js","/views")
+},{"/NJiQA":8,"buffer":5,"jquery-smooth-scroll":9,"jquery.transit":10}],5:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @license  MIT
+ */
+
+'use strict';
+
+var base64 = require('base64-js');
+var ieee754 = require('ieee754');
+
+exports.Buffer = Buffer;
+exports.SlowBuffer = Buffer;
+exports.INSPECT_MAX_BYTES = 50;
+Buffer.poolSize = 8192;
+
+/**
+ * If `Buffer._useTypedArrays`:
+ *   === true    Use Uint8Array implementation (fastest)
+ *   === false   Use Object implementation (compatible down to IE6)
+ */
+Buffer._useTypedArrays = (function () {
+  // Detect if browser supports Typed Arrays. Supported browsers are IE 10+, Firefox 4+,
+  // Chrome 7+, Safari 5.1+, Opera 11.6+, iOS 4.2+. If the browser does not support adding
+  // properties to `Uint8Array` instances, then that's the same as no `Uint8Array` support
+  // because we need to be able to add all the node Buffer API methods. This is an issue
+  // in Firefox 4-29. Now fixed: https://bugzilla.mozilla.org/show_bug.cgi?id=695438
+  try {
+    var buf = new ArrayBuffer(0);
+    var arr = new Uint8Array(buf);
+    arr.foo = function () {
+      return 42;
+    };
+    return 42 === arr.foo() && typeof arr.subarray === 'function'; // Chrome 9-10 lack `subarray`
+  } catch (e) {
+    return false;
+  }
+})();
+
+/**
+ * Class: Buffer
+ * =============
+ *
+ * The Buffer constructor returns instances of `Uint8Array` that are augmented
+ * with function properties for all the node `Buffer` API functions. We use
+ * `Uint8Array` so that square bracket notation works as expected -- it returns
+ * a single octet.
+ *
+ * By augmenting the instances, we can avoid modifying the `Uint8Array`
+ * prototype.
+ */
+function Buffer(subject, encoding, noZero) {
+  if (!(this instanceof Buffer)) return new Buffer(subject, encoding, noZero);
+
+  var type = typeof subject;
+
+  // Workaround: node's base64 implementation allows for non-padded strings
+  // while base64-js does not.
+  if (encoding === 'base64' && type === 'string') {
+    subject = stringtrim(subject);
+    while (subject.length % 4 !== 0) {
+      subject = subject + '=';
+    }
+  }
+
+  // Find the length
+  var length;
+  if (type === 'number') length = coerce(subject);else if (type === 'string') length = Buffer.byteLength(subject, encoding);else if (type === 'object') length = coerce(subject.length); // assume that object is array-like
+  else throw new Error('First argument needs to be a number, array or string.');
+
+  var buf;
+  if (Buffer._useTypedArrays) {
+    // Preferred: Return an augmented `Uint8Array` instance for best performance
+    buf = Buffer._augment(new Uint8Array(length));
+  } else {
+    // Fallback: Return THIS instance of Buffer (created by `new`)
+    buf = this;
+    buf.length = length;
+    buf._isBuffer = true;
+  }
+
+  var i;
+  if (Buffer._useTypedArrays && typeof subject.byteLength === 'number') {
+    // Speed optimization -- use set if we're copying from a typed array
+    buf._set(subject);
+  } else if (isArrayish(subject)) {
+    // Treat array-ish objects as a byte array
+    for (i = 0; i < length; i++) {
+      if (Buffer.isBuffer(subject)) buf[i] = subject.readUInt8(i);else buf[i] = subject[i];
+    }
+  } else if (type === 'string') {
+    buf.write(subject, 0, encoding);
+  } else if (type === 'number' && !Buffer._useTypedArrays && !noZero) {
+    for (i = 0; i < length; i++) {
+      buf[i] = 0;
+    }
+  }
+
+  return buf;
+}
+
+// STATIC METHODS
+// ==============
+
+Buffer.isEncoding = function (encoding) {
+  switch (String(encoding).toLowerCase()) {
+    case 'hex':
+    case 'utf8':
+    case 'utf-8':
+    case 'ascii':
+    case 'binary':
+    case 'base64':
+    case 'raw':
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+      return true;
+    default:
+      return false;
+  }
+};
+
+Buffer.isBuffer = function (b) {
+  return !!(b !== null && b !== undefined && b._isBuffer);
+};
+
+Buffer.byteLength = function (str, encoding) {
+  var ret;
+  str = str + '';
+  switch (encoding || 'utf8') {
+    case 'hex':
+      ret = str.length / 2;
+      break;
+    case 'utf8':
+    case 'utf-8':
+      ret = utf8ToBytes(str).length;
+      break;
+    case 'ascii':
+    case 'binary':
+    case 'raw':
+      ret = str.length;
+      break;
+    case 'base64':
+      ret = base64ToBytes(str).length;
+      break;
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+      ret = str.length * 2;
+      break;
+    default:
+      throw new Error('Unknown encoding');
+  }
+  return ret;
+};
+
+Buffer.concat = function (list, totalLength) {
+  assert(isArray(list), 'Usage: Buffer.concat(list, [totalLength])\n' + 'list should be an Array.');
+
+  if (list.length === 0) {
+    return new Buffer(0);
+  } else if (list.length === 1) {
+    return list[0];
+  }
+
+  var i;
+  if (typeof totalLength !== 'number') {
+    totalLength = 0;
+    for (i = 0; i < list.length; i++) {
+      totalLength += list[i].length;
+    }
+  }
+
+  var buf = new Buffer(totalLength);
+  var pos = 0;
+  for (i = 0; i < list.length; i++) {
+    var item = list[i];
+    item.copy(buf, pos);
+    pos += item.length;
+  }
+  return buf;
+};
+
+// BUFFER INSTANCE METHODS
+// =======================
+
+function _hexWrite(buf, string, offset, length) {
+  offset = Number(offset) || 0;
+  var remaining = buf.length - offset;
+  if (!length) {
+    length = remaining;
+  } else {
+    length = Number(length);
+    if (length > remaining) {
+      length = remaining;
+    }
+  }
+
+  // must be an even number of digits
+  var strLen = string.length;
+  assert(strLen % 2 === 0, 'Invalid hex string');
+
+  if (length > strLen / 2) {
+    length = strLen / 2;
+  }
+  for (var i = 0; i < length; i++) {
+    var byte = parseInt(string.substr(i * 2, 2), 16);
+    assert(!isNaN(byte), 'Invalid hex string');
+    buf[offset + i] = byte;
+  }
+  Buffer._charsWritten = i * 2;
+  return i;
+}
+
+function _utf8Write(buf, string, offset, length) {
+  var charsWritten = Buffer._charsWritten = blitBuffer(utf8ToBytes(string), buf, offset, length);
+  return charsWritten;
+}
+
+function _asciiWrite(buf, string, offset, length) {
+  var charsWritten = Buffer._charsWritten = blitBuffer(asciiToBytes(string), buf, offset, length);
+  return charsWritten;
+}
+
+function _binaryWrite(buf, string, offset, length) {
+  return _asciiWrite(buf, string, offset, length);
+}
+
+function _base64Write(buf, string, offset, length) {
+  var charsWritten = Buffer._charsWritten = blitBuffer(base64ToBytes(string), buf, offset, length);
+  return charsWritten;
+}
+
+function _utf16leWrite(buf, string, offset, length) {
+  var charsWritten = Buffer._charsWritten = blitBuffer(utf16leToBytes(string), buf, offset, length);
+  return charsWritten;
+}
+
+Buffer.prototype.write = function (string, offset, length, encoding) {
+  // Support both (string, offset, length, encoding)
+  // and the legacy (string, encoding, offset, length)
+  if (isFinite(offset)) {
+    if (!isFinite(length)) {
+      encoding = length;
+      length = undefined;
+    }
+  } else {
+    // legacy
+    var swap = encoding;
+    encoding = offset;
+    offset = length;
+    length = swap;
+  }
+
+  offset = Number(offset) || 0;
+  var remaining = this.length - offset;
+  if (!length) {
+    length = remaining;
+  } else {
+    length = Number(length);
+    if (length > remaining) {
+      length = remaining;
+    }
+  }
+  encoding = String(encoding || 'utf8').toLowerCase();
+
+  var ret;
+  switch (encoding) {
+    case 'hex':
+      ret = _hexWrite(this, string, offset, length);
+      break;
+    case 'utf8':
+    case 'utf-8':
+      ret = _utf8Write(this, string, offset, length);
+      break;
+    case 'ascii':
+      ret = _asciiWrite(this, string, offset, length);
+      break;
+    case 'binary':
+      ret = _binaryWrite(this, string, offset, length);
+      break;
+    case 'base64':
+      ret = _base64Write(this, string, offset, length);
+      break;
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+      ret = _utf16leWrite(this, string, offset, length);
+      break;
+    default:
+      throw new Error('Unknown encoding');
+  }
+  return ret;
+};
+
+Buffer.prototype.toString = function (encoding, start, end) {
+  var self = this;
+
+  encoding = String(encoding || 'utf8').toLowerCase();
+  start = Number(start) || 0;
+  end = end !== undefined ? Number(end) : end = self.length;
+
+  // Fastpath empty strings
+  if (end === start) return '';
+
+  var ret;
+  switch (encoding) {
+    case 'hex':
+      ret = _hexSlice(self, start, end);
+      break;
+    case 'utf8':
+    case 'utf-8':
+      ret = _utf8Slice(self, start, end);
+      break;
+    case 'ascii':
+      ret = _asciiSlice(self, start, end);
+      break;
+    case 'binary':
+      ret = _binarySlice(self, start, end);
+      break;
+    case 'base64':
+      ret = _base64Slice(self, start, end);
+      break;
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+      ret = _utf16leSlice(self, start, end);
+      break;
+    default:
+      throw new Error('Unknown encoding');
+  }
+  return ret;
+};
+
+Buffer.prototype.toJSON = function () {
+  return {
+    type: 'Buffer',
+    data: Array.prototype.slice.call(this._arr || this, 0)
+  };
+};
+
+// copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
+Buffer.prototype.copy = function (target, target_start, start, end) {
+  var source = this;
+
+  if (!start) start = 0;
+  if (!end && end !== 0) end = this.length;
+  if (!target_start) target_start = 0;
+
+  // Copy 0 bytes; we're done
+  if (end === start) return;
+  if (target.length === 0 || source.length === 0) return;
+
+  // Fatal error conditions
+  assert(end >= start, 'sourceEnd < sourceStart');
+  assert(target_start >= 0 && target_start < target.length, 'targetStart out of bounds');
+  assert(start >= 0 && start < source.length, 'sourceStart out of bounds');
+  assert(end >= 0 && end <= source.length, 'sourceEnd out of bounds');
+
+  // Are we oob?
+  if (end > this.length) end = this.length;
+  if (target.length - target_start < end - start) end = target.length - target_start + start;
+
+  var len = end - start;
+
+  if (len < 100 || !Buffer._useTypedArrays) {
+    for (var i = 0; i < len; i++) target[i + target_start] = this[i + start];
+  } else {
+    target._set(this.subarray(start, start + len), target_start);
+  }
+};
+
+function _base64Slice(buf, start, end) {
+  if (start === 0 && end === buf.length) {
+    return base64.fromByteArray(buf);
+  } else {
+    return base64.fromByteArray(buf.slice(start, end));
+  }
+}
+
+function _utf8Slice(buf, start, end) {
+  var res = '';
+  var tmp = '';
+  end = Math.min(buf.length, end);
+
+  for (var i = start; i < end; i++) {
+    if (buf[i] <= 0x7F) {
+      res += decodeUtf8Char(tmp) + String.fromCharCode(buf[i]);
+      tmp = '';
+    } else {
+      tmp += '%' + buf[i].toString(16);
+    }
+  }
+
+  return res + decodeUtf8Char(tmp);
+}
+
+function _asciiSlice(buf, start, end) {
+  var ret = '';
+  end = Math.min(buf.length, end);
+
+  for (var i = start; i < end; i++) ret += String.fromCharCode(buf[i]);
+  return ret;
+}
+
+function _binarySlice(buf, start, end) {
+  return _asciiSlice(buf, start, end);
+}
+
+function _hexSlice(buf, start, end) {
+  var len = buf.length;
+
+  if (!start || start < 0) start = 0;
+  if (!end || end < 0 || end > len) end = len;
+
+  var out = '';
+  for (var i = start; i < end; i++) {
+    out += toHex(buf[i]);
+  }
+  return out;
+}
+
+function _utf16leSlice(buf, start, end) {
+  var bytes = buf.slice(start, end);
+  var res = '';
+  for (var i = 0; i < bytes.length; i += 2) {
+    res += String.fromCharCode(bytes[i] + bytes[i + 1] * 256);
+  }
+  return res;
+}
+
+Buffer.prototype.slice = function (start, end) {
+  var len = this.length;
+  start = clamp(start, len, 0);
+  end = clamp(end, len, len);
+
+  if (Buffer._useTypedArrays) {
+    return Buffer._augment(this.subarray(start, end));
+  } else {
+    var sliceLen = end - start;
+    var newBuf = new Buffer(sliceLen, undefined, true);
+    for (var i = 0; i < sliceLen; i++) {
+      newBuf[i] = this[i + start];
+    }
+    return newBuf;
+  }
+};
+
+// `get` will be removed in Node 0.13+
+Buffer.prototype.get = function (offset) {
+  console.log('.get() is deprecated. Access using array indexes instead.');
+  return this.readUInt8(offset);
+};
+
+// `set` will be removed in Node 0.13+
+Buffer.prototype.set = function (v, offset) {
+  console.log('.set() is deprecated. Access using array indexes instead.');
+  return this.writeUInt8(v, offset);
+};
+
+Buffer.prototype.readUInt8 = function (offset, noAssert) {
+  if (!noAssert) {
+    assert(offset !== undefined && offset !== null, 'missing offset');
+    assert(offset < this.length, 'Trying to read beyond buffer length');
+  }
+
+  if (offset >= this.length) return;
+
+  return this[offset];
+};
+
+function _readUInt16(buf, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
+    assert(offset !== undefined && offset !== null, 'missing offset');
+    assert(offset + 1 < buf.length, 'Trying to read beyond buffer length');
+  }
+
+  var len = buf.length;
+  if (offset >= len) return;
+
+  var val;
+  if (littleEndian) {
+    val = buf[offset];
+    if (offset + 1 < len) val |= buf[offset + 1] << 8;
+  } else {
+    val = buf[offset] << 8;
+    if (offset + 1 < len) val |= buf[offset + 1];
+  }
+  return val;
+}
+
+Buffer.prototype.readUInt16LE = function (offset, noAssert) {
+  return _readUInt16(this, offset, true, noAssert);
+};
+
+Buffer.prototype.readUInt16BE = function (offset, noAssert) {
+  return _readUInt16(this, offset, false, noAssert);
+};
+
+function _readUInt32(buf, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
+    assert(offset !== undefined && offset !== null, 'missing offset');
+    assert(offset + 3 < buf.length, 'Trying to read beyond buffer length');
+  }
+
+  var len = buf.length;
+  if (offset >= len) return;
+
+  var val;
+  if (littleEndian) {
+    if (offset + 2 < len) val = buf[offset + 2] << 16;
+    if (offset + 1 < len) val |= buf[offset + 1] << 8;
+    val |= buf[offset];
+    if (offset + 3 < len) val = val + (buf[offset + 3] << 24 >>> 0);
+  } else {
+    if (offset + 1 < len) val = buf[offset + 1] << 16;
+    if (offset + 2 < len) val |= buf[offset + 2] << 8;
+    if (offset + 3 < len) val |= buf[offset + 3];
+    val = val + (buf[offset] << 24 >>> 0);
+  }
+  return val;
+}
+
+Buffer.prototype.readUInt32LE = function (offset, noAssert) {
+  return _readUInt32(this, offset, true, noAssert);
+};
+
+Buffer.prototype.readUInt32BE = function (offset, noAssert) {
+  return _readUInt32(this, offset, false, noAssert);
+};
+
+Buffer.prototype.readInt8 = function (offset, noAssert) {
+  if (!noAssert) {
+    assert(offset !== undefined && offset !== null, 'missing offset');
+    assert(offset < this.length, 'Trying to read beyond buffer length');
+  }
+
+  if (offset >= this.length) return;
+
+  var neg = this[offset] & 0x80;
+  if (neg) return (0xff - this[offset] + 1) * -1;else return this[offset];
+};
+
+function _readInt16(buf, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
+    assert(offset !== undefined && offset !== null, 'missing offset');
+    assert(offset + 1 < buf.length, 'Trying to read beyond buffer length');
+  }
+
+  var len = buf.length;
+  if (offset >= len) return;
+
+  var val = _readUInt16(buf, offset, littleEndian, true);
+  var neg = val & 0x8000;
+  if (neg) return (0xffff - val + 1) * -1;else return val;
+}
+
+Buffer.prototype.readInt16LE = function (offset, noAssert) {
+  return _readInt16(this, offset, true, noAssert);
+};
+
+Buffer.prototype.readInt16BE = function (offset, noAssert) {
+  return _readInt16(this, offset, false, noAssert);
+};
+
+function _readInt32(buf, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
+    assert(offset !== undefined && offset !== null, 'missing offset');
+    assert(offset + 3 < buf.length, 'Trying to read beyond buffer length');
+  }
+
+  var len = buf.length;
+  if (offset >= len) return;
+
+  var val = _readUInt32(buf, offset, littleEndian, true);
+  var neg = val & 0x80000000;
+  if (neg) return (0xffffffff - val + 1) * -1;else return val;
+}
+
+Buffer.prototype.readInt32LE = function (offset, noAssert) {
+  return _readInt32(this, offset, true, noAssert);
+};
+
+Buffer.prototype.readInt32BE = function (offset, noAssert) {
+  return _readInt32(this, offset, false, noAssert);
+};
+
+function _readFloat(buf, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
+    assert(offset + 3 < buf.length, 'Trying to read beyond buffer length');
+  }
+
+  return ieee754.read(buf, offset, littleEndian, 23, 4);
+}
+
+Buffer.prototype.readFloatLE = function (offset, noAssert) {
+  return _readFloat(this, offset, true, noAssert);
+};
+
+Buffer.prototype.readFloatBE = function (offset, noAssert) {
+  return _readFloat(this, offset, false, noAssert);
+};
+
+function _readDouble(buf, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
+    assert(offset + 7 < buf.length, 'Trying to read beyond buffer length');
+  }
+
+  return ieee754.read(buf, offset, littleEndian, 52, 8);
+}
+
+Buffer.prototype.readDoubleLE = function (offset, noAssert) {
+  return _readDouble(this, offset, true, noAssert);
+};
+
+Buffer.prototype.readDoubleBE = function (offset, noAssert) {
+  return _readDouble(this, offset, false, noAssert);
+};
+
+Buffer.prototype.writeUInt8 = function (value, offset, noAssert) {
+  if (!noAssert) {
+    assert(value !== undefined && value !== null, 'missing value');
+    assert(offset !== undefined && offset !== null, 'missing offset');
+    assert(offset < this.length, 'trying to write beyond buffer length');
+    verifuint(value, 0xff);
+  }
+
+  if (offset >= this.length) return;
+
+  this[offset] = value;
+};
+
+function _writeUInt16(buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(value !== undefined && value !== null, 'missing value');
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
+    assert(offset !== undefined && offset !== null, 'missing offset');
+    assert(offset + 1 < buf.length, 'trying to write beyond buffer length');
+    verifuint(value, 0xffff);
+  }
+
+  var len = buf.length;
+  if (offset >= len) return;
+
+  for (var i = 0, j = Math.min(len - offset, 2); i < j; i++) {
+    buf[offset + i] = (value & 0xff << 8 * (littleEndian ? i : 1 - i)) >>> (littleEndian ? i : 1 - i) * 8;
+  }
+}
+
+Buffer.prototype.writeUInt16LE = function (value, offset, noAssert) {
+  _writeUInt16(this, value, offset, true, noAssert);
+};
+
+Buffer.prototype.writeUInt16BE = function (value, offset, noAssert) {
+  _writeUInt16(this, value, offset, false, noAssert);
+};
+
+function _writeUInt32(buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(value !== undefined && value !== null, 'missing value');
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
+    assert(offset !== undefined && offset !== null, 'missing offset');
+    assert(offset + 3 < buf.length, 'trying to write beyond buffer length');
+    verifuint(value, 0xffffffff);
+  }
+
+  var len = buf.length;
+  if (offset >= len) return;
+
+  for (var i = 0, j = Math.min(len - offset, 4); i < j; i++) {
+    buf[offset + i] = value >>> (littleEndian ? i : 3 - i) * 8 & 0xff;
+  }
+}
+
+Buffer.prototype.writeUInt32LE = function (value, offset, noAssert) {
+  _writeUInt32(this, value, offset, true, noAssert);
+};
+
+Buffer.prototype.writeUInt32BE = function (value, offset, noAssert) {
+  _writeUInt32(this, value, offset, false, noAssert);
+};
+
+Buffer.prototype.writeInt8 = function (value, offset, noAssert) {
+  if (!noAssert) {
+    assert(value !== undefined && value !== null, 'missing value');
+    assert(offset !== undefined && offset !== null, 'missing offset');
+    assert(offset < this.length, 'Trying to write beyond buffer length');
+    verifsint(value, 0x7f, -0x80);
+  }
+
+  if (offset >= this.length) return;
+
+  if (value >= 0) this.writeUInt8(value, offset, noAssert);else this.writeUInt8(0xff + value + 1, offset, noAssert);
+};
+
+function _writeInt16(buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(value !== undefined && value !== null, 'missing value');
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
+    assert(offset !== undefined && offset !== null, 'missing offset');
+    assert(offset + 1 < buf.length, 'Trying to write beyond buffer length');
+    verifsint(value, 0x7fff, -0x8000);
+  }
+
+  var len = buf.length;
+  if (offset >= len) return;
+
+  if (value >= 0) _writeUInt16(buf, value, offset, littleEndian, noAssert);else _writeUInt16(buf, 0xffff + value + 1, offset, littleEndian, noAssert);
+}
+
+Buffer.prototype.writeInt16LE = function (value, offset, noAssert) {
+  _writeInt16(this, value, offset, true, noAssert);
+};
+
+Buffer.prototype.writeInt16BE = function (value, offset, noAssert) {
+  _writeInt16(this, value, offset, false, noAssert);
+};
+
+function _writeInt32(buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(value !== undefined && value !== null, 'missing value');
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
+    assert(offset !== undefined && offset !== null, 'missing offset');
+    assert(offset + 3 < buf.length, 'Trying to write beyond buffer length');
+    verifsint(value, 0x7fffffff, -0x80000000);
+  }
+
+  var len = buf.length;
+  if (offset >= len) return;
+
+  if (value >= 0) _writeUInt32(buf, value, offset, littleEndian, noAssert);else _writeUInt32(buf, 0xffffffff + value + 1, offset, littleEndian, noAssert);
+}
+
+Buffer.prototype.writeInt32LE = function (value, offset, noAssert) {
+  _writeInt32(this, value, offset, true, noAssert);
+};
+
+Buffer.prototype.writeInt32BE = function (value, offset, noAssert) {
+  _writeInt32(this, value, offset, false, noAssert);
+};
+
+function _writeFloat(buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(value !== undefined && value !== null, 'missing value');
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
+    assert(offset !== undefined && offset !== null, 'missing offset');
+    assert(offset + 3 < buf.length, 'Trying to write beyond buffer length');
+    verifIEEE754(value, 3.4028234663852886e+38, -3.4028234663852886e+38);
+  }
+
+  var len = buf.length;
+  if (offset >= len) return;
+
+  ieee754.write(buf, value, offset, littleEndian, 23, 4);
+}
+
+Buffer.prototype.writeFloatLE = function (value, offset, noAssert) {
+  _writeFloat(this, value, offset, true, noAssert);
+};
+
+Buffer.prototype.writeFloatBE = function (value, offset, noAssert) {
+  _writeFloat(this, value, offset, false, noAssert);
+};
+
+function _writeDouble(buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    assert(value !== undefined && value !== null, 'missing value');
+    assert(typeof littleEndian === 'boolean', 'missing or invalid endian');
+    assert(offset !== undefined && offset !== null, 'missing offset');
+    assert(offset + 7 < buf.length, 'Trying to write beyond buffer length');
+    verifIEEE754(value, 1.7976931348623157E+308, -1.7976931348623157E+308);
+  }
+
+  var len = buf.length;
+  if (offset >= len) return;
+
+  ieee754.write(buf, value, offset, littleEndian, 52, 8);
+}
+
+Buffer.prototype.writeDoubleLE = function (value, offset, noAssert) {
+  _writeDouble(this, value, offset, true, noAssert);
+};
+
+Buffer.prototype.writeDoubleBE = function (value, offset, noAssert) {
+  _writeDouble(this, value, offset, false, noAssert);
+};
+
+// fill(value, start=0, end=buffer.length)
+Buffer.prototype.fill = function (value, start, end) {
+  if (!value) value = 0;
+  if (!start) start = 0;
+  if (!end) end = this.length;
+
+  if (typeof value === 'string') {
+    value = value.charCodeAt(0);
+  }
+
+  assert(typeof value === 'number' && !isNaN(value), 'value is not a number');
+  assert(end >= start, 'end < start');
+
+  // Fill 0 bytes; we're done
+  if (end === start) return;
+  if (this.length === 0) return;
+
+  assert(start >= 0 && start < this.length, 'start out of bounds');
+  assert(end >= 0 && end <= this.length, 'end out of bounds');
+
+  for (var i = start; i < end; i++) {
+    this[i] = value;
+  }
+};
+
+Buffer.prototype.inspect = function () {
+  var out = [];
+  var len = this.length;
+  for (var i = 0; i < len; i++) {
+    out[i] = toHex(this[i]);
+    if (i === exports.INSPECT_MAX_BYTES) {
+      out[i + 1] = '...';
+      break;
+    }
+  }
+  return '<Buffer ' + out.join(' ') + '>';
+};
+
+/**
+ * Creates a new `ArrayBuffer` with the *copied* memory of the buffer instance.
+ * Added in Node 0.12. Only available in browsers that support ArrayBuffer.
+ */
+Buffer.prototype.toArrayBuffer = function () {
+  if (typeof Uint8Array !== 'undefined') {
+    if (Buffer._useTypedArrays) {
+      return new Buffer(this).buffer;
+    } else {
+      var buf = new Uint8Array(this.length);
+      for (var i = 0, len = buf.length; i < len; i += 1) buf[i] = this[i];
+      return buf.buffer;
+    }
+  } else {
+    throw new Error('Buffer.toArrayBuffer not supported in this browser');
+  }
+};
+
+// HELPER FUNCTIONS
+// ================
+
+function stringtrim(str) {
+  if (str.trim) return str.trim();
+  return str.replace(/^\s+|\s+$/g, '');
+}
+
+var BP = Buffer.prototype;
+
+/**
+ * Augment a Uint8Array *instance* (not the Uint8Array class!) with Buffer methods
+ */
+Buffer._augment = function (arr) {
+  arr._isBuffer = true;
+
+  // save reference to original Uint8Array get/set methods before overwriting
+  arr._get = arr.get;
+  arr._set = arr.set;
+
+  // deprecated, will be removed in node 0.13+
+  arr.get = BP.get;
+  arr.set = BP.set;
+
+  arr.write = BP.write;
+  arr.toString = BP.toString;
+  arr.toLocaleString = BP.toString;
+  arr.toJSON = BP.toJSON;
+  arr.copy = BP.copy;
+  arr.slice = BP.slice;
+  arr.readUInt8 = BP.readUInt8;
+  arr.readUInt16LE = BP.readUInt16LE;
+  arr.readUInt16BE = BP.readUInt16BE;
+  arr.readUInt32LE = BP.readUInt32LE;
+  arr.readUInt32BE = BP.readUInt32BE;
+  arr.readInt8 = BP.readInt8;
+  arr.readInt16LE = BP.readInt16LE;
+  arr.readInt16BE = BP.readInt16BE;
+  arr.readInt32LE = BP.readInt32LE;
+  arr.readInt32BE = BP.readInt32BE;
+  arr.readFloatLE = BP.readFloatLE;
+  arr.readFloatBE = BP.readFloatBE;
+  arr.readDoubleLE = BP.readDoubleLE;
+  arr.readDoubleBE = BP.readDoubleBE;
+  arr.writeUInt8 = BP.writeUInt8;
+  arr.writeUInt16LE = BP.writeUInt16LE;
+  arr.writeUInt16BE = BP.writeUInt16BE;
+  arr.writeUInt32LE = BP.writeUInt32LE;
+  arr.writeUInt32BE = BP.writeUInt32BE;
+  arr.writeInt8 = BP.writeInt8;
+  arr.writeInt16LE = BP.writeInt16LE;
+  arr.writeInt16BE = BP.writeInt16BE;
+  arr.writeInt32LE = BP.writeInt32LE;
+  arr.writeInt32BE = BP.writeInt32BE;
+  arr.writeFloatLE = BP.writeFloatLE;
+  arr.writeFloatBE = BP.writeFloatBE;
+  arr.writeDoubleLE = BP.writeDoubleLE;
+  arr.writeDoubleBE = BP.writeDoubleBE;
+  arr.fill = BP.fill;
+  arr.inspect = BP.inspect;
+  arr.toArrayBuffer = BP.toArrayBuffer;
+
+  return arr;
+};
+
+// slice(start, end)
+function clamp(index, len, defaultValue) {
+  if (typeof index !== 'number') return defaultValue;
+  index = ~ ~index; // Coerce to integer.
+  if (index >= len) return len;
+  if (index >= 0) return index;
+  index += len;
+  if (index >= 0) return index;
+  return 0;
+}
+
+function coerce(length) {
+  // Coerce length to a number (possibly NaN), round up
+  // in case it's fractional (e.g. 123.456) then do a
+  // double negate to coerce a NaN to 0. Easy, right?
+  length = ~ ~Math.ceil(+length);
+  return length < 0 ? 0 : length;
+}
+
+function isArray(subject) {
+  return (Array.isArray || function (subject) {
+    return Object.prototype.toString.call(subject) === '[object Array]';
+  })(subject);
+}
+
+function isArrayish(subject) {
+  return isArray(subject) || Buffer.isBuffer(subject) || subject && typeof subject === 'object' && typeof subject.length === 'number';
+}
+
+function toHex(n) {
+  if (n < 16) return '0' + n.toString(16);
+  return n.toString(16);
+}
+
+function utf8ToBytes(str) {
+  var byteArray = [];
+  for (var i = 0; i < str.length; i++) {
+    var b = str.charCodeAt(i);
+    if (b <= 0x7F) byteArray.push(str.charCodeAt(i));else {
+      var start = i;
+      if (b >= 0xD800 && b <= 0xDFFF) i++;
+      var h = encodeURIComponent(str.slice(start, i + 1)).substr(1).split('%');
+      for (var j = 0; j < h.length; j++) byteArray.push(parseInt(h[j], 16));
+    }
+  }
+  return byteArray;
+}
+
+function asciiToBytes(str) {
+  var byteArray = [];
+  for (var i = 0; i < str.length; i++) {
+    // Node's code seems to be doing this and not & 0x7F..
+    byteArray.push(str.charCodeAt(i) & 0xFF);
+  }
+  return byteArray;
+}
+
+function utf16leToBytes(str) {
+  var c, hi, lo;
+  var byteArray = [];
+  for (var i = 0; i < str.length; i++) {
+    c = str.charCodeAt(i);
+    hi = c >> 8;
+    lo = c % 256;
+    byteArray.push(lo);
+    byteArray.push(hi);
+  }
+
+  return byteArray;
+}
+
+function base64ToBytes(str) {
+  return base64.toByteArray(str);
+}
+
+function blitBuffer(src, dst, offset, length) {
+  var pos;
+  for (var i = 0; i < length; i++) {
+    if (i + offset >= dst.length || i >= src.length) break;
+    dst[i + offset] = src[i];
+  }
+  return i;
+}
+
+function decodeUtf8Char(str) {
+  try {
+    return decodeURIComponent(str);
+  } catch (err) {
+    return String.fromCharCode(0xFFFD); // UTF 8 invalid char
+  }
+}
+
+/*
+ * We have to make sure that the value is a valid integer. This means that it
+ * is non-negative. It has no fractional component and that it does not
+ * exceed the maximum allowed value.
+ */
+function verifuint(value, max) {
+  assert(typeof value === 'number', 'cannot write a non-number as a number');
+  assert(value >= 0, 'specified a negative value for writing an unsigned value');
+  assert(value <= max, 'value is larger than maximum value for type');
+  assert(Math.floor(value) === value, 'value has a fractional component');
+}
+
+function verifsint(value, max, min) {
+  assert(typeof value === 'number', 'cannot write a non-number as a number');
+  assert(value <= max, 'value larger than maximum allowed value');
+  assert(value >= min, 'value smaller than minimum allowed value');
+  assert(Math.floor(value) === value, 'value has a fractional component');
+}
+
+function verifIEEE754(value, max, min) {
+  assert(typeof value === 'number', 'cannot write a non-number as a number');
+  assert(value <= max, 'value larger than maximum allowed value');
+  assert(value >= min, 'value smaller than minimum allowed value');
+}
+
+function assert(test, message) {
+  if (!test) throw new Error(message || 'Failed assertion');
+}
+
+}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\..\\..\\..\\node_modules\\gulp-browserify\\node_modules\\browserify\\node_modules\\buffer\\index.js","/..\\..\\..\\..\\node_modules\\gulp-browserify\\node_modules\\browserify\\node_modules\\buffer")
+},{"/NJiQA":8,"base64-js":6,"buffer":5,"ieee754":7}],6:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+'use strict';
+
+var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+
+;(function (exports) {
+	'use strict';
+
+	var Arr = typeof Uint8Array !== 'undefined' ? Uint8Array : Array;
+
+	var PLUS = '+'.charCodeAt(0);
+	var SLASH = '/'.charCodeAt(0);
+	var NUMBER = '0'.charCodeAt(0);
+	var LOWER = 'a'.charCodeAt(0);
+	var UPPER = 'A'.charCodeAt(0);
+	var PLUS_URL_SAFE = '-'.charCodeAt(0);
+	var SLASH_URL_SAFE = '_'.charCodeAt(0);
+
+	function decode(elt) {
+		var code = elt.charCodeAt(0);
+		if (code === PLUS || code === PLUS_URL_SAFE) return 62; // '+'
+		if (code === SLASH || code === SLASH_URL_SAFE) return 63; // '/'
+		if (code < NUMBER) return -1; //no match
+		if (code < NUMBER + 10) return code - NUMBER + 26 + 26;
+		if (code < UPPER + 26) return code - UPPER;
+		if (code < LOWER + 26) return code - LOWER + 26;
+	}
+
+	function b64ToByteArray(b64) {
+		var i, j, l, tmp, placeHolders, arr;
+
+		if (b64.length % 4 > 0) {
+			throw new Error('Invalid string. Length must be a multiple of 4');
+		}
+
+		// the number of equal signs (place holders)
+		// if there are two placeholders, than the two characters before it
+		// represent one byte
+		// if there is only one, then the three characters before it represent 2 bytes
+		// this is just a cheap hack to not do indexOf twice
+		var len = b64.length;
+		placeHolders = '=' === b64.charAt(len - 2) ? 2 : '=' === b64.charAt(len - 1) ? 1 : 0;
+
+		// base64 is 4/3 + up to two characters of the original data
+		arr = new Arr(b64.length * 3 / 4 - placeHolders);
+
+		// if there are placeholders, only get up to the last complete 4 chars
+		l = placeHolders > 0 ? b64.length - 4 : b64.length;
+
+		var L = 0;
+
+		function push(v) {
+			arr[L++] = v;
+		}
+
+		for (i = 0, j = 0; i < l; i += 4, j += 3) {
+			tmp = decode(b64.charAt(i)) << 18 | decode(b64.charAt(i + 1)) << 12 | decode(b64.charAt(i + 2)) << 6 | decode(b64.charAt(i + 3));
+			push((tmp & 0xFF0000) >> 16);
+			push((tmp & 0xFF00) >> 8);
+			push(tmp & 0xFF);
+		}
+
+		if (placeHolders === 2) {
+			tmp = decode(b64.charAt(i)) << 2 | decode(b64.charAt(i + 1)) >> 4;
+			push(tmp & 0xFF);
+		} else if (placeHolders === 1) {
+			tmp = decode(b64.charAt(i)) << 10 | decode(b64.charAt(i + 1)) << 4 | decode(b64.charAt(i + 2)) >> 2;
+			push(tmp >> 8 & 0xFF);
+			push(tmp & 0xFF);
+		}
+
+		return arr;
+	}
+
+	function uint8ToBase64(uint8) {
+		var i,
+		    extraBytes = uint8.length % 3,
+		    // if we have 1 byte left, pad 2 bytes
+		output = "",
+		    temp,
+		    length;
+
+		function encode(num) {
+			return lookup.charAt(num);
+		}
+
+		function tripletToBase64(num) {
+			return encode(num >> 18 & 0x3F) + encode(num >> 12 & 0x3F) + encode(num >> 6 & 0x3F) + encode(num & 0x3F);
+		}
+
+		// go through the array every three bytes, we'll deal with trailing stuff later
+		for (i = 0, length = uint8.length - extraBytes; i < length; i += 3) {
+			temp = (uint8[i] << 16) + (uint8[i + 1] << 8) + uint8[i + 2];
+			output += tripletToBase64(temp);
+		}
+
+		// pad the end with zeros, but make sure to not forget the extra bytes
+		switch (extraBytes) {
+			case 1:
+				temp = uint8[uint8.length - 1];
+				output += encode(temp >> 2);
+				output += encode(temp << 4 & 0x3F);
+				output += '==';
+				break;
+			case 2:
+				temp = (uint8[uint8.length - 2] << 8) + uint8[uint8.length - 1];
+				output += encode(temp >> 10);
+				output += encode(temp >> 4 & 0x3F);
+				output += encode(temp << 2 & 0x3F);
+				output += '=';
+				break;
+		}
+
+		return output;
+	}
+
+	exports.toByteArray = b64ToByteArray;
+	exports.fromByteArray = uint8ToBase64;
+})(typeof exports === 'undefined' ? undefined.base64js = {} : exports);
+
+}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\..\\..\\..\\node_modules\\gulp-browserify\\node_modules\\browserify\\node_modules\\buffer\\node_modules\\base64-js\\lib\\b64.js","/..\\..\\..\\..\\node_modules\\gulp-browserify\\node_modules\\browserify\\node_modules\\buffer\\node_modules\\base64-js\\lib")
+},{"/NJiQA":8,"buffer":5}],7:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+"use strict";
+
+exports.read = function (buffer, offset, isLE, mLen, nBytes) {
+  var e, m;
+  var eLen = nBytes * 8 - mLen - 1;
+  var eMax = (1 << eLen) - 1;
+  var eBias = eMax >> 1;
+  var nBits = -7;
+  var i = isLE ? nBytes - 1 : 0;
+  var d = isLE ? -1 : 1;
+  var s = buffer[offset + i];
+
+  i += d;
+
+  e = s & (1 << -nBits) - 1;
+  s >>= -nBits;
+  nBits += eLen;
+  for (; nBits > 0; e = e * 256 + buffer[offset + i], i += d, nBits -= 8) {}
+
+  m = e & (1 << -nBits) - 1;
+  e >>= -nBits;
+  nBits += mLen;
+  for (; nBits > 0; m = m * 256 + buffer[offset + i], i += d, nBits -= 8) {}
+
+  if (e === 0) {
+    e = 1 - eBias;
+  } else if (e === eMax) {
+    return m ? NaN : (s ? -1 : 1) * Infinity;
+  } else {
+    m = m + Math.pow(2, mLen);
+    e = e - eBias;
+  }
+  return (s ? -1 : 1) * m * Math.pow(2, e - mLen);
+};
+
+exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
+  var e, m, c;
+  var eLen = nBytes * 8 - mLen - 1;
+  var eMax = (1 << eLen) - 1;
+  var eBias = eMax >> 1;
+  var rt = mLen === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0;
+  var i = isLE ? 0 : nBytes - 1;
+  var d = isLE ? 1 : -1;
+  var s = value < 0 || value === 0 && 1 / value < 0 ? 1 : 0;
+
+  value = Math.abs(value);
+
+  if (isNaN(value) || value === Infinity) {
+    m = isNaN(value) ? 1 : 0;
+    e = eMax;
+  } else {
+    e = Math.floor(Math.log(value) / Math.LN2);
+    if (value * (c = Math.pow(2, -e)) < 1) {
+      e--;
+      c *= 2;
+    }
+    if (e + eBias >= 1) {
+      value += rt / c;
+    } else {
+      value += rt * Math.pow(2, 1 - eBias);
+    }
+    if (value * c >= 2) {
+      e++;
+      c /= 2;
+    }
+
+    if (e + eBias >= eMax) {
+      m = 0;
+      e = eMax;
+    } else if (e + eBias >= 1) {
+      m = (value * c - 1) * Math.pow(2, mLen);
+      e = e + eBias;
+    } else {
+      m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen);
+      e = 0;
+    }
+  }
+
+  for (; mLen >= 8; buffer[offset + i] = m & 0xff, i += d, m /= 256, mLen -= 8) {}
+
+  e = e << mLen | m;
+  eLen += mLen;
+  for (; eLen > 0; buffer[offset + i] = e & 0xff, i += d, e /= 256, eLen -= 8) {}
+
+  buffer[offset + i - d] |= s * 128;
+};
+
+}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\..\\..\\..\\node_modules\\gulp-browserify\\node_modules\\browserify\\node_modules\\buffer\\node_modules\\ieee754\\index.js","/..\\..\\..\\..\\node_modules\\gulp-browserify\\node_modules\\browserify\\node_modules\\buffer\\node_modules\\ieee754")
+},{"/NJiQA":8,"buffer":5}],8:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+// shim for using process in browser
+
+'use strict';
+
+var process = module.exports = {};
+
+process.nextTick = (function () {
+    var canSetImmediate = typeof window !== 'undefined' && window.setImmediate;
+    var canPost = typeof window !== 'undefined' && window.postMessage && window.addEventListener;
+
+    if (canSetImmediate) {
+        return function (f) {
+            return window.setImmediate(f);
+        };
+    }
+
+    if (canPost) {
+        var queue = [];
+        window.addEventListener('message', function (ev) {
+            var source = ev.source;
+            if ((source === window || source === null) && ev.data === 'process-tick') {
+                ev.stopPropagation();
+                if (queue.length > 0) {
+                    var fn = queue.shift();
+                    fn();
+                }
+            }
+        }, true);
+
+        return function nextTick(fn) {
+            queue.push(fn);
+            window.postMessage('process-tick', '*');
+        };
+    }
+
+    return function nextTick(fn) {
+        setTimeout(fn, 0);
+    };
+})();
+
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+// TODO(shtylman)
+process.cwd = function () {
+    return '/';
+};
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+
+}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\..\\..\\..\\node_modules\\gulp-browserify\\node_modules\\browserify\\node_modules\\process\\browser.js","/..\\..\\..\\..\\node_modules\\gulp-browserify\\node_modules\\browserify\\node_modules\\process")
+},{"/NJiQA":8,"buffer":5}],9:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+/*!
+ * jQuery Smooth Scroll - v1.5.6 - 2015-09-08
+ * https://github.com/kswedberg/jquery-smooth-scroll
+ * Copyright (c) 2015 Karl Swedberg
+ * Licensed MIT (https://github.com/kswedberg/jquery-smooth-scroll/blob/master/LICENSE-MIT)
+ */
+
+'use strict';
+
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(['jquery'], factory);
+  } else if (typeof module === 'object' && module.exports) {
+    // CommonJS
+    factory(require("./..\\..\\app\\assets\\src\\js\\lib\\jquery\\dist\\jquery.js"));
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
+})(function ($) {
+
+  var version = '1.5.6',
+      optionOverrides = {},
+      defaults = {
+    exclude: [],
+    excludeWithin: [],
+    offset: 0,
+
+    // one of 'top' or 'left'
+    direction: 'top',
+
+    // jQuery set of elements you wish to scroll (for $.smoothScroll).
+    //  if null (default), $('html, body').firstScrollable() is used.
+    scrollElement: null,
+
+    // only use if you want to override default behavior
+    scrollTarget: null,
+
+    // fn(opts) function to be called before scrolling occurs.
+    // `this` is the element(s) being scrolled
+    beforeScroll: function beforeScroll() {},
+
+    // fn(opts) function to be called after scrolling occurs.
+    // `this` is the triggering element
+    afterScroll: function afterScroll() {},
+    easing: 'swing',
+    speed: 400,
+
+    // coefficient for "auto" speed
+    autoCoefficient: 2,
+
+    // $.fn.smoothScroll only: whether to prevent the default click action
+    preventDefault: true
+  },
+      getScrollable = function getScrollable(opts) {
+    var scrollable = [],
+        scrolled = false,
+        dir = opts.dir && opts.dir === 'left' ? 'scrollLeft' : 'scrollTop';
+
+    this.each(function () {
+      var el = $(this);
+
+      if (this === document || this === window) {
+        return;
+      }
+
+      if (document.scrollingElement && (this === document.documentElement || this === document.body)) {
+        scrollable.push(document.scrollingElement);
+
+        return false;
+      }
+
+      if (el[dir]() > 0) {
+        scrollable.push(this);
+      } else {
+        // if scroll(Top|Left) === 0, nudge the element 1px and see if it moves
+        el[dir](1);
+        scrolled = el[dir]() > 0;
+        if (scrolled) {
+          scrollable.push(this);
+        }
+        // then put it back, of course
+        el[dir](0);
+      }
+    });
+
+    // If no scrollable elements, fall back to <body>,
+    // if it's in the jQuery collection
+    // (doing this because Safari sets scrollTop async,
+    // so can't set it to 1 and immediately get the value.)
+    if (!scrollable.length) {
+      this.each(function () {
+        if (this.nodeName === 'BODY') {
+          scrollable = [this];
+        }
+      });
+    }
+
+    // Use the first scrollable element if we're calling firstScrollable()
+    if (opts.el === 'first' && scrollable.length > 1) {
+      scrollable = [scrollable[0]];
+    }
+
+    return scrollable;
+  };
+
+  $.fn.extend({
+    scrollable: function scrollable(dir) {
+      var scrl = getScrollable.call(this, { dir: dir });
+      return this.pushStack(scrl);
+    },
+    firstScrollable: function firstScrollable(dir) {
+      var scrl = getScrollable.call(this, { el: 'first', dir: dir });
+      return this.pushStack(scrl);
+    },
+
+    smoothScroll: function smoothScroll(options, extra) {
+      options = options || {};
+
+      if (options === 'options') {
+        if (!extra) {
+          return this.first().data('ssOpts');
+        }
+        return this.each(function () {
+          var $this = $(this),
+              opts = $.extend($this.data('ssOpts') || {}, extra);
+
+          $(this).data('ssOpts', opts);
+        });
+      }
+
+      var opts = $.extend({}, $.fn.smoothScroll.defaults, options),
+          locationPath = $.smoothScroll.filterPath(location.pathname);
+
+      this.unbind('click.smoothscroll').bind('click.smoothscroll', function (event) {
+        var link = this,
+            $link = $(this),
+            thisOpts = $.extend({}, opts, $link.data('ssOpts') || {}),
+            exclude = opts.exclude,
+            excludeWithin = thisOpts.excludeWithin,
+            elCounter = 0,
+            ewlCounter = 0,
+            include = true,
+            clickOpts = {},
+            hostMatch = location.hostname === link.hostname || !link.hostname,
+            pathMatch = thisOpts.scrollTarget || $.smoothScroll.filterPath(link.pathname) === locationPath,
+            thisHash = escapeSelector(link.hash);
+
+        if (!thisOpts.scrollTarget && (!hostMatch || !pathMatch || !thisHash)) {
+          include = false;
+        } else {
+          while (include && elCounter < exclude.length) {
+            if ($link.is(escapeSelector(exclude[elCounter++]))) {
+              include = false;
+            }
+          }
+          while (include && ewlCounter < excludeWithin.length) {
+            if ($link.closest(excludeWithin[ewlCounter++]).length) {
+              include = false;
+            }
+          }
+        }
+
+        if (include) {
+
+          if (thisOpts.preventDefault) {
+            event.preventDefault();
+          }
+
+          $.extend(clickOpts, thisOpts, {
+            scrollTarget: thisOpts.scrollTarget || thisHash,
+            link: link
+          });
+
+          $.smoothScroll(clickOpts);
+        }
+      });
+
+      return this;
+    }
+  });
+
+  $.smoothScroll = function (options, px) {
+    if (options === 'options' && typeof px === 'object') {
+      return $.extend(optionOverrides, px);
+    }
+    var opts,
+        $scroller,
+        scrollTargetOffset,
+        speed,
+        delta,
+        scrollerOffset = 0,
+        offPos = 'offset',
+        scrollDir = 'scrollTop',
+        aniProps = {},
+        aniOpts = {};
+
+    if (typeof options === 'number') {
+      opts = $.extend({ link: null }, $.fn.smoothScroll.defaults, optionOverrides);
+      scrollTargetOffset = options;
+    } else {
+      opts = $.extend({ link: null }, $.fn.smoothScroll.defaults, options || {}, optionOverrides);
+      if (opts.scrollElement) {
+        offPos = 'position';
+        if (opts.scrollElement.css('position') === 'static') {
+          opts.scrollElement.css('position', 'relative');
+        }
+      }
+    }
+
+    scrollDir = opts.direction === 'left' ? 'scrollLeft' : scrollDir;
+
+    if (opts.scrollElement) {
+      $scroller = opts.scrollElement;
+      if (!/^(?:HTML|BODY)$/.test($scroller[0].nodeName)) {
+        scrollerOffset = $scroller[scrollDir]();
+      }
+    } else {
+      $scroller = $('html, body').firstScrollable(opts.direction);
+    }
+
+    // beforeScroll callback function must fire before calculating offset
+    opts.beforeScroll.call($scroller, opts);
+
+    scrollTargetOffset = typeof options === 'number' ? options : px || $(opts.scrollTarget)[offPos]() && $(opts.scrollTarget)[offPos]()[opts.direction] || 0;
+
+    aniProps[scrollDir] = scrollTargetOffset + scrollerOffset + opts.offset;
+    speed = opts.speed;
+
+    // automatically calculate the speed of the scroll based on distance / coefficient
+    if (speed === 'auto') {
+
+      // $scroller.scrollTop() is position before scroll, aniProps[scrollDir] is position after
+      // When delta is greater, speed will be greater.
+      delta = aniProps[scrollDir] - $scroller.scrollTop();
+      if (delta < 0) {
+        delta *= -1;
+      }
+
+      // Divide the delta by the coefficient
+      speed = delta / opts.autoCoefficient;
+    }
+
+    aniOpts = {
+      duration: speed,
+      easing: opts.easing,
+      complete: function complete() {
+        opts.afterScroll.call(opts.link, opts);
+      }
+    };
+
+    if (opts.step) {
+      aniOpts.step = opts.step;
+    }
+
+    if ($scroller.length) {
+      $scroller.stop().animate(aniProps, aniOpts);
+    } else {
+      opts.afterScroll.call(opts.link, opts);
+    }
+  };
+
+  $.smoothScroll.version = version;
+  $.smoothScroll.filterPath = function (string) {
+    string = string || '';
+    return string.replace(/^\//, '').replace(/(?:index|default).[a-zA-Z]{3,4}$/, '').replace(/\/$/, '');
+  };
+
+  // default options
+  $.fn.smoothScroll.defaults = defaults;
+
+  function escapeSelector(str) {
+    return str.replace(/(:|\.|\/)/g, '\\$1');
+  }
+});
+
+}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\..\\..\\..\\node_modules\\jquery-smooth-scroll\\jquery.smooth-scroll.js","/..\\..\\..\\..\\node_modules\\jquery-smooth-scroll")
+},{"./..\\..\\app\\assets\\src\\js\\lib\\jquery\\dist\\jquery.js":3,"/NJiQA":8,"buffer":5}],10:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+/*!
+ * jQuery Transit - CSS3 transitions and transformations
+ * (c) 2011-2014 Rico Sta. Cruz
+ * MIT Licensed.
+ *
+ * http://ricostacruz.com/jquery.transit
+ * http://github.com/rstacruz/jquery.transit
+ */
+
+/* jshint expr: true */
+
+'use strict';
+
+;(function (root, factory) {
+
+  if (typeof define === 'function' && define.amd) {
+    define(['jquery'], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory(require("./..\\..\\app\\assets\\src\\js\\lib\\jquery\\dist\\jquery.js"));
+  } else {
+    factory(root.jQuery);
+  }
+})(undefined, function ($) {
+
+  $.transit = {
+    version: "0.9.12",
+
+    // Map of $.css() keys to values for 'transitionProperty'.
+    // See https://developer.mozilla.org/en/CSS/CSS_transitions#Properties_that_can_be_animated
+    propertyMap: {
+      marginLeft: 'margin',
+      marginRight: 'margin',
+      marginBottom: 'margin',
+      marginTop: 'margin',
+      paddingLeft: 'padding',
+      paddingRight: 'padding',
+      paddingBottom: 'padding',
+      paddingTop: 'padding'
+    },
+
+    // Will simply transition "instantly" if false
+    enabled: true,
+
+    // Set this to false if you don't want to use the transition end property.
+    useTransitionEnd: false
+  };
+
+  var div = document.createElement('div');
+  var support = {};
+
+  // Helper function to get the proper vendor property name.
+  // (`transition` => `WebkitTransition`)
+  function getVendorPropertyName(prop) {
+    // Handle unprefixed versions (FF16+, for example)
+    if (prop in div.style) return prop;
+
+    var prefixes = ['Moz', 'Webkit', 'O', 'ms'];
+    var prop_ = prop.charAt(0).toUpperCase() + prop.substr(1);
+
+    for (var i = 0; i < prefixes.length; ++i) {
+      var vendorProp = prefixes[i] + prop_;
+      if (vendorProp in div.style) {
+        return vendorProp;
+      }
+    }
+  }
+
+  // Helper function to check if transform3D is supported.
+  // Should return true for Webkits and Firefox 10+.
+  function checkTransform3dSupport() {
+    div.style[support.transform] = '';
+    div.style[support.transform] = 'rotateY(90deg)';
+    return div.style[support.transform] !== '';
+  }
+
+  var isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+
+  // Check for the browser's transitions support.
+  support.transition = getVendorPropertyName('transition');
+  support.transitionDelay = getVendorPropertyName('transitionDelay');
+  support.transform = getVendorPropertyName('transform');
+  support.transformOrigin = getVendorPropertyName('transformOrigin');
+  support.filter = getVendorPropertyName('Filter');
+  support.transform3d = checkTransform3dSupport();
+
+  var eventNames = {
+    'transition': 'transitionend',
+    'MozTransition': 'transitionend',
+    'OTransition': 'oTransitionEnd',
+    'WebkitTransition': 'webkitTransitionEnd',
+    'msTransition': 'MSTransitionEnd'
+  };
+
+  // Detect the 'transitionend' event needed.
+  var transitionEnd = support.transitionEnd = eventNames[support.transition] || null;
+
+  // Populate jQuery's `$.support` with the vendor prefixes we know.
+  // As per [jQuery's cssHooks documentation](http://api.jquery.com/jQuery.cssHooks/),
+  // we set $.support.transition to a string of the actual property name used.
+  for (var key in support) {
+    if (support.hasOwnProperty(key) && typeof $.support[key] === 'undefined') {
+      $.support[key] = support[key];
+    }
+  }
+
+  // Avoid memory leak in IE.
+  div = null;
+
+  // ## $.cssEase
+  // List of easing aliases that you can use with `$.fn.transition`.
+  $.cssEase = {
+    '_default': 'ease',
+    'in': 'ease-in',
+    'out': 'ease-out',
+    'in-out': 'ease-in-out',
+    'snap': 'cubic-bezier(0,1,.5,1)',
+    // Penner equations
+    'easeInCubic': 'cubic-bezier(.550,.055,.675,.190)',
+    'easeOutCubic': 'cubic-bezier(.215,.61,.355,1)',
+    'easeInOutCubic': 'cubic-bezier(.645,.045,.355,1)',
+    'easeInCirc': 'cubic-bezier(.6,.04,.98,.335)',
+    'easeOutCirc': 'cubic-bezier(.075,.82,.165,1)',
+    'easeInOutCirc': 'cubic-bezier(.785,.135,.15,.86)',
+    'easeInExpo': 'cubic-bezier(.95,.05,.795,.035)',
+    'easeOutExpo': 'cubic-bezier(.19,1,.22,1)',
+    'easeInOutExpo': 'cubic-bezier(1,0,0,1)',
+    'easeInQuad': 'cubic-bezier(.55,.085,.68,.53)',
+    'easeOutQuad': 'cubic-bezier(.25,.46,.45,.94)',
+    'easeInOutQuad': 'cubic-bezier(.455,.03,.515,.955)',
+    'easeInQuart': 'cubic-bezier(.895,.03,.685,.22)',
+    'easeOutQuart': 'cubic-bezier(.165,.84,.44,1)',
+    'easeInOutQuart': 'cubic-bezier(.77,0,.175,1)',
+    'easeInQuint': 'cubic-bezier(.755,.05,.855,.06)',
+    'easeOutQuint': 'cubic-bezier(.23,1,.32,1)',
+    'easeInOutQuint': 'cubic-bezier(.86,0,.07,1)',
+    'easeInSine': 'cubic-bezier(.47,0,.745,.715)',
+    'easeOutSine': 'cubic-bezier(.39,.575,.565,1)',
+    'easeInOutSine': 'cubic-bezier(.445,.05,.55,.95)',
+    'easeInBack': 'cubic-bezier(.6,-.28,.735,.045)',
+    'easeOutBack': 'cubic-bezier(.175, .885,.32,1.275)',
+    'easeInOutBack': 'cubic-bezier(.68,-.55,.265,1.55)'
+  };
+
+  // ## 'transform' CSS hook
+  // Allows you to use the `transform` property in CSS.
+  //
+  //     $("#hello").css({ transform: "rotate(90deg)" });
+  //
+  //     $("#hello").css('transform');
+  //     //=> { rotate: '90deg' }
+  //
+  $.cssHooks['transit:transform'] = {
+    // The getter returns a `Transform` object.
+    get: function get(elem) {
+      return $(elem).data('transform') || new Transform();
+    },
+
+    // The setter accepts a `Transform` object or a string.
+    set: function set(elem, v) {
+      var value = v;
+
+      if (!(value instanceof Transform)) {
+        value = new Transform(value);
+      }
+
+      // We've seen the 3D version of Scale() not work in Chrome when the
+      // element being scaled extends outside of the viewport.  Thus, we're
+      // forcing Chrome to not use the 3d transforms as well.  Not sure if
+      // translate is affectede, but not risking it.  Detection code from
+      // http://davidwalsh.name/detecting-google-chrome-javascript
+      if (support.transform === 'WebkitTransform' && !isChrome) {
+        elem.style[support.transform] = value.toString(true);
+      } else {
+        elem.style[support.transform] = value.toString();
+      }
+
+      $(elem).data('transform', value);
+    }
+  };
+
+  // Add a CSS hook for `.css({ transform: '...' })`.
+  // In jQuery 1.8+, this will intentionally override the default `transform`
+  // CSS hook so it'll play well with Transit. (see issue #62)
+  $.cssHooks.transform = {
+    set: $.cssHooks['transit:transform'].set
+  };
+
+  // ## 'filter' CSS hook
+  // Allows you to use the `filter` property in CSS.
+  //
+  //     $("#hello").css({ filter: 'blur(10px)' });
+  //
+  $.cssHooks.filter = {
+    get: function get(elem) {
+      return elem.style[support.filter];
+    },
+    set: function set(elem, value) {
+      elem.style[support.filter] = value;
+    }
+  };
+
+  // jQuery 1.8+ supports prefix-free transitions, so these polyfills will not
+  // be necessary.
+  if ($.fn.jquery < "1.8") {
+    // ## 'transformOrigin' CSS hook
+    // Allows the use for `transformOrigin` to define where scaling and rotation
+    // is pivoted.
+    //
+    //     $("#hello").css({ transformOrigin: '0 0' });
+    //
+    $.cssHooks.transformOrigin = {
+      get: function get(elem) {
+        return elem.style[support.transformOrigin];
+      },
+      set: function set(elem, value) {
+        elem.style[support.transformOrigin] = value;
+      }
+    };
+
+    // ## 'transition' CSS hook
+    // Allows you to use the `transition` property in CSS.
+    //
+    //     $("#hello").css({ transition: 'all 0 ease 0' });
+    //
+    $.cssHooks.transition = {
+      get: function get(elem) {
+        return elem.style[support.transition];
+      },
+      set: function set(elem, value) {
+        elem.style[support.transition] = value;
+      }
+    };
+  }
+
+  // ## Other CSS hooks
+  // Allows you to rotate, scale and translate.
+  registerCssHook('scale');
+  registerCssHook('scaleX');
+  registerCssHook('scaleY');
+  registerCssHook('translate');
+  registerCssHook('rotate');
+  registerCssHook('rotateX');
+  registerCssHook('rotateY');
+  registerCssHook('rotate3d');
+  registerCssHook('perspective');
+  registerCssHook('skewX');
+  registerCssHook('skewY');
+  registerCssHook('x', true);
+  registerCssHook('y', true);
+
+  // ## Transform class
+  // This is the main class of a transformation property that powers
+  // `$.fn.css({ transform: '...' })`.
+  //
+  // This is, in essence, a dictionary object with key/values as `-transform`
+  // properties.
+  //
+  //     var t = new Transform("rotate(90) scale(4)");
+  //
+  //     t.rotate             //=> "90deg"
+  //     t.scale              //=> "4,4"
+  //
+  // Setters are accounted for.
+  //
+  //     t.set('rotate', 4)
+  //     t.rotate             //=> "4deg"
+  //
+  // Convert it to a CSS string using the `toString()` and `toString(true)` (for WebKit)
+  // functions.
+  //
+  //     t.toString()         //=> "rotate(90deg) scale(4,4)"
+  //     t.toString(true)     //=> "rotate(90deg) scale3d(4,4,0)" (WebKit version)
+  //
+  function Transform(str) {
+    if (typeof str === 'string') {
+      this.parse(str);
+    }
+    return this;
+  }
+
+  Transform.prototype = {
+    // ### setFromString()
+    // Sets a property from a string.
+    //
+    //     t.setFromString('scale', '2,4');
+    //     // Same as set('scale', '2', '4');
+    //
+    setFromString: function setFromString(prop, val) {
+      var args = typeof val === 'string' ? val.split(',') : val.constructor === Array ? val : [val];
+
+      args.unshift(prop);
+
+      Transform.prototype.set.apply(this, args);
+    },
+
+    // ### set()
+    // Sets a property.
+    //
+    //     t.set('scale', 2, 4);
+    //
+    set: function set(prop) {
+      var args = Array.prototype.slice.apply(arguments, [1]);
+      if (this.setter[prop]) {
+        this.setter[prop].apply(this, args);
+      } else {
+        this[prop] = args.join(',');
+      }
+    },
+
+    get: function get(prop) {
+      if (this.getter[prop]) {
+        return this.getter[prop].apply(this);
+      } else {
+        return this[prop] || 0;
+      }
+    },
+
+    setter: {
+      // ### rotate
+      //
+      //     .css({ rotate: 30 })
+      //     .css({ rotate: "30" })
+      //     .css({ rotate: "30deg" })
+      //     .css({ rotate: "30deg" })
+      //
+      rotate: function rotate(theta) {
+        this.rotate = unit(theta, 'deg');
+      },
+
+      rotateX: function rotateX(theta) {
+        this.rotateX = unit(theta, 'deg');
+      },
+
+      rotateY: function rotateY(theta) {
+        this.rotateY = unit(theta, 'deg');
+      },
+
+      // ### scale
+      //
+      //     .css({ scale: 9 })      //=> "scale(9,9)"
+      //     .css({ scale: '3,2' })  //=> "scale(3,2)"
+      //
+      scale: function scale(x, y) {
+        if (y === undefined) {
+          y = x;
+        }
+        this.scale = x + "," + y;
+      },
+
+      // ### skewX + skewY
+      skewX: function skewX(x) {
+        this.skewX = unit(x, 'deg');
+      },
+
+      skewY: function skewY(y) {
+        this.skewY = unit(y, 'deg');
+      },
+
+      // ### perspectvie
+      perspective: function perspective(dist) {
+        this.perspective = unit(dist, 'px');
+      },
+
+      // ### x / y
+      // Translations. Notice how this keeps the other value.
+      //
+      //     .css({ x: 4 })       //=> "translate(4px, 0)"
+      //     .css({ y: 10 })      //=> "translate(4px, 10px)"
+      //
+      x: function x(_x) {
+        this.set('translate', _x, null);
+      },
+
+      y: function y(_y) {
+        this.set('translate', null, _y);
+      },
+
+      // ### translate
+      // Notice how this keeps the other value.
+      //
+      //     .css({ translate: '2, 5' })    //=> "translate(2px, 5px)"
+      //
+      translate: function translate(x, y) {
+        if (this._translateX === undefined) {
+          this._translateX = 0;
+        }
+        if (this._translateY === undefined) {
+          this._translateY = 0;
+        }
+
+        if (x !== null && x !== undefined) {
+          this._translateX = unit(x, 'px');
+        }
+        if (y !== null && y !== undefined) {
+          this._translateY = unit(y, 'px');
+        }
+
+        this.translate = this._translateX + "," + this._translateY;
+      }
+    },
+
+    getter: {
+      x: function x() {
+        return this._translateX || 0;
+      },
+
+      y: function y() {
+        return this._translateY || 0;
+      },
+
+      scale: function scale() {
+        var s = (this.scale || "1,1").split(',');
+        if (s[0]) {
+          s[0] = parseFloat(s[0]);
+        }
+        if (s[1]) {
+          s[1] = parseFloat(s[1]);
+        }
+
+        // "2.5,2.5" => 2.5
+        // "2.5,1" => [2.5,1]
+        return s[0] === s[1] ? s[0] : s;
+      },
+
+      rotate3d: function rotate3d() {
+        var s = (this.rotate3d || "0,0,0,0deg").split(',');
+        for (var i = 0; i <= 3; ++i) {
+          if (s[i]) {
+            s[i] = parseFloat(s[i]);
+          }
+        }
+        if (s[3]) {
+          s[3] = unit(s[3], 'deg');
+        }
+
+        return s;
+      }
+    },
+
+    // ### parse()
+    // Parses from a string. Called on constructor.
+    parse: function parse(str) {
+      var self = this;
+      str.replace(/([a-zA-Z0-9]+)\((.*?)\)/g, function (x, prop, val) {
+        self.setFromString(prop, val);
+      });
+    },
+
+    // ### toString()
+    // Converts to a `transition` CSS property string. If `use3d` is given,
+    // it converts to a `-webkit-transition` CSS property string instead.
+    toString: function toString(use3d) {
+      var re = [];
+
+      for (var i in this) {
+        if (this.hasOwnProperty(i)) {
+          // Don't use 3D transformations if the browser can't support it.
+          if (!support.transform3d && (i === 'rotateX' || i === 'rotateY' || i === 'perspective' || i === 'transformOrigin')) {
+            continue;
+          }
+
+          if (i[0] !== '_') {
+            if (use3d && i === 'scale') {
+              re.push(i + "3d(" + this[i] + ",1)");
+            } else if (use3d && i === 'translate') {
+              re.push(i + "3d(" + this[i] + ",0)");
+            } else {
+              re.push(i + "(" + this[i] + ")");
+            }
+          }
+        }
+      }
+
+      return re.join(" ");
+    }
+  };
+
+  function callOrQueue(self, queue, fn) {
+    if (queue === true) {
+      self.queue(fn);
+    } else if (queue) {
+      self.queue(queue, fn);
+    } else {
+      self.each(function () {
+        fn.call(this);
+      });
+    }
+  }
+
+  // ### getProperties(dict)
+  // Returns properties (for `transition-property`) for dictionary `props`. The
+  // value of `props` is what you would expect in `$.css(...)`.
+  function getProperties(props) {
+    var re = [];
+
+    $.each(props, function (key) {
+      key = $.camelCase(key); // Convert "text-align" => "textAlign"
+      key = $.transit.propertyMap[key] || $.cssProps[key] || key;
+      key = uncamel(key); // Convert back to dasherized
+
+      // Get vendor specify propertie
+      if (support[key]) key = uncamel(support[key]);
+
+      if ($.inArray(key, re) === -1) {
+        re.push(key);
+      }
+    });
+
+    return re;
+  }
+
+  // ### getTransition()
+  // Returns the transition string to be used for the `transition` CSS property.
+  //
+  // Example:
+  //
+  //     getTransition({ opacity: 1, rotate: 30 }, 500, 'ease');
+  //     //=> 'opacity 500ms ease, -webkit-transform 500ms ease'
+  //
+  function getTransition(properties, duration, easing, delay) {
+    // Get the CSS properties needed.
+    var props = getProperties(properties);
+
+    // Account for aliases (`in` => `ease-in`).
+    if ($.cssEase[easing]) {
+      easing = $.cssEase[easing];
+    }
+
+    // Build the duration/easing/delay attributes for it.
+    var attribs = '' + toMS(duration) + ' ' + easing;
+    if (parseInt(delay, 10) > 0) {
+      attribs += ' ' + toMS(delay);
+    }
+
+    // For more properties, add them this way:
+    // "margin 200ms ease, padding 200ms ease, ..."
+    var transitions = [];
+    $.each(props, function (i, name) {
+      transitions.push(name + ' ' + attribs);
+    });
+
+    return transitions.join(', ');
+  }
+
+  // ## $.fn.transition
+  // Works like $.fn.animate(), but uses CSS transitions.
+  //
+  //     $("...").transition({ opacity: 0.1, scale: 0.3 });
+  //
+  //     // Specific duration
+  //     $("...").transition({ opacity: 0.1, scale: 0.3 }, 500);
+  //
+  //     // With duration and easing
+  //     $("...").transition({ opacity: 0.1, scale: 0.3 }, 500, 'in');
+  //
+  //     // With callback
+  //     $("...").transition({ opacity: 0.1, scale: 0.3 }, function() { ... });
+  //
+  //     // With everything
+  //     $("...").transition({ opacity: 0.1, scale: 0.3 }, 500, 'in', function() { ... });
+  //
+  //     // Alternate syntax
+  //     $("...").transition({
+  //       opacity: 0.1,
+  //       duration: 200,
+  //       delay: 40,
+  //       easing: 'in',
+  //       complete: function() { /* ... */ }
+  //      });
+  //
+  $.fn.transition = $.fn.transit = function (properties, duration, easing, callback) {
+    var self = this;
+    var delay = 0;
+    var queue = true;
+
+    var theseProperties = $.extend(true, {}, properties);
+
+    // Account for `.transition(properties, callback)`.
+    if (typeof duration === 'function') {
+      callback = duration;
+      duration = undefined;
+    }
+
+    // Account for `.transition(properties, options)`.
+    if (typeof duration === 'object') {
+      easing = duration.easing;
+      delay = duration.delay || 0;
+      queue = typeof duration.queue === "undefined" ? true : duration.queue;
+      callback = duration.complete;
+      duration = duration.duration;
+    }
+
+    // Account for `.transition(properties, duration, callback)`.
+    if (typeof easing === 'function') {
+      callback = easing;
+      easing = undefined;
+    }
+
+    // Alternate syntax.
+    if (typeof theseProperties.easing !== 'undefined') {
+      easing = theseProperties.easing;
+      delete theseProperties.easing;
+    }
+
+    if (typeof theseProperties.duration !== 'undefined') {
+      duration = theseProperties.duration;
+      delete theseProperties.duration;
+    }
+
+    if (typeof theseProperties.complete !== 'undefined') {
+      callback = theseProperties.complete;
+      delete theseProperties.complete;
+    }
+
+    if (typeof theseProperties.queue !== 'undefined') {
+      queue = theseProperties.queue;
+      delete theseProperties.queue;
+    }
+
+    if (typeof theseProperties.delay !== 'undefined') {
+      delay = theseProperties.delay;
+      delete theseProperties.delay;
+    }
+
+    // Set defaults. (`400` duration, `ease` easing)
+    if (typeof duration === 'undefined') {
+      duration = $.fx.speeds._default;
+    }
+    if (typeof easing === 'undefined') {
+      easing = $.cssEase._default;
+    }
+
+    duration = toMS(duration);
+
+    // Build the `transition` property.
+    var transitionValue = getTransition(theseProperties, duration, easing, delay);
+
+    // Compute delay until callback.
+    // If this becomes 0, don't bother setting the transition property.
+    var work = $.transit.enabled && support.transition;
+    var i = work ? parseInt(duration, 10) + parseInt(delay, 10) : 0;
+
+    // If there's nothing to do...
+    if (i === 0) {
+      var fn = function fn(next) {
+        self.css(theseProperties);
+        if (callback) {
+          callback.apply(self);
+        }
+        if (next) {
+          next();
+        }
+      };
+
+      callOrQueue(self, queue, fn);
+      return self;
+    }
+
+    // Save the old transitions of each element so we can restore it later.
+    var oldTransitions = {};
+
+    var run = function run(nextCall) {
+      var bound = false;
+
+      // Prepare the callback.
+      var cb = function cb() {
+        if (bound) {
+          self.unbind(transitionEnd, cb);
+        }
+
+        if (i > 0) {
+          self.each(function () {
+            this.style[support.transition] = oldTransitions[this] || null;
+          });
+        }
+
+        if (typeof callback === 'function') {
+          callback.apply(self);
+        }
+        if (typeof nextCall === 'function') {
+          nextCall();
+        }
+      };
+
+      if (i > 0 && transitionEnd && $.transit.useTransitionEnd) {
+        // Use the 'transitionend' event if it's available.
+        bound = true;
+        self.bind(transitionEnd, cb);
+      } else {
+        // Fallback to timers if the 'transitionend' event isn't supported.
+        window.setTimeout(cb, i);
+      }
+
+      // Apply transitions.
+      self.each(function () {
+        if (i > 0) {
+          this.style[support.transition] = transitionValue;
+        }
+        $(this).css(theseProperties);
+      });
+    };
+
+    // Defer running. This allows the browser to paint any pending CSS it hasn't
+    // painted yet before doing the transitions.
+    var deferredRun = function deferredRun(next) {
+      this.offsetWidth; // force a repaint
+      run(next);
+    };
+
+    // Use jQuery's fx queue.
+    callOrQueue(self, queue, deferredRun);
+
+    // Chainability.
+    return this;
+  };
+
+  function registerCssHook(prop, isPixels) {
+    // For certain properties, the 'px' should not be implied.
+    if (!isPixels) {
+      $.cssNumber[prop] = true;
+    }
+
+    $.transit.propertyMap[prop] = support.transform;
+
+    $.cssHooks[prop] = {
+      get: function get(elem) {
+        var t = $(elem).css('transit:transform');
+        return t.get(prop);
+      },
+
+      set: function set(elem, value) {
+        var t = $(elem).css('transit:transform');
+        t.setFromString(prop, value);
+
+        $(elem).css({ 'transit:transform': t });
+      }
+    };
+  }
+
+  // ### uncamel(str)
+  // Converts a camelcase string to a dasherized string.
+  // (`marginLeft` => `margin-left`)
+  function uncamel(str) {
+    return str.replace(/([A-Z])/g, function (letter) {
+      return '-' + letter.toLowerCase();
+    });
+  }
+
+  // ### unit(number, unit)
+  // Ensures that number `number` has a unit. If no unit is found, assume the
+  // default is `unit`.
+  //
+  //     unit(2, 'px')          //=> "2px"
+  //     unit("30deg", 'rad')   //=> "30deg"
+  //
+  function unit(i, units) {
+    if (typeof i === "string" && !i.match(/^[\-0-9\.]+$/)) {
+      return i;
+    } else {
+      return "" + i + units;
+    }
+  }
+
+  // ### toMS(duration)
+  // Converts given `duration` to a millisecond string.
+  //
+  // toMS('fast') => $.fx.speeds[i] => "200ms"
+  // toMS('normal') //=> $.fx.speeds._default => "400ms"
+  // toMS(10) //=> '10ms'
+  // toMS('100ms') //=> '100ms' 
+  //
+  function toMS(duration) {
+    var i = duration;
+
+    // Allow string durations like 'fast' and 'slow', without overriding numeric values.
+    if (typeof i === 'string' && !i.match(/^[\-0-9\.]+/)) {
+      i = $.fx.speeds[i] || $.fx.speeds._default;
+    }
+
+    return unit(i, 'ms');
+  }
+
+  // Export some functions for testable-ness.
+  $.transit.getTransitionValue = getTransition;
+
+  return $;
+});
+
+}).call(this,require("/NJiQA"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\..\\..\\..\\node_modules\\jquery.transit\\jquery.transit.js","/..\\..\\..\\..\\node_modules\\jquery.transit")
+},{"./..\\..\\app\\assets\\src\\js\\lib\\jquery\\dist\\jquery.js":3,"/NJiQA":8,"buffer":5}]},{},[2])
