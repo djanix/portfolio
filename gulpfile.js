@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var transform = require('vinyl-transform');
 var plugins = require('gulp-load-plugins')();
 
 plugins.browserSync = require('browser-sync').create();
