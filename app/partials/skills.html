@@ -5,15 +5,18 @@
     <template>
         <style>
             :host {
-                --paper-button: {
-                    display: block;
-                    line-height: 2;
-                    margin-bottom: 15px;
-                    overflow: hidden;
-                }
+
+            -
+            -paper-button: {
+                display: block;
+                line-height: 2;
+                margin-bottom: 15px;
+                overflow: hidden;
             }
 
-            [data-percent] {
+            }
+
+            .percent {
                 transform: translateX(-100%);
                 width: 100%;
                 height: 100%;
@@ -29,64 +32,54 @@
             <div class="skillset">
                 <h2 class="light-blue-text text-accent-2">My Skills</h2>
 
-                <!-- light-blue lighten-4 -->
-                <paper-button class="white light-blue-text text-darken-4">
-                    <div class="detail clearfix">
-                        <span class="left">Responsive Web Design</span>
-                        <span class="right">0%</span>
-                    </div>
-                    <div class="percent light-blue lighten-4" data-percent="98"></div>
-                </paper-button>
-
-                <paper-button class="white light-blue-text text-darken-4">
-                    <div class="detail clearfix">
-                        <span class="left">Javascript</span>
-                        <span class="right">0%</span>
-                    </div>
-                    <div class="percent light-blue lighten-4" data-percent="90"></div>
-                </paper-button>
-
-                <paper-button class="white light-blue-text text-darken-4">
-                    <div class="detail clearfix">
-                        <span class="left">Photoshop</span>
-                        <span class="right">0%</span>
-                    </div>
-                    <div class="percent light-blue lighten-4" data-percent="75"></div>
-                </paper-button>
-
-                <paper-button class="white light-blue-text text-darken-4">
-                    <div class="detail clearfix">
-                        <span class="left">Php</span>
-                        <span class="right">0%</span>
-                    </div>
-                    <div class="percent light-blue lighten-4" data-percent="45"></div>
-                </paper-button>
+                <template is="dom-repeat" items="{{skills}}" on-dom-change="updateSkills">
+                    <paper-button class="white light-blue-text text-darken-4">
+                        <div class="detail clearfix">
+                            <span class="left">{{item.name}}</span>
+                            <span class="right">
+                                <span>{{item.percent}}</span>%
+                            </span>
+                        </div>
+                        <div class="percent light-blue lighten-4"></div>
+                    </paper-button>
+                </template>
             </div>
 
             <h3 class="light-blue-text text-accent-2">Interests</h3>
 
-            <div class="chip amber darken-3 grey-text text-lighten-5">NodeJS</div>
-            <div class="chip amber darken-3 grey-text text-lighten-5">React</div>
-            <div class="chip amber darken-3 grey-text text-lighten-5">Angular</div>
-            <div class="chip amber darken-3 grey-text text-lighten-5">Grunt / Gulp</div>
-            <div class="chip amber darken-3 grey-text text-lighten-5">Git</div>
-            <div class="chip amber darken-3 grey-text text-lighten-5">Arduino</div>
+            <template is="dom-repeat" items="{{interests}}">
+                <div class="chip amber darken-3 grey-text text-lighten-5">{{item.name}}</div>
+            </template>
         </section>
     </template>
 
     <script>
         Polymer({
-            is: "poly-skills",
+            is: 'poly-skills',
             ready: function () {
-                // TODO: use custom paper element with data binding
-                this.skills = $(this).find('paper-button');
+                this.skills = [
+                    {name: 'responsive web design', percent: 98},
+                    {name: 'javascript', percent: 90},
+                    {name: 'photoshop', percent: 75},
+                    {name: 'php', percent: 45}
+                ];
 
-                _.each(this.skills, function (el) {
-                    var $percentBar = $(el).find('[data-percent]');
-                    var $text = $(el).find('.detail').find('.right');
+                this.interests = [
+                    {name: 'NodeJS'},
+                    {name: 'React'},
+                    {name: 'Angular'},
+                    {name: 'Grunt / Gulp'},
+                    {name: 'Git'},
+                    {name: 'Arduino'}
+                ]
+            },
+            updateSkills: function () {
+                var _this = this;
+                var skills = $(this).find('paper-button');
 
-                    $percentBar.css({transform: 'translateX(-' + (100 - $percentBar.data("percent")) + '%)'})
-                    $text.text($percentBar.data("percent") + '%');
+                _.each(skills, function (el, index) {
+                    var $percentBar = $(el).find('.percent');
+                    $percentBar.css({transform: 'translateX(-' + (100 - _this.skills[index].percent) + '%)'});
                 });
             }
         });
